@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Averta";
+  src: url("./assets/fonts/Averta-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Averta";
+  src: url("./assets/fonts/Averta-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Averta";
+  src: url("./assets/fonts/Averta-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-navy-50: #E8EDF2;
+  --color-navy-100: #C5D3E0;
+  --color-navy-200: #9FB5CB;
+  --color-navy-300: #7897B5;
+  --color-navy-400: #5A80A5;
+  --color-navy-500: #3D6995;
+  --color-navy-600: #315A85;
+  --color-navy-700: #234670;
+  --color-navy-800: #17345B;
+  --color-navy-900: #0B2A48;
+  --color-navy-950: #061A2E;
+
+  --color-gold-50: #FAF6E8;
+  --color-gold-100: #F2E8C5;
+  --color-gold-200: #E8D89E;
+  --color-gold-300: #DEC777;
+  --color-gold-400: #D6BA59;
+  --color-gold-500: #CFAD3B;
+  --color-gold-600: #C09E35;
+  --color-gold-700: #AA8C2B;
+  --color-gold-800: #957A23;
+  --color-gold-900: #715D14;
+
+  --color-cream: #FAFAF7;
+  --color-warm-gray-50: #F8F8F6;
+  --color-warm-gray-100: #F0F0EC;
+  --color-warm-gray-200: #E4E4DE;
+  --color-warm-gray-300: #D0D0C8;
+  --color-warm-gray-400: #A8A89E;
+  --color-warm-gray-500: #787870;
+  --color-warm-gray-600: #585850;
+  --color-warm-gray-700: #404038;
+  --color-warm-gray-800: #282820;
+  --color-warm-gray-900: #181810;
+
+  --font-heading: "Libre Baskerville", Georgia, serif;
+  --font-body: "Averta", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-card: 0 1px 3px 0 rgba(11, 42, 72, 0.06), 0 1px 2px -1px rgba(11, 42, 72, 0.06);
+  --shadow-card-hover: 0 10px 25px -5px rgba(11, 42, 72, 0.08), 0 8px 10px -6px rgba(11, 42, 72, 0.04);
+  --shadow-nav: 0 1px 3px 0 rgba(11, 42, 72, 0.08);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-warm-gray-800);
+    background-color: #ffffff;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-navy-900);
+    line-height: 1.2;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-400);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-100);
+    color: var(--color-navy-900);
+  }
+}
