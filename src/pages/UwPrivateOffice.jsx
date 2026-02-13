@@ -8,7 +8,8 @@ import StaggerChildren, {
 } from "../components/animation/StaggerChildren";
 import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
-import { pillars } from "../data/pillars";
+import { getPillars } from "../data/pillars";
+import { useLanguage } from "../context/LanguageContext";
 
 const pillarIcons = {
   governance: (
@@ -59,6 +60,9 @@ const pillarIcons = {
 };
 
 export default function UwPrivateOffice() {
+  const { language, t } = useLanguage();
+  const pillars = getPillars(language);
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -74,7 +78,7 @@ export default function UwPrivateOffice() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-block text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-4"
           >
-            Uw Private Office
+            {t("uwPrivateOffice", "heroEyebrow")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -86,7 +90,7 @@ export default function UwPrivateOffice() {
             }}
             className="text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-6"
           >
-            Uw Private Office volgens ons
+            {t("uwPrivateOffice", "heroTitle")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -94,9 +98,7 @@ export default function UwPrivateOffice() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="text-lg text-navy-200 leading-relaxed max-w-2xl"
           >
-            Orchestra richt voor u een private office in die rust op drie
-            onderling verbonden pijlers: governance, vermogensbeheer en
-            orkestratie.
+            {t("uwPrivateOffice", "heroDescription")}
           </motion.p>
         </div>
       </section>
@@ -105,9 +107,9 @@ export default function UwPrivateOffice() {
       <SectionWrapper bg="cream" size="lg">
         <AnimatedSection className="max-w-3xl mx-auto text-center">
           <SectionHeading
-            eyebrow="Drie Pijlers"
-            title="Gebouwd op drie verbonden pijlers"
-            subtitle="Uw Private Office neemt alle noodzakelijke administratieve lasten over, behoudt de voordelen en elimineert de rompslomp. Uw collectieve geheugen wordt volledig in kaart gebracht en beheerd."
+            eyebrow={t("uwPrivateOffice", "pillarsEyebrow")}
+            title={t("uwPrivateOffice", "pillarsTitle")}
+            subtitle={t("uwPrivateOffice", "pillarsSubtitle")}
             align="center"
           />
         </AnimatedSection>
@@ -166,23 +168,21 @@ export default function UwPrivateOffice() {
       <SectionWrapper bg="navy">
         <AnimatedSection className="text-center max-w-2xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-heading text-white mb-6">
-            Zorgeloze transitie
+            {t("uwPrivateOffice", "transitionTitle")}
           </h2>
           <div className="h-0.75 w-16 bg-gold-700 mx-auto mb-6" />
           <p className="text-lg text-navy-200 leading-relaxed mb-10">
-            Orchestra neemt alle transitielogistiek op zich. U hoeft zich
-            nergens druk over te maken — wij zorgen voor een soepele overgang
-            zodat u direct kunt profiteren van uw Private Office.
+            {t("uwPrivateOffice", "transitionDesc")}
           </p>
           <Button href="/contact" variant="primary" size="lg">
-            Neem Contact Op
+            {t("uwPrivateOffice", "transitionButton")}
           </Button>
         </AnimatedSection>
       </SectionWrapper>
 
       <CTASection
-        title="Klaar voor uw eigen Private Office?"
-        subtitle="Verken samen met ons hoe Orchestra uw vermogen beheerst kan maken."
+        title={t("uwPrivateOffice", "ctaTitle")}
+        subtitle={t("uwPrivateOffice", "ctaSubtitle")}
       />
     </PageTransition>
   );

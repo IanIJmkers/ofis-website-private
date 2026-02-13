@@ -12,10 +12,10 @@ import arvindBisoenPhoto from "../assets/images/team/arvind-bisoen.jpg";
 import christelPoorterPhoto from "../assets/images/team/christel-poorter.jpg";
 import carolineGroenBokPhoto from "../assets/images/team/caroline-groen-bok.jpg";
 
-export const team = [
+const members = [
   {
     name: "Roderik Bolle",
-    role: "Managing Director",
+    role: { nl: "Managing Director", en: "Managing Director" },
     email: "r.bolle@orchestra-contact.com",
     phone: "06-52629099",
     linkedin: "https://www.linkedin.com/in/roderikbolle/",
@@ -23,7 +23,7 @@ export const team = [
   },
   {
     name: "Wouter Hofhuis",
-    role: "Managing Director",
+    role: { nl: "Managing Director", en: "Managing Director" },
     email: "w.hofhuis@orchestra-contact.com",
     phone: "06-19408746",
     linkedin: "https://www.linkedin.com/in/wouter-hofhuis-59ab724",
@@ -31,7 +31,7 @@ export const team = [
   },
   {
     name: "Dave Price",
-    role: "Director & Hoofd Portefeuillebeheer",
+    role: { nl: "Director & Hoofd Portefeuillebeheer", en: "Director & Head of Portfolio Management" },
     email: "d.price@orchestra-contact.com",
     phone: "070-2051182",
     linkedin: "https://www.linkedin.com/in/dave-price-cfa-a766153",
@@ -39,7 +39,7 @@ export const team = [
   },
   {
     name: "Tanja Haremaker",
-    role: "Controller / Accountmanager",
+    role: { nl: "Controller / Accountmanager", en: "Controller / Account Manager" },
     email: "t.haremaker@orchestra-contact.com",
     phone: "06-51990527",
     linkedin: "https://www.linkedin.com/in/tanjaharemaker/",
@@ -47,7 +47,7 @@ export const team = [
   },
   {
     name: "Pien Verweij",
-    role: "Accountmanager / Manager HR",
+    role: { nl: "Accountmanager / Manager HR", en: "Account Manager / HR Manager" },
     email: "p.verweij@orchestra-contact.com",
     phone: "06-46761861",
     linkedin: "https://www.linkedin.com/in/pienverweij",
@@ -55,14 +55,14 @@ export const team = [
   },
   {
     name: "Kilian van Buuren",
-    role: "Accountmanager",
+    role: { nl: "Accountmanager", en: "Account Manager" },
     email: "k.vanbuuren@orchestra-contact.com",
     phone: "070-2197212",
     photo: kilianVanBuurenPhoto,
   },
   {
     name: "Arjan van Gulick",
-    role: "Accountmanager",
+    role: { nl: "Accountmanager", en: "Account Manager" },
     email: "a.vangulick@orchestra-contact.com",
     phone: "070-2197210",
     linkedin: "https://www.linkedin.com/in/arjan-van-gulick-77273ab6",
@@ -70,7 +70,7 @@ export const team = [
   },
   {
     name: "Emma van Steijn",
-    role: "Accountmanager",
+    role: { nl: "Accountmanager", en: "Account Manager" },
     email: "e.vansteijn@orchestra-contact.com",
     phone: "070-2051185",
     linkedin: "https://www.linkedin.com/in/emmavansteijn/",
@@ -78,7 +78,7 @@ export const team = [
   },
   {
     name: "Kai van Kampen",
-    role: "Junior Accountmanager",
+    role: { nl: "Junior Accountmanager", en: "Junior Account Manager" },
     email: "k.vankampen@orchestra-contact.com",
     phone: "070-2051184",
     linkedin: "https://www.linkedin.com/in/kai-van-kampen-9126591a6/",
@@ -86,7 +86,7 @@ export const team = [
   },
   {
     name: "Arvind Bisoen",
-    role: "Portfolio Manager Multi-Asset",
+    role: { nl: "Portfolio Manager Multi-Asset", en: "Portfolio Manager Multi-Asset" },
     email: "a.bisoen@orchestra-contact.com",
     phone: "070-2197217",
     linkedin: "https://www.linkedin.com/in/arvindbisoen/",
@@ -94,14 +94,14 @@ export const team = [
   },
   {
     name: "Christel Poorter",
-    role: "HR & Administratie medewerker",
+    role: { nl: "HR & Administratie medewerker", en: "HR & Administration" },
     email: "c.poorter@orchestra-contact.com",
     phone: "070-2051186",
     photo: christelPoorterPhoto,
   },
   {
     name: "Caroline Groen-Bok",
-    role: "Officemanager / PA",
+    role: { nl: "Officemanager / PA", en: "Office Manager / PA" },
     email: "c.groen-bok@orchestra-contact.com",
     phone: "070-2051181",
     linkedin: "https://www.linkedin.com/in/caroline-groen-bok-a49aba12b",
@@ -109,12 +109,12 @@ export const team = [
   },
   {
     name: "Jordy Verkerk",
-    role: "Medewerker",
+    role: { nl: "Medewerker", en: "Staff Member" },
     photo: null,
   },
   {
     name: "Ian IJmkers",
-    role: "Frontend Developer",
+    role: { nl: "Frontend Developer", en: "Frontend Developer" },
     email: "i.ijmkers@orchestra-contact.com",
     phone: "070-2051185",
     linkedin: "https://www.linkedin.com/in/ian-ijmkers/",
@@ -122,12 +122,16 @@ export const team = [
   },
   {
     name: "Emma de Nie",
-    role: "Backend Developer",
+    role: { nl: "Backend Developer", en: "Backend Developer" },
     photo: null,
   },
   {
     name: "Boris Rostovskiy",
-    role: "Backend Developer",
+    role: { nl: "Backend Developer", en: "Backend Developer" },
     photo: null,
   },
 ];
+
+export const team = members.map((m) => ({ ...m, role: m.role.nl }));
+export const getTeam = (lang) =>
+  members.map((m) => ({ ...m, role: m.role[lang] || m.role.nl }));

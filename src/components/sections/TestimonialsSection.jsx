@@ -2,19 +2,23 @@ import { motion } from "motion/react";
 import SectionWrapper from "../layout/SectionWrapper";
 import SectionHeading from "../ui/SectionHeading";
 import StaggerChildren, { staggerItem } from "../animation/StaggerChildren";
-import { testimonials } from "../../data/testimonials";
+import { useLanguage } from "../../context/LanguageContext";
+import { getTestimonials } from "../../data/testimonials";
 
 export default function TestimonialsSection() {
+  const { language, t } = useLanguage();
+  const items = getTestimonials(language);
+
   return (
     <SectionWrapper bg="cream">
       <SectionHeading
-        eyebrow="Onze Klanten"
-        title="Vertrouwd door onze cliënten"
-        subtitle="Lees wat onze klanten zeggen over de samenwerking met Orchestra."
+        eyebrow={t("home", "testimonialsEyebrow")}
+        title={t("home", "testimonialsTitle")}
+        subtitle={t("home", "testimonialsSubtitle")}
       />
 
       <StaggerChildren className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-        {testimonials.map((testimonial, index) => (
+        {items.map((testimonial, index) => (
           <motion.div
             key={index}
             variants={staggerItem}

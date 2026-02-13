@@ -5,10 +5,14 @@ import AnimatedSection from "../components/animation/AnimatedSection";
 import SectionWrapper from "../components/layout/SectionWrapper";
 import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
-import { siteMetadata } from "../data/siteMetadata";
+import { getSiteMetadata } from "../data/siteMetadata";
 import { submitContactForm } from "../lib/contact";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Contact() {
+  const { language, t } = useLanguage();
+  const metadata = getSiteMetadata(language);
+
   const [form, setForm] = useState({
     name: "",
     organization: "",
@@ -52,7 +56,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-block text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-4"
           >
-            Neem Contact Op
+            {t("contact", "heroEyebrow")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -60,7 +64,7 @@ export default function Contact() {
             transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             className="text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-6"
           >
-            Neem Contact Op
+            {t("contact", "heroTitle")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -68,9 +72,7 @@ export default function Contact() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="text-lg text-navy-200 leading-relaxed max-w-2xl"
           >
-            Wij bespreken graag hoe Orchestra uw vermogen beheerst kan maken.
-            Neem contact op voor een vrijblijvend gesprek met een van onze
-            specialisten.
+            {t("contact", "heroDescription")}
           </motion.p>
         </div>
       </section>
@@ -82,12 +84,11 @@ export default function Contact() {
           <AnimatedSection className="lg:col-span-3" direction="left">
             <div className="bg-white rounded-lg shadow-card p-8 sm:p-10">
               <h2 className="text-2xl font-heading text-navy-900 mb-2">
-                Stuur Ons een Bericht
+                {t("contact", "formTitle")}
               </h2>
               <div className="h-0.75 w-10 bg-gold-700 mb-6" />
               <p className="text-sm text-warm-gray-500 leading-relaxed mb-8">
-                Vul het onderstaande formulier in en wij nemen binnen twee
-                werkdagen contact met u op.
+                {t("contact", "formDescription")}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -98,7 +99,7 @@ export default function Contact() {
                       htmlFor="name"
                       className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
                     >
-                      Naam <span className="text-gold-700">*</span>
+                      {t("contact", "labelName")} <span className="text-gold-700">*</span>
                     </label>
                     <input
                       id="name"
@@ -107,7 +108,7 @@ export default function Contact() {
                       required
                       value={form.name}
                       onChange={handleChange}
-                      placeholder="Uw volledige naam"
+                      placeholder={t("contact", "placeholderName")}
                       className={inputClasses}
                     />
                   </div>
@@ -116,7 +117,7 @@ export default function Contact() {
                       htmlFor="organization"
                       className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
                     >
-                      Organisatie
+                      {t("contact", "labelOrganization")}
                     </label>
                     <input
                       id="organization"
@@ -124,7 +125,7 @@ export default function Contact() {
                       type="text"
                       value={form.organization}
                       onChange={handleChange}
-                      placeholder="Uw organisatie (optioneel)"
+                      placeholder={t("contact", "placeholderOrg")}
                       className={inputClasses}
                     />
                   </div>
@@ -137,7 +138,7 @@ export default function Contact() {
                       htmlFor="email"
                       className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
                     >
-                      E-mail <span className="text-gold-700">*</span>
+                      {t("contact", "labelEmail")} <span className="text-gold-700">*</span>
                     </label>
                     <input
                       id="email"
@@ -146,7 +147,7 @@ export default function Contact() {
                       required
                       value={form.email}
                       onChange={handleChange}
-                      placeholder="you@example.com"
+                      placeholder={t("contact", "placeholderEmail")}
                       className={inputClasses}
                     />
                   </div>
@@ -155,7 +156,7 @@ export default function Contact() {
                       htmlFor="phone"
                       className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
                     >
-                      Telefoon
+                      {t("contact", "labelPhone")}
                     </label>
                     <input
                       id="phone"
@@ -163,7 +164,7 @@ export default function Contact() {
                       type="tel"
                       value={form.phone}
                       onChange={handleChange}
-                      placeholder="+31 (0)6 ..."
+                      placeholder={t("contact", "placeholderPhone")}
                       className={inputClasses}
                     />
                   </div>
@@ -175,7 +176,7 @@ export default function Contact() {
                     htmlFor="message"
                     className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
                   >
-                    Bericht <span className="text-gold-700">*</span>
+                    {t("contact", "labelMessage")} <span className="text-gold-700">*</span>
                   </label>
                   <textarea
                     id="message"
@@ -184,7 +185,7 @@ export default function Contact() {
                     rows={5}
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="Hoe kunnen wij u helpen?"
+                    placeholder={t("contact", "placeholderMessage")}
                     className={`${inputClasses} resize-none`}
                   />
                 </div>
@@ -195,16 +196,16 @@ export default function Contact() {
                   size="lg"
                   disabled={status === "sending"}
                 >
-                  {status === "sending" ? "Verzenden..." : "Verzenden"}
+                  {status === "sending" ? t("contact", "submitSending") : t("contact", "submitButton")}
                 </Button>
 
                 {status === "success" && (
                   <div className="mt-4 p-4 rounded-md bg-green-50 border border-green-200">
                     <p className="text-sm font-semibold text-green-800">
-                      Bericht verzonden!
+                      {t("contact", "successTitle")}
                     </p>
                     <p className="text-sm text-green-700 mt-1">
-                      Wij nemen binnen twee werkdagen contact met u op.
+                      {t("contact", "successMessage")}
                     </p>
                   </div>
                 )}
@@ -212,8 +213,7 @@ export default function Contact() {
                 {status === "error" && (
                   <div className="mt-4 p-4 rounded-md bg-red-50 border border-red-200">
                     <p className="text-sm text-red-700">
-                      Er is iets misgegaan. Probeer het later opnieuw of neem
-                      telefonisch contact met ons op.
+                      {t("contact", "errorMessage")}
                     </p>
                   </div>
                 )}
@@ -231,7 +231,7 @@ export default function Contact() {
               {/* Contact info card */}
               <div className="bg-white rounded-lg shadow-card p-8">
                 <h3 className="text-lg font-heading text-navy-900 mb-6">
-                  Contactgegevens
+                  {t("contact", "contactDetailsTitle")}
                 </h3>
 
                 {/* Address */}
@@ -259,15 +259,15 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-xs font-body font-semibold tracking-wider uppercase text-warm-gray-400 mb-1">
-                      Adres
+                      {t("contact", "addressLabel")}
                     </p>
                     <p className="text-sm text-navy-900 leading-relaxed">
-                      {siteMetadata.address.street}
+                      {metadata.address.street}
                       <br />
-                      {siteMetadata.address.postalCode}{" "}
-                      {siteMetadata.address.city}
+                      {metadata.address.postalCode}{" "}
+                      {metadata.address.city}
                       <br />
-                      {siteMetadata.address.country}
+                      {metadata.address.country}
                     </p>
                   </div>
                 </div>
@@ -291,13 +291,13 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-xs font-body font-semibold tracking-wider uppercase text-warm-gray-400 mb-1">
-                      Telefoon
+                      {t("contact", "phoneLabel")}
                     </p>
                     <a
-                      href={`tel:${siteMetadata.phone.replace(/\s/g, "")}`}
+                      href={`tel:${metadata.phone.replace(/\s/g, "")}`}
                       className="text-sm text-navy-900 hover:text-gold-700 transition-colors duration-200"
                     >
-                      {siteMetadata.phone}
+                      {metadata.phone}
                     </a>
                   </div>
                 </div>
@@ -321,13 +321,13 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-xs font-body font-semibold tracking-wider uppercase text-warm-gray-400 mb-1">
-                      E-mail
+                      {t("contact", "emailLabel")}
                     </p>
                     <a
-                      href={`mailto:${siteMetadata.email}`}
+                      href={`mailto:${metadata.email}`}
                       className="text-sm text-navy-900 hover:text-gold-700 transition-colors duration-200 break-all"
                     >
-                      {siteMetadata.email}
+                      {metadata.email}
                     </a>
                   </div>
                 </div>
@@ -345,18 +345,18 @@ export default function Contact() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-heading text-white mb-2">
-                  Volg Ons op LinkedIn
+                  {t("contact", "linkedInTitle")}
                 </h3>
                 <p className="text-sm text-navy-200 mb-6">
-                  Blijf op de hoogte van ons laatste nieuws en inzichten.
+                  {t("contact", "linkedInDesc")}
                 </p>
                 <Button
-                  href={siteMetadata.linkedin}
+                  href={metadata.linkedin}
                   external
                   variant="outline-light"
                   size="md"
                 >
-                  Bezoek LinkedIn
+                  {t("contact", "linkedInButton")}
                 </Button>
               </div>
             </div>
@@ -365,8 +365,8 @@ export default function Contact() {
       </SectionWrapper>
 
       <CTASection
-        title="Liever een persoonlijk gesprek?"
-        subtitle="Ons team is beschikbaar voor een persoonlijke ontmoeting op ons kantoor in Den Haag of via een videogesprek."
+        title={t("contact", "ctaTitle")}
+        subtitle={t("contact", "ctaSubtitle")}
       />
     </PageTransition>
   );

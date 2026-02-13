@@ -2,15 +2,19 @@ import { motion } from "motion/react";
 import SectionWrapper from "../layout/SectionWrapper";
 import SectionHeading from "../ui/SectionHeading";
 import StaggerChildren, { staggerItem } from "../animation/StaggerChildren";
-import { processSteps } from "../../data/processSteps";
+import { useLanguage } from "../../context/LanguageContext";
+import { getProcessSteps } from "../../data/processSteps";
 
 export default function ProcessSteps() {
+  const { language, t } = useLanguage();
+  const steps = getProcessSteps(language);
+
   return (
     <SectionWrapper bg="navy" className="overflow-hidden">
       <SectionHeading
-        eyebrow="Onze Aanpak"
-        title="Van verkenning tot inzicht"
-        subtitle="Een persoonlijk proces dat begint bij wederzijdse herkenning en uitmondt in volledig overzicht."
+        eyebrow={t("home", "processEyebrow")}
+        title={t("home", "processTitle")}
+        subtitle={t("home", "processSubtitle")}
         light
       />
 
@@ -21,7 +25,7 @@ export default function ProcessSteps() {
           <div className="absolute top-6 left-0 right-0 h-px bg-gold-700/30" />
 
           <div className="grid grid-cols-5 gap-6">
-            {processSteps.map((step) => (
+            {steps.map((step) => (
               <motion.div
                 key={step.number}
                 variants={staggerItem}
@@ -48,7 +52,7 @@ export default function ProcessSteps() {
 
       {/* Mobile vertical timeline */}
       <StaggerChildren className="lg:hidden mt-12 space-y-8">
-        {processSteps.map((step) => (
+        {steps.map((step) => (
           <motion.div
             key={step.number}
             variants={staggerItem}

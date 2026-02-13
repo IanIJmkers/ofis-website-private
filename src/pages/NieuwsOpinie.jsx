@@ -8,6 +8,7 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import ArticleCard, { categoryColors } from "../components/ui/ArticleCard";
 import CTASection from "../components/sections/CTASection";
 import { fetchPublishedPosts, extractCategories } from "../lib/blog";
+import { useLanguage } from "../context/LanguageContext";
 
 function SkeletonFeatured() {
   return (
@@ -52,6 +53,7 @@ function SkeletonCard() {
 }
 
 export default function NieuwsOpinie() {
+  const { language, t } = useLanguage();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("all");
@@ -63,8 +65,10 @@ export default function NieuwsOpinie() {
     });
   }, []);
 
+  const dateLocale = language === "en" ? "en-GB" : "nl-NL";
+
   function formatDate(dateString) {
-    return new Date(dateString).toLocaleDateString("nl-NL", {
+    return new Date(dateString).toLocaleDateString(dateLocale, {
       day: "numeric",
       month: "long",
       year: "numeric",
@@ -94,7 +98,7 @@ export default function NieuwsOpinie() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-block text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-4"
           >
-            Inzichten
+            {t("news", "heroEyebrow")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -106,7 +110,7 @@ export default function NieuwsOpinie() {
             }}
             className="text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-4"
           >
-            Nieuws & Opinie
+            {t("news", "heroTitle")}
           </motion.h1>
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}
@@ -141,7 +145,7 @@ export default function NieuwsOpinie() {
 
               <div className="p-8 lg:p-12 flex flex-col justify-center">
                 <span className="inline-block self-start text-[10px] font-body font-semibold tracking-wider uppercase px-3 py-1 rounded-full bg-gold-100 text-gold-800 mb-4">
-                  Uitgelicht
+                  {t("news", "featured")}
                 </span>
 
                 <div className="flex items-center gap-3 mb-4">
@@ -167,7 +171,7 @@ export default function NieuwsOpinie() {
                 </p>
 
                 <span className="inline-flex items-center gap-2 text-xs font-body font-semibold tracking-wider uppercase text-gold-700 group-hover:text-gold-600 transition-colors">
-                  Lees meer
+                  {t("news", "readMore")}
                   <svg
                     className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
                     fill="none"
@@ -198,7 +202,7 @@ export default function NieuwsOpinie() {
                   : "bg-white text-warm-gray-500 border border-warm-gray-200 hover:border-navy-300 hover:text-navy-700"
               }`}
             >
-              Alle categorieën
+              {t("news", "allCategories")}
             </button>
             {categories.map((cat) => (
               <button
@@ -228,13 +232,13 @@ export default function NieuwsOpinie() {
         ) : articles.length === 0 ? (
           <div className="text-center py-16">
             <p className="text-warm-gray-400 text-lg">
-              Nog geen artikelen beschikbaar.
+              {t("news", "noArticles")}
             </p>
           </div>
         ) : filteredArticles.length === 0 && activeCategory !== "all" ? (
           <div className="text-center py-16">
             <p className="text-warm-gray-400 text-lg">
-              Geen artikelen in deze categorie.
+              {t("news", "noCategory")}
             </p>
           </div>
         ) : filteredArticles.length > 0 ? (

@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { motion } from "motion/react";
 import { staggerItem } from "../animation/StaggerChildren";
+import { useLanguage } from "../../context/LanguageContext";
 
 export const categoryColors = {
   Regelgeving: "bg-navy-100 text-navy-800",
@@ -11,6 +12,8 @@ export const categoryColors = {
 };
 
 export default function ArticleCard({ article, formatDate }) {
+  const { t } = useLanguage();
+
   return (
     <motion.article
       variants={staggerItem}
@@ -57,7 +60,7 @@ export default function ArticleCard({ article, formatDate }) {
           to={`/nieuws-opinie/${article.slug}`}
           className="inline-flex items-center gap-2 text-xs font-body font-semibold tracking-wider uppercase text-gold-700 hover:text-gold-600 transition-colors mt-auto"
         >
-          Lees meer
+          {t("news", "readMore")}
           <svg
             className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
             fill="none"

@@ -15,18 +15,18 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <NotFound />,
     children: [
-      { index: true, element: <Home />, handle: { title: "Home" } },
-      { path: "de-essentie", element: <DeEssentie />, handle: { title: "De Essentie" } },
-      { path: "uw-private-office", element: <UwPrivateOffice />, handle: { title: "Uw Private Office" } },
-      { path: "over-ons", element: <OverOns />, handle: { title: "Over Ons" } },
+      { index: true, element: <Home />, handle: { titleKey: "home" } },
+      { path: "de-essentie", element: <DeEssentie />, handle: { titleKey: "deEssentie" } },
+      { path: "uw-private-office", element: <UwPrivateOffice />, handle: { titleKey: "uwPrivateOffice" } },
+      { path: "over-ons", element: <OverOns />, handle: { titleKey: "overOns" } },
       {
         path: "nieuws-opinie",
         children: [
-          { index: true, element: <NieuwsOpinie />, handle: { title: "Nieuws & Opinie" } },
-          { path: ":slug", element: <NieuwsArtikel />, handle: { title: "Artikel" } },
+          { index: true, element: <NieuwsOpinie />, handle: { titleKey: "nieuwsOpinie" } },
+          { path: ":slug", element: <NieuwsArtikel />, handle: { titleKey: "artikel" } },
         ],
       },
-      { path: "contact", element: <Contact />, handle: { title: "Contact" } },
+      { path: "contact", element: <Contact />, handle: { titleKey: "contact" } },
     ],
   },
 ]);

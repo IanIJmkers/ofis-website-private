@@ -1,5 +1,6 @@
 import { Outlet, useLocation, useMatches } from "react-router";
 import { useEffect } from "react";
+import { useLanguage } from "../context/LanguageContext";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
@@ -17,13 +18,14 @@ function ScrollToTop() {
 
 function DocumentTitle() {
   const matches = useMatches();
-  const match = [...matches].reverse().find((m) => m.handle?.title);
+  const { t } = useLanguage();
+  const match = [...matches].reverse().find((m) => m.handle?.titleKey);
 
   useEffect(() => {
-    document.title = match?.handle?.title
-      ? `${match.handle.title} | ${BASE_TITLE}`
-      : BASE_TITLE;
-  }, [match]);
+    const titleKey = match?.handle?.titleKey;
+    const title = titleKey ? t("titles", titleKey) : null;
+    document.title = title ? `${title} | ${BASE_TITLE}` : BASE_TITLE;
+  }, [match, t]);
 
   return null;
 }

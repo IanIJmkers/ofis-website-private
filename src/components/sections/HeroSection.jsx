@@ -1,8 +1,12 @@
 import { motion } from "motion/react";
 import Button from "../ui/Button";
-import { siteMetadata } from "../../data/siteMetadata";
+import { useLanguage } from "../../context/LanguageContext";
+import { getSiteMetadata } from "../../data/siteMetadata";
 
 export default function HeroSection() {
+  const { language, t } = useLanguage();
+  const meta = getSiteMetadata(language);
+
   return (
     <section className="relative min-h-[90vh] flex items-center bg-navy-900 overflow-hidden">
       {/* Subtle gradient overlay */}
@@ -23,7 +27,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-block text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-6"
           >
-            Private Office voor Integraal Vermogensbeheer
+            {t("home", "heroEyebrow")}
           </motion.span>
 
           {/* Headline */}
@@ -33,8 +37,8 @@ export default function HeroSection() {
             transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             className="text-4xl sm:text-5xl lg:text-7xl font-heading text-white leading-[1.1] mb-8"
           >
-            Beheerste controle over uw gehele vermogen.{" "}
-            <span className="text-gold-400">Beheerst.</span>
+            {t("home", "heroTitle")}{" "}
+            <span className="text-gold-400">{t("home", "heroTitleAccent")}</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -44,7 +48,7 @@ export default function HeroSection() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="text-lg lg:text-xl text-navy-200 leading-relaxed max-w-2xl mb-10"
           >
-            {siteMetadata.description}
+            {meta.description}
           </motion.p>
 
           {/* CTAs */}
@@ -55,10 +59,10 @@ export default function HeroSection() {
             className="flex flex-wrap gap-4"
           >
             <Button href="/de-essentie" variant="primary" size="lg">
-              Ontdek De Essentie
+              {t("home", "heroCta1")}
             </Button>
             <Button href="/contact" variant="outline-light" size="lg">
-              Neem Contact Op
+              {t("home", "heroCta2")}
             </Button>
           </motion.div>
         </div>

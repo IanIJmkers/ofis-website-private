@@ -2,7 +2,8 @@ import { motion } from "motion/react";
 import SectionWrapper from "../layout/SectionWrapper";
 import SectionHeading from "../ui/SectionHeading";
 import StaggerChildren, { staggerItem } from "../animation/StaggerChildren";
-import { valueProps } from "../../data/valueProps";
+import { useLanguage } from "../../context/LanguageContext";
+import { getValueProps } from "../../data/valueProps";
 
 const icons = {
   specialist: (
@@ -33,16 +34,19 @@ const icons = {
 };
 
 export default function ValueProps() {
+  const { language, t } = useLanguage();
+  const props = getValueProps(language);
+
   return (
     <SectionWrapper bg="cream">
       <SectionHeading
-        eyebrow="Waarom Orchestra"
-        title="Wat ons onderscheidt"
-        subtitle="Wij combineren diepgaande sectorkennis met uitgebreide financiële dienstverlening, allemaal onder één dak."
+        eyebrow={t("home", "valuePropEyebrow")}
+        title={t("home", "valuePropTitle")}
+        subtitle={t("home", "valuePropSubtitle")}
       />
 
       <StaggerChildren className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-        {valueProps.map((prop, index) => (
+        {props.map((prop, index) => (
           <motion.div
             key={index}
             variants={staggerItem}

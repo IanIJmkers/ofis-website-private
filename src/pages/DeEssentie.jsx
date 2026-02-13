@@ -5,8 +5,11 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function DeEssentie() {
+  const { t } = useLanguage();
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -22,7 +25,7 @@ export default function DeEssentie() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-block text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-4"
           >
-            De Essentie
+            {t("deEssentie", "heroEyebrow")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -30,7 +33,7 @@ export default function DeEssentie() {
             transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             className="text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-6"
           >
-            Beheerste controle over uw gehele vermogen
+            {t("deEssentie", "heroTitle")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -38,9 +41,7 @@ export default function DeEssentie() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="text-lg text-navy-200 leading-relaxed max-w-2xl"
           >
-            Vermogensbeheer omvat veel meer dan beleggen alleen. Orchestra
-            Private biedt u een persoonlijk kantoor voor elk aspect van uw
-            vermogen, uw familie en uw ambities.
+            {t("deEssentie", "heroDescription")}
           </motion.p>
         </div>
       </section>
@@ -50,28 +51,14 @@ export default function DeEssentie() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           <AnimatedSection direction="left">
             <SectionHeading
-              eyebrow="Onze Visie"
-              title="Beheerst, niet alleen beheerd"
+              eyebrow={t("deEssentie", "visionEyebrow")}
+              title={t("deEssentie", "visionTitle")}
               align="left"
             />
             <div className="space-y-6 text-warm-gray-600 leading-relaxed">
-              <p>
-                Er is een wezenlijk verschil tussen beheerd vermogen en beheerst
-                vermogen. Bij Orchestra Private gaat het om dat laatste: volledige
-                controle over uw vermogen, uw familie, uw ambities maar ook uw
-                gemoedsrust.
-              </p>
-              <p>
-                Wij zijn geen traditionele vermogensbeheerder die stopt bij het
-                beheren van uw beleggingsportefeuille. Orchestra Private
-                orchestreert actief alle onderdelen van uw vermogen — vandaag en
-                in de toekomst.
-              </p>
-              <p>
-                Zie het als een waakvlam onder uw vermogen: altijd aanwezig,
-                altijd waakzaam, zodat al uw belangen beschermd en beheerd
-                worden.
-              </p>
+              <p>{t("deEssentie", "visionP1")}</p>
+              <p>{t("deEssentie", "visionP2")}</p>
+              <p>{t("deEssentie", "visionP3")}</p>
             </div>
           </AnimatedSection>
 
@@ -79,20 +66,17 @@ export default function DeEssentie() {
             <div className="bg-white rounded-lg shadow-card p-8 lg:p-10">
               <div className="h-0.75 w-10 bg-gold-700 mb-6" />
               <h3 className="text-2xl font-heading text-navy-900 mb-6">
-                Vast jaarlijks tarief
+                {t("deEssentie", "pricingTitle")}
               </h3>
               <p className="text-warm-gray-600 leading-relaxed mb-6">
-                Wij hanteren een vast jaarlijks tarief. Geen uurtarieven, geen
-                percentages over uw vermogen, geen verborgen kosten. Dit elimineert
-                ieder financieel belangenconflict in onze adviesrelatie.
+                {t("deEssentie", "pricingP1")}
               </p>
               <p className="text-warm-gray-600 leading-relaxed mb-8">
-                U weet vooraf precies wat u betaalt. Transparant, eerlijk en
-                zonder verrassingen.
+                {t("deEssentie", "pricingP2")}
               </p>
               <div className="pt-6 border-t border-warm-gray-100">
                 <Button href="/contact" variant="primary" size="md">
-                  Vraag een Gesprek Aan
+                  {t("deEssentie", "pricingButton")}
                 </Button>
               </div>
             </div>
@@ -105,23 +89,21 @@ export default function DeEssentie() {
         <AnimatedSection className="max-w-3xl mx-auto text-center">
           <div className="h-0.75 w-16 bg-gold-700 mx-auto mb-8" />
           <blockquote className="text-2xl sm:text-3xl font-heading text-navy-900 leading-snug mb-6">
-            &ldquo;Wij nodigen u uit om te verkennen of onze dienstverlening past
-            bij uw situatie. Dat geldt ook voor wie een second opinion zoekt over
-            bestaand vermogensbeheer.&rdquo;
+            &ldquo;{t("deEssentie", "quoteText")}&rdquo;
           </blockquote>
           <p className="text-warm-gray-500 font-semibold">
-            Roderik Bolle
+            {t("deEssentie", "quoteAuthor")}
           </p>
-          <p className="text-sm text-warm-gray-400">Managing Director</p>
+          <p className="text-sm text-warm-gray-400">{t("deEssentie", "quoteRole")}</p>
         </AnimatedSection>
       </SectionWrapper>
 
       {/* Exploration process */}
       <SectionWrapper bg="cream">
         <SectionHeading
-          eyebrow="Het Proces"
-          title="Verkenning & herkenning"
-          subtitle="Onze samenwerking begint met een open verkenning. Wij nemen de tijd om uw situatie te begrijpen en samen te bepalen of er een klik is."
+          eyebrow={t("deEssentie", "processEyebrow")}
+          title={t("deEssentie", "processTitle")}
+          subtitle={t("deEssentie", "processSubtitle")}
           align="center"
         />
         <AnimatedSection className="mt-12 max-w-2xl mx-auto">
@@ -132,11 +114,10 @@ export default function DeEssentie() {
               </div>
               <div>
                 <h3 className="text-lg font-heading text-navy-900 mb-2">
-                  Kennismaking
+                  {t("deEssentie", "step1Title")}
                 </h3>
                 <p className="text-warm-gray-500 leading-relaxed">
-                  Een open gesprek zonder verplichtingen. Wij luisteren naar uw
-                  situatie, uw wensen en uw zorgen.
+                  {t("deEssentie", "step1Desc")}
                 </p>
               </div>
             </div>
@@ -146,11 +127,10 @@ export default function DeEssentie() {
               </div>
               <div>
                 <h3 className="text-lg font-heading text-navy-900 mb-2">
-                  Verkenning
+                  {t("deEssentie", "step2Title")}
                 </h3>
                 <p className="text-warm-gray-500 leading-relaxed">
-                  Wij brengen uw volledige vermogenssituatie in kaart en
-                  identificeren waar Orchestra waarde kan toevoegen.
+                  {t("deEssentie", "step2Desc")}
                 </p>
               </div>
             </div>
@@ -160,11 +140,10 @@ export default function DeEssentie() {
               </div>
               <div>
                 <h3 className="text-lg font-heading text-navy-900 mb-2">
-                  Voorstel
+                  {t("deEssentie", "step3Title")}
                 </h3>
                 <p className="text-warm-gray-500 leading-relaxed">
-                  U ontvangt een helder voorstel met een vast jaarlijks tarief.
-                  Geen verrassingen, geen verplichtingen.
+                  {t("deEssentie", "step3Desc")}
                 </p>
               </div>
             </div>
@@ -173,8 +152,8 @@ export default function DeEssentie() {
       </SectionWrapper>
 
       <CTASection
-        title="Wilt u verkennen of Orchestra bij u past?"
-        subtitle="Neem vrijblijvend contact op voor een persoonlijk gesprek."
+        title={t("deEssentie", "ctaTitle")}
+        subtitle={t("deEssentie", "ctaSubtitle")}
       />
     </PageTransition>
   );

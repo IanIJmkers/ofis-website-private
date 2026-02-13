@@ -7,9 +7,15 @@ import StaggerChildren, {
   staggerItem,
 } from "../components/animation/StaggerChildren";
 import CTASection from "../components/sections/CTASection";
-import { team } from "../data/team";
+import { getTeam } from "../data/team";
+import { getRegulators } from "../data/regulators";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function OverOns() {
+  const { language, t } = useLanguage();
+  const team = getTeam(language);
+  const regulators = getRegulators(language);
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -25,7 +31,7 @@ export default function OverOns() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-block text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-4"
           >
-            Over Ons
+            {t("overOns", "heroEyebrow")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -37,7 +43,7 @@ export default function OverOns() {
             }}
             className="text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-6"
           >
-            Een ander geluid
+            {t("overOns", "heroTitle")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -45,8 +51,7 @@ export default function OverOns() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="text-lg text-navy-200 leading-relaxed max-w-2xl"
           >
-            Orchestra Private werd eind 2012 opgericht met de intentie om een
-            ander geluid te laten horen in vermogensbeheer.
+            {t("overOns", "heroDescription")}
           </motion.p>
         </div>
       </section>
@@ -56,27 +61,14 @@ export default function OverOns() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           <AnimatedSection direction="left">
             <SectionHeading
-              eyebrow="Ons Verhaal"
-              title="Meer dan beleggen alleen"
+              eyebrow={t("overOns", "storyEyebrow")}
+              title={t("overOns", "storyTitle")}
               align="left"
             />
             <div className="space-y-6 text-warm-gray-600 leading-relaxed">
-              <p>
-                Vermogensbeheer omvat veel meer dan de beurs alleen. Het verschil
-                tussen beheerd vermogen en beheerst vermogen is wezenlijk. Orchestra
-                Private biedt persoonlijke begeleiding bij onverwachte
-                levensgebeurtenissen, maar ook lange termijn planning.
-              </p>
-              <p>
-                Wij helpen bij het oprichten van familiefondsen, de overdracht van
-                familievermogen en bieden via ons platform Mijn Orchestra
-                geïntegreerd overzicht, controle en transparantie over uw bezit.
-              </p>
-              <p>
-                Vandaag de dag werken meer dan 25 specialisten bij Orchestra,
-                waaronder portfoliomanagers, registeraccountants, administratieve
-                controllers en toegewijde vertrouwde adviseurs.
-              </p>
+              <p>{t("overOns", "storyP1")}</p>
+              <p>{t("overOns", "storyP2")}</p>
+              <p>{t("overOns", "storyP3")}</p>
             </div>
           </AnimatedSection>
 
@@ -84,20 +76,20 @@ export default function OverOns() {
             <div className="space-y-6">
               <div className="bg-white rounded-lg shadow-card p-8">
                 <h3 className="text-lg font-heading text-navy-900 mb-4">
-                  Onze Filosofie
+                  {t("overOns", "philosophyTitle")}
                 </h3>
                 <div className="h-0.75 w-10 bg-gold-700 mb-6" />
                 <div className="space-y-4">
                   <div className="flex gap-3">
                     <div className="shrink-0 w-1 bg-gold-700 rounded-full" />
                     <p className="text-warm-gray-600 italic">
-                      Servicegericht, maar niet serviel
+                      {t("overOns", "philosophy1")}
                     </p>
                   </div>
                   <div className="flex gap-3">
                     <div className="shrink-0 w-1 bg-gold-700 rounded-full" />
                     <p className="text-warm-gray-600 italic">
-                      Prudent, maar ook proactief
+                      {t("overOns", "philosophy2")}
                     </p>
                   </div>
                 </div>
@@ -108,11 +100,10 @@ export default function OverOns() {
                   25+
                 </div>
                 <p className="text-white font-heading text-lg mb-2">
-                  Specialisten
+                  {t("overOns", "specialistsLabel")}
                 </p>
                 <p className="text-navy-300 text-sm leading-relaxed">
-                  Portfoliomanagers, registeraccountants, administratieve
-                  controllers en vertrouwde adviseurs.
+                  {t("overOns", "specialistsDesc")}
                 </p>
               </div>
             </div>
@@ -124,49 +115,23 @@ export default function OverOns() {
       <SectionWrapper bg="white">
         <AnimatedSection className="text-center max-w-2xl mx-auto mb-12">
           <SectionHeading
-            eyebrow="Toezicht"
-            title="Onder toezicht van vijf instanties"
-            subtitle="Orchestra opereert onder toezicht van de relevante toezichthouders, wat uw vermogen de bescherming biedt die het verdient."
+            eyebrow={t("overOns", "regulatorsEyebrow")}
+            title={t("overOns", "regulatorsTitle")}
+            subtitle={t("overOns", "regulatorsSubtitle")}
             align="center"
           />
         </AnimatedSection>
         <AnimatedSection>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-            {[
-              {
-                abbr: "DNB",
-                name: "De Nederlandsche Bank",
-                desc: "Prudentieel toezicht",
-              },
-              {
-                abbr: "AFM",
-                name: "Autoriteit Financiële Markten",
-                desc: "Gedragstoezicht",
-              },
-              {
-                abbr: "AP",
-                name: "Autoriteit Persoonsgegevens",
-                desc: "Privacy & databescherming",
-              },
-              {
-                abbr: "DSI",
-                name: "Dutch Securities Institute",
-                desc: "Professionele standaarden",
-              },
-              {
-                abbr: "KiFid",
-                name: "Klachteninstituut Financiële Dienstverlening",
-                desc: "Klachtenbehandeling",
-              },
-            ].map((reg) => (
+            {regulators.map((reg) => (
               <div
-                key={reg.abbr}
+                key={reg.abbreviation}
                 className="bg-cream rounded-lg p-6 text-center"
               >
                 <div className="text-2xl font-heading text-navy-900 mb-2">
-                  {reg.abbr}
+                  {reg.abbreviation}
                 </div>
-                <p className="text-xs text-warm-gray-500">{reg.desc}</p>
+                <p className="text-xs text-warm-gray-500">{reg.description}</p>
               </div>
             ))}
           </div>
@@ -176,9 +141,9 @@ export default function OverOns() {
       {/* Team */}
       <SectionWrapper bg="cream">
         <SectionHeading
-          eyebrow="Ons Team"
-          title="De mensen achter Orchestra"
-          subtitle="Een team van ervaren specialisten dat zich inzet voor het beheerst houden van uw vermogen."
+          eyebrow={t("overOns", "teamEyebrow")}
+          title={t("overOns", "teamTitle")}
+          subtitle={t("overOns", "teamSubtitle")}
           align="center"
         />
 

@@ -15,14 +15,7 @@ import {
   estimateReadingTime,
   processContent,
 } from "../lib/blog";
-
-function formatDate(dateString) {
-  return new Date(dateString).toLocaleDateString("nl-NL", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
+import { useLanguage } from "../context/LanguageContext";
 
 function extractHeadings(html) {
   if (!html) return [];
@@ -129,6 +122,7 @@ function ArticleSkeleton() {
 }
 
 export default function NieuwsArtikel() {
+  const { language, t } = useLanguage();
   const { slug } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -145,6 +139,16 @@ export default function NieuwsArtikel() {
     offset: ["start start", "end end"],
   });
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+
+  const dateLocale = language === "en" ? "en-GB" : "nl-NL";
+
+  function formatDate(dateString) {
+    return new Date(dateString).toLocaleDateString(dateLocale, {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -221,10 +225,10 @@ export default function NieuwsArtikel() {
           <div className="absolute inset-0 bg-linear-to-br from-navy-950 via-navy-900 to-navy-800" />
           <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-40 pb-20 text-center">
             <h1 className="text-3xl sm:text-4xl font-heading text-white mb-4">
-              Artikel niet gevonden
+              {t("news", "articleNotFound")}
             </h1>
             <p className="text-navy-200 mb-8">
-              Dit artikel bestaat niet of is verwijderd.
+              {t("news", "articleNotFoundDesc")}
             </p>
             <Link
               to="/nieuws-opinie"
@@ -233,7 +237,7 @@ export default function NieuwsArtikel() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
               </svg>
-              Terug naar Nieuws & Opinie
+              {t("news", "backToNews")}
             </Link>
           </div>
         </section>
@@ -270,7 +274,7 @@ export default function NieuwsArtikel() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
                 <Link to="/nieuws-opinie" className="hover:text-navy-700 transition-colors">
-                  Nieuws & Opinie
+                  {t("news", "heroTitle")}
                 </Link>
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -300,7 +304,7 @@ export default function NieuwsArtikel() {
                 </time>
                 <span className="text-warm-gray-300">|</span>
                 <span className="text-sm font-body text-warm-gray-500">
-                  {readingTime} min. leestijd
+                  {readingTime} {t("news", "readingTime")}
                 </span>
               </motion.div>
 
@@ -369,7 +373,7 @@ export default function NieuwsArtikel() {
                       </svg>
                       <div>
                         <p className="text-xs font-body font-semibold tracking-wider uppercase text-gold-700 mb-2">
-                          Kernpunt
+                          {t("news", "keyTakeaway")}
                         </p>
                         <p className="text-base lg:text-lg text-navy-800 leading-relaxed font-body">
                           {post.excerpt}
@@ -395,7 +399,7 @@ export default function NieuwsArtikel() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                     <span className="text-sm font-body font-semibold text-navy-900">
-                      Inhoudsopgave
+                      {t("news", "tableOfContents")}
                     </span>
                     {activeHeading && (
                       <span className="text-sm text-warm-gray-400 truncate max-w-40">
@@ -458,7 +462,7 @@ export default function NieuwsArtikel() {
                   <aside className="hidden xl:block w-56 shrink-0">
                     <nav className="sticky top-24">
                       <p className="text-[10px] font-body font-semibold tracking-wider uppercase text-warm-gray-400 mb-4">
-                        Inhoudsopgave
+                        {t("news", "tableOfContents")}
                       </p>
                       <ul className="space-y-2 border-l border-warm-gray-200">
                         {headings.map((h) => (
@@ -482,7 +486,7 @@ export default function NieuwsArtikel() {
                       {/* Share buttons in sidebar */}
                       <div className="mt-8 pt-6 border-t border-warm-gray-200">
                         <p className="text-[10px] font-body font-semibold tracking-wider uppercase text-warm-gray-400 mb-3">
-                          Deel dit artikel
+                          {t("news", "shareArticle")}
                         </p>
                         <div className="flex items-center gap-2">
                           <a
@@ -490,7 +494,7 @@ export default function NieuwsArtikel() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-8 h-8 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
-                            aria-label="Delen op LinkedIn"
+                            aria-label={t("news", "shareLinkedIn")}
                           >
                             <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -501,7 +505,7 @@ export default function NieuwsArtikel() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-8 h-8 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
-                            aria-label="Delen op X"
+                            aria-label={t("news", "shareX")}
                           >
                             <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -510,14 +514,14 @@ export default function NieuwsArtikel() {
                           <button
                             onClick={handleCopyLink}
                             className="relative w-8 h-8 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
-                            aria-label="Link kopiëren"
+                            aria-label={t("news", "copyLink")}
                           >
                             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                             </svg>
                             {copied && (
                               <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-navy-900 text-white px-2 py-1 rounded whitespace-nowrap">
-                                Gekopieerd!
+                                {t("news", "copied")}
                               </span>
                             )}
                           </button>
@@ -589,14 +593,14 @@ export default function NieuwsArtikel() {
                   <div className="border-t border-warm-gray-200 mt-12 pt-8 flex flex-wrap items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
                       <span className="text-xs font-body font-semibold tracking-wider uppercase text-warm-gray-400">
-                        Deel dit artikel
+                        {t("news", "shareArticle")}
                       </span>
                       <a
                         href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-9 h-9 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
-                        aria-label="Delen op LinkedIn"
+                        aria-label={t("news", "shareLinkedIn")}
                       >
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -607,7 +611,7 @@ export default function NieuwsArtikel() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-9 h-9 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
-                        aria-label="Delen op X"
+                        aria-label={t("news", "shareX")}
                       >
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -616,14 +620,14 @@ export default function NieuwsArtikel() {
                       <button
                         onClick={handleCopyLink}
                         className="relative w-9 h-9 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
-                        aria-label="Link kopiëren"
+                        aria-label={t("news", "copyLink")}
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                         </svg>
                         {copied && (
                           <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-navy-900 text-white px-2 py-1 rounded whitespace-nowrap">
-                            Gekopieerd!
+                            {t("news", "copied")}
                           </span>
                         )}
                       </button>
@@ -636,7 +640,7 @@ export default function NieuwsArtikel() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
                       </svg>
-                      Terug naar Nieuws & Opinie
+                      {t("news", "backToNews")}
                     </Link>
                   </div>
                 </div>
@@ -648,9 +652,9 @@ export default function NieuwsArtikel() {
           {relatedArticles.length > 0 && (
             <SectionWrapper bg="cream" size="lg">
               <SectionHeading
-                eyebrow="Gerelateerd"
-                title="Gerelateerde artikelen"
-                subtitle="Meer over dit onderwerp."
+                eyebrow={t("news", "relatedEyebrow")}
+                title={t("news", "relatedTitle")}
+                subtitle={t("news", "relatedSubtitle")}
                 align="center"
               />
               <StaggerChildren className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -669,9 +673,9 @@ export default function NieuwsArtikel() {
           {recentArticles.length > 0 && (
             <SectionWrapper bg="white" size="lg">
               <SectionHeading
-                eyebrow="Laatste nieuws"
-                title="Recente artikelen"
-                subtitle="Het laatste nieuws van Orchestra Private."
+                eyebrow={t("news", "recentEyebrow")}
+                title={t("news", "recentTitle")}
+                subtitle={t("news", "recentSubtitle")}
                 align="center"
               />
               <StaggerChildren className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -700,7 +704,7 @@ export default function NieuwsArtikel() {
             transition={{ duration: 0.2 }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gold-700 text-white shadow-card-hover flex items-center justify-center hover:bg-gold-600 transition-colors z-40"
-            aria-label="Terug naar boven"
+            aria-label={t("news", "backToTop")}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />

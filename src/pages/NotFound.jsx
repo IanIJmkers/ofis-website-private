@@ -1,7 +1,10 @@
 import { motion } from "motion/react";
 import Button from "../components/ui/Button";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function NotFound() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-navy-900 overflow-hidden">
       {/* Background gradient */}
@@ -20,7 +23,7 @@ export default function NotFound() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-6"
         >
-          Fout
+          {t("notFound", "eyebrow")}
         </motion.p>
 
         <motion.h1
@@ -45,7 +48,7 @@ export default function NotFound() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-2xl sm:text-3xl font-heading text-white mb-4"
         >
-          Pagina niet gevonden
+          {t("notFound", "title")}
         </motion.p>
 
         <motion.p
@@ -54,8 +57,7 @@ export default function NotFound() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-base text-navy-200 max-w-md mx-auto mb-10 leading-relaxed"
         >
-          De pagina die u zoekt bestaat niet of is verplaatst.
-          Laat ons u terugbrengen.
+          {t("notFound", "description")}
         </motion.p>
 
         <motion.div
@@ -64,7 +66,7 @@ export default function NotFound() {
           transition={{ duration: 0.6, delay: 0.7 }}
         >
           <Button href="/" variant="primary" size="lg">
-            Terug naar Home
+            {t("notFound", "button")}
           </Button>
         </motion.div>
       </div>
