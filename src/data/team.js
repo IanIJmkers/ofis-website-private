@@ -109,7 +109,8 @@ const members = [
   },
   {
     name: "Jordy Verkerk",
-    role: { nl: "Medewerker", en: "Staff Member" },
+    role: { nl: "Investment team associate", en: "Investment team associate" },
+    email: "j.verkerk@orchestra-contact.com",
     photo: null,
   },
   {
@@ -123,11 +124,13 @@ const members = [
   {
     name: "Emma de Nie",
     role: { nl: "Backend Developer", en: "Backend Developer" },
+    email: "e.denie@orchestra-contact.com",
     photo: null,
   },
   {
     name: "Boris Rostovskiy",
     role: { nl: "Backend Developer", en: "Backend Developer" },
+    email: "b.rostovskiy@orchestra-contact.com",
     photo: null,
   },
 ];
