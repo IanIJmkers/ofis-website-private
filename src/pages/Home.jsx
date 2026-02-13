@@ -6,6 +6,7 @@ import PillarsCards from "../components/sections/PillarsCards";
 import ProcessSteps from "../components/sections/ProcessSteps";
 import TestimonialsSection from "../components/sections/TestimonialsSection";
 import TrustBadges from "../components/sections/TrustBadges";
+import MobileAppShowcase from "../components/sections/MobileAppShowcase";
 import CTASection from "../components/sections/CTASection";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
       <ProcessSteps />
       <TestimonialsSection />
       <TrustBadges />
+      <MobileAppShowcase />
       <CTASection />
     </PageTransition>
   );

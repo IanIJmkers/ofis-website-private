@@ -6,28 +6,33 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
 import { siteMetadata } from "../data/siteMetadata";
+import { submitContactForm } from "../lib/contact";
 
 export default function Contact() {
   const [form, setForm] = useState({
-    helpType: "",
     name: "",
+    organization: "",
     email: "",
     phone: "",
     message: "",
   });
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setStatus("sending");
+    try {
+      await submitContactForm(form);
+      setStatus("success");
+      setForm({ name: "", organization: "", email: "", phone: "", message: "" });
+    } catch {
+      setStatus("error");
+    }
   };
-
-  const showName = form.helpType === "vraag" || form.helpType === "afspraak";
-  const showEmail = form.helpType === "vraag" || form.helpType === "nieuwsbrief";
-  const showPhone = form.helpType === "vraag" || form.helpType === "afspraak";
-  const showMessage = form.helpType === "vraag";
 
   const inputClasses =
     "w-full px-4 py-3 bg-white border border-warm-gray-200 rounded-md font-body text-sm text-navy-900 placeholder:text-warm-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent transition-colors duration-200";
@@ -86,134 +91,131 @@ export default function Contact() {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Help type dropdown */}
-                <div>
-                  <label
-                    htmlFor="helpType"
-                    className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                  >
-                    Waar kunnen wij u mee helpen?{" "}
-                    <span className="text-gold-700">*</span>
-                  </label>
-                  <select
-                    id="helpType"
-                    name="helpType"
-                    required
-                    value={form.helpType}
-                    onChange={handleChange}
-                    className={inputClasses}
-                  >
-                    <option value="">Selecteer een optie</option>
-                    <option value="vraag">Ik heb een vraag</option>
-                    <option value="afspraak">
-                      Ik wil gebeld worden voor een afspraak
-                    </option>
-                    <option value="nieuwsbrief">
-                      Ik wil nieuwsbrieven ontvangen
-                    </option>
-                  </select>
+                {/* Name + Organisation */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                    >
+                      Naam <span className="text-gold-700">*</span>
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      value={form.name}
+                      onChange={handleChange}
+                      placeholder="Uw volledige naam"
+                      className={inputClasses}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="organization"
+                      className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                    >
+                      Organisatie
+                    </label>
+                    <input
+                      id="organization"
+                      name="organization"
+                      type="text"
+                      value={form.organization}
+                      onChange={handleChange}
+                      placeholder="Uw organisatie (optioneel)"
+                      className={inputClasses}
+                    />
+                  </div>
                 </div>
 
-                {/* Conditional fields */}
-                {form.helpType && (
-                  <>
-                    {/* Name */}
-                    {showName && (
-                      <div>
-                        <label
-                          htmlFor="name"
-                          className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                        >
-                          Naam <span className="text-gold-700">*</span>
-                        </label>
-                        <input
-                          id="name"
-                          name="name"
-                          type="text"
-                          required
-                          value={form.name}
-                          onChange={handleChange}
-                          placeholder="Uw volledige naam"
-                          className={inputClasses}
-                        />
-                      </div>
-                    )}
+                {/* Email + Phone */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                    >
+                      E-mail <span className="text-gold-700">*</span>
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={form.email}
+                      onChange={handleChange}
+                      placeholder="you@example.com"
+                      className={inputClasses}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                    >
+                      Telefoon
+                    </label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={form.phone}
+                      onChange={handleChange}
+                      placeholder="+31 (0)6 ..."
+                      className={inputClasses}
+                    />
+                  </div>
+                </div>
 
-                    {/* Email + Phone row */}
-                    {(showEmail || showPhone) && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        {showEmail && (
-                          <div>
-                            <label
-                              htmlFor="email"
-                              className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                            >
-                              E-mail <span className="text-gold-700">*</span>
-                            </label>
-                            <input
-                              id="email"
-                              name="email"
-                              type="email"
-                              required
-                              value={form.email}
-                              onChange={handleChange}
-                              placeholder="you@example.com"
-                              className={inputClasses}
-                            />
-                          </div>
-                        )}
-                        {showPhone && (
-                          <div>
-                            <label
-                              htmlFor="phone"
-                              className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                            >
-                              Telefoon{" "}
-                              {form.helpType === "afspraak" && (
-                                <span className="text-gold-700">*</span>
-                              )}
-                            </label>
-                            <input
-                              id="phone"
-                              name="phone"
-                              type="tel"
-                              required={form.helpType === "afspraak"}
-                              value={form.phone}
-                              onChange={handleChange}
-                              placeholder="+31 (0)6 ..."
-                              className={inputClasses}
-                            />
-                          </div>
-                        )}
-                      </div>
-                    )}
+                {/* Message */}
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                  >
+                    Bericht <span className="text-gold-700">*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={5}
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="Hoe kunnen wij u helpen?"
+                    className={`${inputClasses} resize-none`}
+                  />
+                </div>
 
-                    {/* Message */}
-                    {showMessage && (
-                      <div>
-                        <label
-                          htmlFor="message"
-                          className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                        >
-                          Bericht <span className="text-gold-700">*</span>
-                        </label>
-                        <textarea
-                          id="message"
-                          name="message"
-                          required
-                          rows={5}
-                          value={form.message}
-                          onChange={handleChange}
-                          placeholder="Hoe kunnen wij u helpen?"
-                          className={`${inputClasses} resize-none`}
-                        />
-                      </div>
-                    )}
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  disabled={status === "sending"}
+                >
+                  {status === "sending" ? "Verzenden..." : "Verzenden"}
+                </Button>
 
-                    <Button type="submit" variant="primary" size="lg">
-                      Verzenden
-                    </Button>
-                  </>
+                {status === "success" && (
+                  <div className="mt-4 p-4 rounded-md bg-green-50 border border-green-200">
+                    <p className="text-sm font-semibold text-green-800">
+                      Bericht verzonden!
+                    </p>
+                    <p className="text-sm text-green-700 mt-1">
+                      Wij nemen binnen twee werkdagen contact met u op.
+                    </p>
+                  </div>
+                )}
+
+                {status === "error" && (
+                  <div className="mt-4 p-4 rounded-md bg-red-50 border border-red-200">
+                    <p className="text-sm text-red-700">
+                      Er is iets misgegaan. Probeer het later opnieuw of neem
+                      telefonisch contact met ons op.
+                    </p>
+                  </div>
                 )}
               </form>
             </div>
@@ -328,33 +330,6 @@ export default function Contact() {
                       {siteMetadata.email}
                     </a>
                   </div>
-                </div>
-              </div>
-
-              {/* Parking info */}
-              <div className="bg-white rounded-lg shadow-card p-8">
-                <h3 className="text-lg font-heading text-navy-900 mb-4">
-                  Parkeren
-                </h3>
-                <div className="flex gap-4">
-                  <div className="shrink-0 w-10 h-10 rounded-full bg-navy-50 flex items-center justify-center">
-                    <svg
-                      className="w-5 h-5 text-navy-700"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-sm text-warm-gray-500 leading-relaxed">
-                    {siteMetadata.parkingInstructions}
-                  </p>
                 </div>
               </div>
 
