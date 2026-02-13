@@ -141,14 +141,13 @@ export default function MobileMenu({ open, onClose }) {
 
               {/* My Orchestra CTA */}
               <div className="mt-8">
-                <a
-                  href={meta.myOrchestra}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/mijn-orchestra"
+                  onClick={onClose}
                   className="block w-full text-center px-6 py-3 bg-gold-700 text-white text-sm font-semibold tracking-wider uppercase rounded-md hover:bg-gold-600 transition-colors"
                 >
                   {t("nav", "mijnOrchestra")}
-                </a>
+                </Link>
               </div>
             </nav>
           </motion.div>

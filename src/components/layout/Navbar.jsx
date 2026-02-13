@@ -114,14 +114,12 @@ export default function Navbar() {
             {/* Right side */}
             <div className="hidden lg:flex items-center gap-4">
               <LanguageToggle transparent={useTransparent} />
-              <a
-                href={meta.myOrchestra}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/mijn-orchestra"
                 className="px-5 py-2.5 text-xs font-semibold tracking-wider uppercase bg-gold-700 text-white rounded-md hover:bg-gold-600 transition-colors duration-200"
               >
                 {t("nav", "mijnOrchestra")}
-              </a>
+              </Link>
             </div>
 
             {/* Mobile hamburger */}

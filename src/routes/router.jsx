@@ -7,6 +7,7 @@ import OverOns from "../pages/OverOns";
 import NieuwsOpinie from "../pages/NieuwsOpinie";
 import NieuwsArtikel from "../pages/NieuwsArtikel";
 import Contact from "../pages/Contact";
+import MijnOrchestra from "../pages/MijnOrchestra";
 import NotFound from "../pages/NotFound";
 
 export const router = createBrowserRouter([
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
         ],
       },
       { path: "contact", element: <Contact />, handle: { titleKey: "contact" } },
+      { path: "mijn-orchestra", element: <MijnOrchestra />, handle: { titleKey: "mijnOrchestra" } },
     ],
   },
 ]);
