@@ -32,7 +32,13 @@ export default function Contact() {
     try {
       await submitContactForm(form);
       setStatus("success");
-      setForm({ name: "", organization: "", email: "", phone: "", message: "" });
+      setForm({
+        name: "",
+        organization: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
     } catch {
       setStatus("error");
     }
@@ -61,7 +67,11 @@ export default function Contact() {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{
+              duration: 0.7,
+              delay: 0.3,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
             className="text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-6"
           >
             {t("contact", "heroTitle")}
@@ -99,7 +109,8 @@ export default function Contact() {
                       htmlFor="name"
                       className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
                     >
-                      {t("contact", "labelName")} <span className="text-gold-700">*</span>
+                      {t("contact", "labelName")}{" "}
+                      <span className="text-gold-700">*</span>
                     </label>
                     <input
                       id="name"
@@ -138,7 +149,8 @@ export default function Contact() {
                       htmlFor="email"
                       className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
                     >
-                      {t("contact", "labelEmail")} <span className="text-gold-700">*</span>
+                      {t("contact", "labelEmail")}{" "}
+                      <span className="text-gold-700">*</span>
                     </label>
                     <input
                       id="email"
@@ -156,12 +168,14 @@ export default function Contact() {
                       htmlFor="phone"
                       className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
                     >
-                      {t("contact", "labelPhone")}
+                      {t("contact", "labelPhone")}{" "}
+                      <span className="text-gold-700">*</span>
                     </label>
                     <input
                       id="phone"
                       name="phone"
                       type="tel"
+                      required
                       value={form.phone}
                       onChange={handleChange}
                       placeholder={t("contact", "placeholderPhone")}
@@ -176,7 +190,8 @@ export default function Contact() {
                     htmlFor="message"
                     className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
                   >
-                    {t("contact", "labelMessage")} <span className="text-gold-700">*</span>
+                    {t("contact", "labelMessage")}{" "}
+                    <span className="text-gold-700">*</span>
                   </label>
                   <textarea
                     id="message"
@@ -196,7 +211,9 @@ export default function Contact() {
                   size="lg"
                   disabled={status === "sending"}
                 >
-                  {status === "sending" ? t("contact", "submitSending") : t("contact", "submitButton")}
+                  {status === "sending"
+                    ? t("contact", "submitSending")
+                    : t("contact", "submitButton")}
                 </Button>
 
                 {status === "success" && (
@@ -264,8 +281,7 @@ export default function Contact() {
                     <p className="text-sm text-navy-900 leading-relaxed">
                       {metadata.address.street}
                       <br />
-                      {metadata.address.postalCode}{" "}
-                      {metadata.address.city}
+                      {metadata.address.postalCode} {metadata.address.city}
                       <br />
                       {metadata.address.country}
                     </p>

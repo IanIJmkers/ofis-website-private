@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
+import CookieConsent from "../components/ui/CookieConsent";
 
-const BASE_TITLE = "Orchestra Private";
+const BASE_TITLE = "Orchestra Charity Office";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -18,14 +19,15 @@ function ScrollToTop() {
 
 function DocumentTitle() {
   const matches = useMatches();
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const match = [...matches].reverse().find((m) => m.handle?.titleKey);
 
   useEffect(() => {
-    const titleKey = match?.handle?.titleKey;
-    const title = titleKey ? t("titles", titleKey) : null;
+    const title = match?.handle?.titleKey
+      ? t("titles", match.handle.titleKey)
+      : null;
     document.title = title ? `${title} | ${BASE_TITLE}` : BASE_TITLE;
-  }, [match, t]);
+  }, [match, language, t]);
 
   return null;
 }
@@ -40,6 +42,7 @@ export default function RootLayout() {
         <Outlet />
       </main>
       <Footer />
+      <CookieConsent />
     </>
   );
 }

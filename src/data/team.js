@@ -11,6 +11,7 @@ import ianIjmkersPhoto from "../assets/images/team/ian-ijmkers.jpg";
 import arvindBisoenPhoto from "../assets/images/team/arvind-bisoen.jpg";
 import christelPoorterPhoto from "../assets/images/team/christel-poorter.jpg";
 import carolineGroenBokPhoto from "../assets/images/team/caroline-groen-bok.jpg";
+import guusDrijverPhoto from "../assets/images/team/guus-drijver.jpg";
 
 const members = [
   {
@@ -36,6 +37,14 @@ const members = [
     phone: "070-2051182",
     linkedin: "https://www.linkedin.com/in/dave-price-cfa-a766153",
     photo: davePricePhoto,
+  },
+  {
+    name: "Guus Drijver",
+    role: { nl: "Business Development", en: "Business Development" },
+    email: "g.drijver@orchestra-contact.com",
+    phone: "06-52050536",
+    linkedin: "https://www.linkedin.com/in/guusdrijver/",
+    photo: guusDrijverPhoto,
   },
   {
     name: "Tanja Haremaker",
@@ -94,7 +103,7 @@ const members = [
   },
   {
     name: "Christel Poorter",
-    role: { nl: "HR & Administratie medewerker", en: "HR & Administration" },
+    role: { nl: "HR & Administratie medewerker", en: "HR & Administration Employee" },
     email: "c.poorter@orchestra-contact.com",
     phone: "070-2051186",
     photo: christelPoorterPhoto,
@@ -135,6 +144,6 @@ const members = [
   },
 ];
 
-export const team = members.map((m) => ({ ...m, role: m.role.nl }));
 export const getTeam = (lang) =>
   members.map((m) => ({ ...m, role: m.role[lang] || m.role.nl }));
+export const team = getTeam("nl");
