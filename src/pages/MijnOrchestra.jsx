@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import PageTransition from "../components/animation/PageTransition";
 import AnimatedSection from "../components/animation/AnimatedSection";
 import StaggerChildren, { staggerItem } from "../components/animation/StaggerChildren";
@@ -6,6 +7,10 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import Button from "../components/ui/Button";
 import { useLanguage } from "../context/LanguageContext";
+import {
+  balansData, journaalpostData, bankTransactiesData, projectenData,
+  factuurData, relatiesData, donatiesData, documentenData, organizerData,
+} from "../data/dashboardMockData";
 
 const OFIS_URL = "https://ofis.orchestrabeheer.nl/Ofis/Client";
 
@@ -30,7 +35,7 @@ const featureIcons = [
 
 /* ─── Sidebar items for the dashboard mockup ─── */
 const sidebarItems = [
-  { label: "Overzicht", icon: "overview", active: true },
+  { label: "Overzicht", icon: "overview" },
   { label: "Rapporten", icon: "reports" },
   { label: "Boekhouding", icon: "accounting" },
   { label: "Bankzaken", icon: "banking" },
@@ -42,7 +47,21 @@ const sidebarItems = [
   { label: "Organizer", icon: "organizer" },
 ];
 
-/* ─── Dashboard cards data ─── */
+/* ─── URL paths for each module ─── */
+const modulePaths = {
+  Overzicht: "DEMOSTICHTING/Overview",
+  Rapporten: "DEMOSTICHTING/Overviews/Balance/Report",
+  Boekhouding: "DEMOSTICHTING/Accounting",
+  Bankzaken: "DEMOSTICHTING/Banking",
+  Projecten: "DEMOSTICHTING/ProjectAdministration/Reporting",
+  Facturatie: "DEMOSTICHTING/Invoicing/Incoming/Invoices/22",
+  Relaties: "DEMOSTICHTING/RelationsManagement/Relations",
+  Donaties: "DEMOSTICHTING/DonationManagement/Overview",
+  Documenten: "DEMOSTICHTING/DocumentManagement/Documents",
+  Organizer: "DEMOSTICHTING/Organizer/Meetings/10",
+};
+
+/* ─── Dashboard cards data (for Overzicht) ─── */
 const dashboardCards = [
   { title: "Rapporten", items: [] },
   {
@@ -163,62 +182,881 @@ function DashboardCard({ title, items, more }) {
   );
 }
 
-/* ─── Interactive Dashboard Mockup ─── */
-function DashboardMockup() {
+/* ═══════════════════════════════════════════════
+   Module Content Components
+   ═══════════════════════════════════════════════ */
+
+function ModuleHeading({ icon, title }) {
   return (
-    <div className="rounded-xl overflow-hidden shadow-card border border-warm-gray-200">
-      {/* Browser bar */}
-      <div className="bg-warm-gray-100 px-4 py-2.5 flex items-center gap-3">
-        <div className="flex gap-1.5">
-          <span className="w-3 h-3 rounded-full bg-warm-gray-300" />
-          <span className="w-3 h-3 rounded-full bg-warm-gray-300" />
-          <span className="w-3 h-3 rounded-full bg-warm-gray-300" />
+    <h3 className="text-lg font-heading text-navy-900 mb-4 flex items-center gap-2">
+      <SidebarIcon type={icon} className="w-5 h-5 text-navy-700" />
+      {title}
+    </h3>
+  );
+}
+
+/* ─── Overzicht ─── */
+function OverzichtContent() {
+  return (
+    <>
+      <ModuleHeading icon="overview" title="Overzicht" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+        {dashboardCards.map((card) => (
+          <DashboardCard key={card.title} {...card} />
+        ))}
+      </div>
+    </>
+  );
+}
+
+/* ─── Rapporten: Balance Sheet ─── */
+function RapportenContent() {
+  return (
+    <>
+      <ModuleHeading icon="reports" title="Rapporten" />
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
+        <div className="bg-navy-900 px-4 py-2.5">
+          <h4 className="text-sm font-semibold text-white">Balans</h4>
         </div>
-        <div className="grow flex justify-center">
-          <div className="bg-white rounded-md px-4 py-1 text-xs text-warm-gray-400 max-w-xs w-full text-center">
-            ofis.orchestrabeheer.nl
-          </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-warm-gray-200">
+                <th className="text-left px-4 py-2 text-warm-gray-500 font-medium" />
+                {balansData.years.map((y) => (
+                  <th key={y} className="text-right px-4 py-2 text-warm-gray-500 font-medium">{y}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colSpan={3} className="px-4 pt-3 pb-1 font-semibold text-navy-900">Activa</td></tr>
+              {balansData.activa.map((row) => (
+                <tr key={row.label} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
+                  <td className="px-4 py-1.5 text-warm-gray-600 pl-8">{row.label}</td>
+                  {row.values.map((v, i) => (
+                    <td key={i} className="px-4 py-1.5 text-right text-warm-gray-700 tabular-nums">{v}</td>
+                  ))}
+                </tr>
+              ))}
+              <tr className="border-t border-warm-gray-200 font-semibold">
+                <td className="px-4 py-2 text-navy-900">Totaal activa</td>
+                {balansData.activaTotal.map((v, i) => (
+                  <td key={i} className="px-4 py-2 text-right text-navy-900 tabular-nums">{v}</td>
+                ))}
+              </tr>
+              <tr><td colSpan={3} className="px-4 pt-4 pb-1 font-semibold text-navy-900">Passiva</td></tr>
+              {balansData.passiva.map((row) => (
+                <tr key={row.label} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
+                  <td className="px-4 py-1.5 text-warm-gray-600 pl-8">{row.label}</td>
+                  {row.values.map((v, i) => (
+                    <td key={i} className="px-4 py-1.5 text-right text-warm-gray-700 tabular-nums">{v}</td>
+                  ))}
+                </tr>
+              ))}
+              <tr className="border-t border-warm-gray-200 font-semibold">
+                <td className="px-4 py-2 text-navy-900">Totaal passiva</td>
+                {balansData.passivaTotal.map((v, i) => (
+                  <td key={i} className="px-4 py-2 text-right text-navy-900 tabular-nums">{v}</td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div className="w-12" />
+      </div>
+    </>
+  );
+}
+
+/* ─── Boekhouding: Journal Post Detail ─── */
+function BoekhoudingContent() {
+  return (
+    <>
+      <ModuleHeading icon="accounting" title="Boekhouding" />
+
+      {/* Page title */}
+      <div className="flex items-center gap-2 mb-3">
+        <svg className="w-4 h-4 text-warm-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+        </svg>
+        <h4 className="text-sm font-semibold text-navy-900">Journaalpost {journaalpostData.id}</h4>
       </div>
 
-      {/* Dashboard body */}
-      <div className="flex min-h-[400px] bg-cream">
-        {/* Sidebar */}
-        <div className="hidden sm:flex flex-col w-44 bg-navy-900 shrink-0 py-4">
-          {sidebarItems.map((item) => (
-            <div
-              key={item.label}
-              className={`flex items-center gap-2.5 px-4 py-2 text-xs transition-colors ${
-                item.active
-                  ? "text-white bg-navy-800 border-l-2 border-gold-500"
-                  : "text-navy-300 hover:text-white border-l-2 border-transparent"
-              }`}
-            >
-              <SidebarIcon type={item.icon} className="w-4 h-4" />
-              <span>{item.label}</span>
+      {/* Tabs */}
+      <div className="flex gap-4 mb-4 border-b border-warm-gray-200">
+        {journaalpostData.tabs.map((tab, i) => (
+          <span
+            key={tab}
+            className={`text-xs pb-2 cursor-pointer ${
+              i === 0
+                ? "font-medium text-navy-900 border-b-2 border-navy-900 -mb-px"
+                : "text-warm-gray-400 hover:text-warm-gray-600"
+            }`}
+          >
+            {tab}
+          </span>
+        ))}
+      </div>
+
+      {/* Details panel */}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mb-4">
+        <div className="p-4 space-y-2.5">
+          {journaalpostData.details.map((field) => (
+            <div key={field.label} className="flex text-xs gap-4">
+              <span className="text-navy-900 font-semibold w-28 shrink-0">{field.label}</span>
+              <span className={field.isLink ? "text-blue-600" : "text-warm-gray-700"}>
+                {field.value || ""}
+              </span>
             </div>
           ))}
         </div>
+      </div>
 
-        {/* Main content */}
-        <div className="grow p-4 sm:p-6">
-          <h3 className="text-lg font-heading text-navy-900 mb-4 flex items-center gap-2">
-            <SidebarIcon type="overview" className="w-5 h-5 text-navy-700" />
-            Overzicht
-          </h3>
-          <StaggerChildren
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
-            staggerDelay={0.06}
-          >
-            {dashboardCards.map((card) => (
-              <motion.div key={card.title} variants={staggerItem}>
-                <DashboardCard {...card} />
-              </motion.div>
-            ))}
-          </StaggerChildren>
+      {/* Items table */}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mb-4">
+        <div className="px-3 py-2 border-b border-warm-gray-100 flex items-center justify-between">
+          <h4 className="text-sm font-semibold text-navy-900">Items</h4>
+          <span className="text-[10px] text-warm-gray-400">
+            1-{journaalpostData.items.length} &nbsp; {journaalpostData.items.length}
+          </span>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
+                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">Grootboekrekening</th>
+                <th className="text-right px-3 py-2 text-warm-gray-500 font-medium">Bedrag (Euro)</th>
+                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">Kostenplaats</th>
+              </tr>
+            </thead>
+            <tbody>
+              {journaalpostData.items.map((item, i) => (
+                <tr key={i} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
+                  <td className="px-3 py-2">
+                    <span className="text-blue-600">{item.grootboekrekening}</span>
+                    <span className="text-warm-gray-400 ml-1 block text-[10px]">{item.code}</span>
+                  </td>
+                  <td className="px-3 py-2 text-right text-warm-gray-700 tabular-nums whitespace-nowrap">
+                    &euro; {item.bedrag}
+                  </td>
+                  <td className="px-3 py-2 text-warm-gray-600">{item.kostenplaats || ""}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
+
+      {/* Referenties */}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mb-4">
+        <div className="px-3 py-2 border-b border-warm-gray-100">
+          <h4 className="text-sm font-semibold text-navy-900">
+            Referenties ({journaalpostData.referenties.length})
+          </h4>
+        </div>
+        <div className="p-3 space-y-2">
+          {journaalpostData.referenties.map((ref, i) => (
+            <div key={i} className="flex items-center gap-3 text-xs">
+              <span className="inline-block px-2.5 py-1 rounded text-[10px] font-semibold bg-warm-gray-100 text-warm-gray-600 uppercase tracking-wide">
+                {ref.type}
+              </span>
+              <div className="grow">
+                <span className="text-blue-600 font-medium">{ref.label}</span>
+                <div className="text-[10px] text-warm-gray-400">{ref.relatie} &nbsp;&nbsp;&bull;&nbsp;&nbsp; &euro; {ref.bedrag}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Documenten (empty) */}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
+        <div className="px-3 py-2 border-b border-warm-gray-100 flex items-center justify-between">
+          <h4 className="text-sm font-semibold text-navy-900">Documenten</h4>
+          <span className="text-[10px] text-warm-gray-400">1-0 &nbsp; 0</span>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
+                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">Document</th>
+              </tr>
+            </thead>
+            <tbody />
+          </table>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ─── Bankzaken: Bank Transaction Table ─── */
+function BankzakenContent() {
+  return (
+    <>
+      <ModuleHeading icon="banking" title="Bankzaken" />
+
+      {/* Tabs */}
+      <div className="flex gap-4 mb-4 border-b border-warm-gray-200">
+        {bankTransactiesData.tabs.map((tab, i) => (
+          <span
+            key={tab}
+            className={`text-xs pb-2 cursor-pointer ${
+              i === 0
+                ? "font-medium text-navy-900 border-b-2 border-navy-900 -mb-px"
+                : "text-warm-gray-400 hover:text-warm-gray-600"
+            }`}
+          >
+            {tab}
+          </span>
+        ))}
+      </div>
+
+      {/* Toolbar */}
+      <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+        <span className="text-[10px] text-warm-gray-400">
+          1-50 &nbsp; {bankTransactiesData.totalRows}
+        </span>
+        <div className="flex items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium bg-green-50 text-green-700 cursor-default">
+            Keur goed
+            <span className="inline-flex items-center justify-center min-w-4.5 h-4.5 rounded-full bg-gold-600 text-white text-[9px] font-bold px-1">
+              {bankTransactiesData.approveCount}
+            </span>
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium bg-red-50 text-red-700 cursor-default">
+            Wijs af
+            <span className="inline-flex items-center justify-center min-w-4.5 h-4.5 rounded-full bg-gold-600 text-white text-[9px] font-bold px-1">
+              {bankTransactiesData.rejectCount}
+            </span>
+          </span>
+          <span className="px-3 py-1.5 rounded text-[11px] font-medium bg-warm-gray-100 text-warm-gray-600 cursor-default">
+            Beoordeel
+          </span>
+        </div>
+      </div>
+
+      {/* Transaction table */}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs min-w-300">
+            <thead>
+              <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
+                {["ID", "Datum", "Tegenrekening", "Bedrag", "Herkomst", "Oordeel", "Beoordelingen", "Omschrijving", "Betalingskenmerk", "Bankrekening", "Document"].map((col) => (
+                  <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {bankTransactiesData.transacties.map((row) => (
+                <tr key={row.id} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
+                  <td className="px-3 py-2 text-warm-gray-400">{row.id}</td>
+                  <td className="px-3 py-2 text-warm-gray-600 whitespace-nowrap">{row.datum}</td>
+                  <td className="px-3 py-2">
+                    <div className="text-navy-700 font-medium whitespace-nowrap">{row.tegenrekeningNaam}</div>
+                    <div className="text-[10px] text-warm-gray-400">{row.tegenrekeningIban}</div>
+                  </td>
+                  <td className="px-3 py-2 text-warm-gray-700 tabular-nums whitespace-nowrap">
+                    &euro; &nbsp; {row.bedrag}
+                  </td>
+                  <td className="px-3 py-2">
+                    {row.herkomst ? (
+                      <div>
+                        <div className="text-blue-600 text-[10px] font-medium">
+                          {row.herkomst.ref}: {row.herkomst.label || (row.herkomst.type === "toekenning" ? "Toekenning" : "Lening")}
+                        </div>
+                        <div className="text-[10px] text-warm-gray-400">
+                          {row.herkomst.relatie} &nbsp;&nbsp;&bull;&nbsp;&nbsp; &euro; {row.herkomst.bedrag}
+                        </div>
+                      </div>
+                    ) : ""}
+                  </td>
+                  <td className="px-3 py-2 text-center">
+                    {row.oordeel === "approved" ? (
+                      <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
+                        <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                      </span>
+                    ) : ""}
+                  </td>
+                  <td className="px-3 py-2 text-[10px] text-warm-gray-500 whitespace-pre-line">{row.beoordelingen}</td>
+                  <td className="px-3 py-2 text-warm-gray-600 whitespace-nowrap">{row.omschrijving}</td>
+                  <td className="px-3 py-2 text-warm-gray-600 whitespace-nowrap">{row.betalingskenmerk || ""}</td>
+                  <td className="px-3 py-2">
+                    <div className="text-warm-gray-600 whitespace-nowrap">{row.bankrekening.naam}</div>
+                    <div className="text-[10px] text-warm-gray-400 whitespace-nowrap">{row.bankrekening.iban}</div>
+                  </td>
+                  <td className="px-3 py-2 text-warm-gray-600 whitespace-nowrap">
+                    {row.document ? (
+                      <span className="text-blue-600 text-[10px]">{row.document}</span>
+                    ) : ""}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ─── Projecten: Chart + Budget ─── */
+function ProjectenContent() {
+  const { chartCategories, budget, toegekend, resterend, dateRange } = projectenData;
+
+  return (
+    <>
+      <ModuleHeading icon="projects" title="Projecten" />
+      <div className="flex items-center gap-3 mb-4">
+        <div className="bg-white border border-warm-gray-200 rounded-md px-3 py-1.5 text-xs text-warm-gray-500">
+          {dateRange}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+        {/* Donut chart card */}
+        <div className="lg:col-span-3 bg-white rounded-lg border border-warm-gray-100 shadow-card p-5">
+          <h4 className="text-sm font-semibold text-navy-900 mb-4">Verdeling toekenningen</h4>
+          <div className="flex items-center gap-8">
+            <div
+              className="w-32 h-32 rounded-full shrink-0"
+              style={{
+                background: `conic-gradient(${chartCategories
+                  .reduce((acc, cat, i) => {
+                    const start = chartCategories.slice(0, i).reduce((s, c) => s + c.percentage, 0);
+                    return `${acc}${i > 0 ? ", " : ""}${cat.color} ${start}% ${start + cat.percentage}%`;
+                  }, "")})`,
+                mask: "radial-gradient(circle at center, transparent 38%, black 39%)",
+                WebkitMask: "radial-gradient(circle at center, transparent 38%, black 39%)",
+              }}
+            />
+            <div className="space-y-2">
+              {chartCategories.map((cat) => (
+                <div key={cat.label} className="flex items-center gap-2 text-xs">
+                  <span className="w-3 h-3 rounded-sm shrink-0" style={{ backgroundColor: cat.color }} />
+                  <span className="text-warm-gray-600">{cat.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Budget insight card */}
+        <div className="lg:col-span-2 bg-white rounded-lg border border-warm-gray-100 shadow-card p-5">
+          <h4 className="text-sm font-semibold text-navy-900 mb-4">Budget inzicht</h4>
+          <div className="space-y-3">
+            {[
+              { label: "Budget", value: budget },
+              { label: "Toegekend", value: toegekend },
+              { label: "Resterend", value: resterend },
+            ].map((row) => (
+              <div key={row.label} className="flex justify-between items-center">
+                <span className="text-xs text-warm-gray-500">{row.label}</span>
+                <span className="text-sm font-semibold tabular-nums text-navy-900">{row.value}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 h-2 bg-warm-gray-100 rounded-full overflow-hidden">
+            <div className="h-full bg-gold-600 rounded-full" style={{ width: "1.15%" }} />
+          </div>
+          <p className="text-[10px] text-warm-gray-400 mt-1">1,15% van budget toegekend</p>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ─── Facturatie: Invoice Detail ─── */
+function FacturatieContent() {
+  const { fields, invoicePreview } = factuurData;
+
+  return (
+    <>
+      <ModuleHeading icon="invoicing" title="Facturatie" />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Invoice details */}
+        <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
+          <div className="bg-navy-900 px-4 py-2.5">
+            <h4 className="text-sm font-semibold text-white">Details</h4>
+          </div>
+          <div className="p-4 space-y-2.5">
+            {fields.map((field) => (
+              <div key={field.label} className="flex justify-between text-xs gap-4">
+                <span className="text-warm-gray-400 shrink-0">{field.label}</span>
+                <span className="text-warm-gray-700 font-medium text-right">{field.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Invoice preview */}
+        <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card p-4">
+          <div className="border border-warm-gray-200 rounded p-4 h-full bg-white">
+            {/* Invoice header */}
+            <div className="flex justify-between items-start mb-4">
+              <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
+                <span className="text-[8px] font-bold text-red-600">Logo</span>
+              </div>
+              <div className="text-right">
+                <p className="text-xs font-semibold text-navy-900">{invoicePreview.company}</p>
+                <p className="text-[9px] text-warm-gray-400">{invoicePreview.address}</p>
+                <p className="text-[9px] text-warm-gray-400">{invoicePreview.phone}</p>
+              </div>
+            </div>
+
+            <div className="text-center mb-3">
+              <span className="text-lg font-bold text-red-600">Factuur</span>
+            </div>
+
+            {/* To + meta */}
+            <div className="flex justify-between text-[9px] text-warm-gray-500 mb-3">
+              <div>
+                <p className="font-medium text-warm-gray-600 mb-0.5">Naar</p>
+                {invoicePreview.to.split("\n").map((line, i) => (
+                  <p key={i}>{line}</p>
+                ))}
+              </div>
+              <div className="text-right space-y-0.5">
+                <p><span className="text-warm-gray-400">Factuurnummer</span> {invoicePreview.number}</p>
+                <p><span className="text-warm-gray-400">Factuurdatum</span> {invoicePreview.date}</p>
+                <p><span className="text-warm-gray-400">Vervaldag</span> {invoicePreview.date}</p>
+              </div>
+            </div>
+
+            {/* Line items */}
+            <table className="w-full text-[9px] mb-3">
+              <thead>
+                <tr className="border-b border-warm-gray-200">
+                  <th className="text-left py-1 text-warm-gray-500 font-medium">Beschrijving</th>
+                  <th className="text-right py-1 text-warm-gray-500 font-medium">Aantal</th>
+                  <th className="text-right py-1 text-warm-gray-500 font-medium">Eenheid</th>
+                  <th className="text-right py-1 text-warm-gray-500 font-medium">Tarief</th>
+                  <th className="text-right py-1 text-warm-gray-500 font-medium">Totaal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {invoicePreview.lines.map((line) => (
+                  <tr key={line.desc} className="border-b border-warm-gray-50">
+                    <td className="py-1 text-warm-gray-600">{line.desc}</td>
+                    <td className="py-1 text-right text-warm-gray-600">{line.aantal}</td>
+                    <td className="py-1 text-right text-warm-gray-600">{line.eenheid}</td>
+                    <td className="py-1 text-right text-warm-gray-600">{line.tarief}</td>
+                    <td className="py-1 text-right text-warm-gray-600">{line.totaal}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <div className="flex justify-end">
+              <div className="text-right">
+                <span className="text-xs font-semibold text-red-600">Totaalbedrag </span>
+                <span className="text-xs font-bold text-red-600">{invoicePreview.total}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ─── Relaties: Contact Table ─── */
+function RelatiesContent() {
+  return (
+    <>
+      <ModuleHeading icon="relations" title="Relaties" />
+      {/* Filter bar */}
+      <div className="flex flex-wrap gap-2 mb-4">
+        {["Klanten", "Leveranciers", "Donateurs", "Projectrelaties", "Personeel"].map((filter) => (
+          <span key={filter} className="px-3 py-1 rounded-full text-[10px] font-medium bg-warm-gray-100 text-warm-gray-600 cursor-pointer hover:bg-warm-gray-200 transition-colors">
+            {filter}
+          </span>
+        ))}
+      </div>
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs min-w-175">
+            <thead>
+              <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
+                {["Type", "Naam", "Adres", "Postcode", "Plaats", "Telefoon", "E-mailadres", "Status"].map((col) => (
+                  <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {relatiesData.map((row, i) => (
+                <tr key={i} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
+                  <td className="px-3 py-2 text-warm-gray-500">
+                    {row.type === "Persoon" ? (
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0" /></svg>
+                    ) : (
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>
+                    )}
+                  </td>
+                  <td className="px-3 py-2 text-navy-900 font-medium whitespace-nowrap">{row.naam}</td>
+                  <td className="px-3 py-2 text-warm-gray-600 whitespace-nowrap">{row.adres || "-"}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{row.postcode || "-"}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{row.plaats || "-"}</td>
+                  <td className="px-3 py-2 text-warm-gray-600 whitespace-nowrap">{row.telefoon}</td>
+                  <td className="px-3 py-2 text-warm-gray-600 whitespace-nowrap">{row.email}</td>
+                  <td className="px-3 py-2">
+                    <span className="inline-flex items-center justify-center w-4 h-4 text-green-600">✓</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="px-3 py-2 text-[10px] text-warm-gray-400 border-t border-warm-gray-100">
+          1 – {relatiesData.length} van 112
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ─── Donaties: Chart + Table ─── */
+function DonatiesContent() {
+  const { chartValues, table, totaal } = donatiesData;
+  const max = Math.max(...chartValues);
+  const chartW = 100;
+  const chartH = 50;
+  const points = chartValues
+    .map((v, i) => `${(i / (chartValues.length - 1)) * chartW},${chartH - (v / max) * chartH}`)
+    .join(" ");
+  const areaPoints = `0,${chartH} ${points} ${chartW},${chartH}`;
+
+  return (
+    <>
+      <ModuleHeading icon="donations" title="Donaties" />
+
+      {/* Tabs */}
+      <div className="flex gap-4 mb-4 border-b border-warm-gray-200">
+        <span className="text-xs font-medium text-navy-900 pb-2 border-b-2 border-navy-900 -mb-px">Cumulatief maandelijks gedoneerd bedrag</span>
+        <span className="text-xs text-warm-gray-400 pb-2 cursor-pointer hover:text-warm-gray-600">Donaties per oormerk</span>
+      </div>
+
+      {/* Area chart */}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card p-4 mb-4">
+        <svg viewBox={`-2 -2 ${chartW + 4} ${chartH + 14}`} className="w-full h-36" preserveAspectRatio="none">
+          {/* Grid lines */}
+          {[0, 0.25, 0.5, 0.75, 1].map((pct) => (
+            <line key={pct} x1="0" y1={chartH * (1 - pct)} x2={chartW} y2={chartH * (1 - pct)} stroke="#e5e5e5" strokeWidth="0.2" />
+          ))}
+          <polygon points={areaPoints} fill="rgba(11, 42, 72, 0.1)" />
+          <polyline points={points} fill="none" stroke="#0B2A48" strokeWidth="0.6" />
+        </svg>
+        <div className="flex justify-between text-[9px] text-warm-gray-400 mt-1 px-1">
+          {["0", "2", "4", "6", "8", "10", "12"].map((m) => <span key={m}>{m}</span>)}
+        </div>
+        <p className="text-center text-[9px] text-warm-gray-400 mt-1">Maand</p>
+      </div>
+
+      {/* Donations table */}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
+        <div className="px-4 py-2.5 border-b border-warm-gray-100">
+          <h4 className="text-sm font-semibold text-navy-900">Alle donaties</h4>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs min-w-162.5">
+            <thead>
+              <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
+                {["ID", "Afkomst", "Donateur", "Bedrag", "Datum", "Omschrijving", "Oormerk", "Incasso status"].map((col) => (
+                  <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {table.map((row) => (
+                <tr key={row.id} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
+                  <td className="px-3 py-2 text-warm-gray-400">{row.id}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{row.afkomst}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{row.donateur}</td>
+                  <td className="px-3 py-2 text-warm-gray-600 tabular-nums">€ {row.bedrag}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{row.datum}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{row.omschrijving}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{row.oormerk}</td>
+                  <td className="px-3 py-2 text-warm-gray-500">{row.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="px-4 py-2 text-xs text-warm-gray-500 border-t border-warm-gray-100 text-right tabular-nums">
+          {totaal}
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ─── Documenten: File Listing ─── */
+function DocumentenContent() {
+  function formatSize(bytes) {
+    const num = parseInt(bytes, 10);
+    if (num >= 1000000) return `${(num / 1000000).toFixed(1)} MB`;
+    return `${(num / 1000).toFixed(0)} KB`;
+  }
+
+  return (
+    <>
+      <ModuleHeading icon="documents" title="Documenten" />
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
+        <div className="px-3 py-2 border-b border-warm-gray-100 flex items-center justify-between">
+          <span className="text-[10px] text-warm-gray-400">1-{documentenData.length} van 134</span>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs min-w-162.5">
+            <thead>
+              <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
+                {["ID", "Naam", "Grootte", "Laatst gewijzigd", "Aangemaakt", "Labels"].map((col) => (
+                  <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {documentenData.map((doc) => (
+                <tr key={doc.id} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
+                  <td className="px-3 py-2 text-warm-gray-400">{doc.id}</td>
+                  <td className="px-3 py-2 text-navy-900 font-medium whitespace-nowrap">{doc.naam}</td>
+                  <td className="px-3 py-2 text-warm-gray-600 tabular-nums">{formatSize(doc.grootte)}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{doc.gewijzigd}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{doc.aangemaakt}</td>
+                  <td className="px-3 py-2">
+                    <div className="flex gap-1 flex-wrap">
+                      {doc.labels.map((label) => (
+                        <span key={label} className="inline-block px-2 py-0.5 rounded text-[10px] font-medium bg-warm-gray-100 text-warm-gray-600">
+                          {label}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ─── Organizer: Meeting View ─── */
+function OrganizerContent() {
+  const { meeting, genodigden, aanvragen } = organizerData;
+
+  return (
+    <>
+      <ModuleHeading icon="organizer" title="Organizer" />
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
+        {/* Meeting details */}
+        <div className="lg:col-span-2 bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
+          <div className="bg-navy-900 px-4 py-2.5">
+            <h4 className="text-sm font-semibold text-white">{meeting.title}</h4>
+          </div>
+          <div className="p-4 space-y-2">
+            {[
+              { label: "Omschrijving", value: meeting.omschrijving },
+              { label: "Start", value: meeting.start },
+              { label: "Eind", value: meeting.eind },
+              { label: "Locatie", value: meeting.locatie },
+              { label: "Notulist", value: meeting.notulist },
+              { label: "Gesloten", value: meeting.gesloten },
+            ].map((row) => (
+              <div key={row.label} className="flex text-xs gap-4">
+                <span className="text-warm-gray-400 w-24 shrink-0">{row.label}</span>
+                <span className="text-warm-gray-700">{row.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Attendees */}
+        <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
+          <div className="bg-navy-900 px-4 py-2.5">
+            <h4 className="text-sm font-semibold text-white">Genodigden</h4>
+          </div>
+          <div className="p-4">
+            <div className="flex text-[10px] text-warm-gray-400 gap-4 mb-2 pb-1 border-b border-warm-gray-100">
+              <span className="grow">Gebruiker</span>
+              <span className="w-16 text-center">Aanwezig</span>
+              <span className="w-16 text-center">Ondertekend</span>
+            </div>
+            {genodigden.map((g) => (
+              <div key={g.naam} className="flex items-center text-xs gap-4 py-1.5">
+                <span className="text-navy-900 font-medium grow">{g.naam}</span>
+                <span className="w-16 text-center">{g.aanwezig ? "✓" : ""}</span>
+                <span className="w-16 text-center">{g.ondertekend ? "✓" : ""}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Applications table */}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
+        <div className="px-4 py-2.5 border-b border-warm-gray-100">
+          <h4 className="text-sm font-semibold text-navy-900">Goedgekeurde aanvragen ({aanvragen.length})</h4>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs min-w-150">
+            <thead>
+              <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
+                {["Aanvrager", "Aanvraagnummer", "Status", "Gift", "Lening", "Voor stemmers", "Consensus"].map((col) => (
+                  <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {aanvragen.map((a, i) => (
+                <tr key={i} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
+                  <td className="px-3 py-2 text-navy-700 font-medium">{a.aanvrager}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{a.nummer}</td>
+                  <td className="px-3 py-2">
+                    <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-700">
+                      {a.status}
+                    </span>
+                  </td>
+                  <td className="px-3 py-2 text-warm-gray-700 tabular-nums">€ {a.gift}</td>
+                  <td className="px-3 py-2 text-warm-gray-700 tabular-nums">€ {a.lening}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{a.stemmer}</td>
+                  <td className="px-3 py-2 text-center">✓</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ─── Module Content Dispatcher ─── */
+function renderModuleContent(module) {
+  switch (module) {
+    case "Overzicht":     return <OverzichtContent />;
+    case "Rapporten":     return <RapportenContent />;
+    case "Boekhouding":   return <BoekhoudingContent />;
+    case "Bankzaken":     return <BankzakenContent />;
+    case "Projecten":     return <ProjectenContent />;
+    case "Facturatie":    return <FacturatieContent />;
+    case "Relaties":      return <RelatiesContent />;
+    case "Donaties":      return <DonatiesContent />;
+    case "Documenten":    return <DocumentenContent />;
+    case "Organizer":     return <OrganizerContent />;
+    default:              return <OverzichtContent />;
+  }
+}
+
+/* ─── Interactive Dashboard Mockup ─── */
+function DashboardMockup() {
+  const [activeModule, setActiveModule] = useState("Overzicht");
+
+  return (
+    <div className="flex flex-col items-center">
+      {/* Monitor bezel */}
+      <div className="w-full rounded-2xl border-8 border-[#1a1a1a] bg-[#1a1a1a] shadow-[0_8px_40px_rgba(0,0,0,0.25)] overflow-hidden">
+        {/* Screen area */}
+        <div className="rounded-lg overflow-hidden">
+          {/* Chrome-style tab bar */}
+          <div className="bg-[#dee1e6] pt-2 px-2 flex items-end gap-0">
+            {/* Traffic lights */}
+            <div className="flex gap-1.5 px-2 pb-2.5 shrink-0">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
+            </div>
+            {/* Active tab */}
+            <div className="flex items-center gap-2 bg-white rounded-t-lg px-4 py-1.5 max-w-48 min-w-0">
+              <svg className="w-3.5 h-3.5 shrink-0 text-gold-600" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="7" /></svg>
+              <span className="text-[11px] text-warm-gray-600 truncate">Mijn Orchestra</span>
+              <svg className="w-3 h-3 shrink-0 text-warm-gray-400" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 3l6 6M9 3l-6 6" /></svg>
+            </div>
+            {/* New tab button */}
+            <div className="pb-1.5 px-1">
+              <svg className="w-4 h-4 text-warm-gray-400" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M8 3v10M3 8h10" /></svg>
+            </div>
+          </div>
+          {/* Chrome-style address bar */}
+          <div className="bg-white px-3 py-1.5 flex items-center gap-2 border-b border-warm-gray-200">
+            {/* Nav buttons */}
+            <div className="flex items-center gap-1 shrink-0">
+              <svg className="w-4 h-4 text-warm-gray-300" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M10 3L5 8l5 5" /></svg>
+              <svg className="w-4 h-4 text-warm-gray-300" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M6 3l5 5-5 5" /></svg>
+              <svg className="w-4 h-4 text-warm-gray-400 ml-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M13.5 8A5.5 5.5 0 113 6" /><path d="M1 3.5L3 6l2.5-2" /></svg>
+            </div>
+            {/* Address bar */}
+            <div className="grow flex items-center bg-[#f1f3f4] rounded-full px-3 py-1 gap-2 min-w-0">
+              <svg className="w-3 h-3 shrink-0 text-warm-gray-400" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a4 4 0 00-4 4v2H3a1 1 0 00-1 1v6a1 1 0 001 1h10a1 1 0 001-1V8a1 1 0 00-1-1h-1V5a4 4 0 00-4-4zm2.5 6h-5V5a2.5 2.5 0 015 0v2z" /></svg>
+              <span className="text-[11px] text-warm-gray-500 truncate">ofis.orchestrabeheer.nl/{modulePaths[activeModule] || activeModule}</span>
+            </div>
+            {/* Right icons */}
+            <div className="flex items-center gap-1.5 shrink-0">
+              <svg className="w-4 h-4 text-warm-gray-400" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M8 2l1.8 3.6L14 6.4l-3 2.9.7 4.1L8 11.3 4.3 13.4l.7-4.1-3-2.9 4.2-.8z" /></svg>
+              <svg className="w-4 h-4 text-warm-gray-400" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="3" r="1.5" /><circle cx="8" cy="8" r="1.5" /><circle cx="8" cy="13" r="1.5" /></svg>
+            </div>
+          </div>
+
+          {/* Dashboard body — fixed height, scrollable content */}
+          <div className="flex h-[520px] bg-cream">
+            {/* Mobile tab bar */}
+            <div className="flex sm:hidden overflow-x-auto border-b border-navy-800 bg-navy-900 px-2 py-1.5 gap-1 absolute left-0 right-0 z-10">
+              {sidebarItems.map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => setActiveModule(item.label)}
+                  className={`shrink-0 px-3 py-1.5 rounded text-[10px] transition-colors whitespace-nowrap cursor-pointer ${
+                    activeModule === item.label
+                      ? "bg-navy-800 text-white"
+                      : "text-navy-300 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Sidebar */}
+            <div className="hidden sm:flex flex-col w-44 bg-navy-900 shrink-0 py-4">
+              {sidebarItems.map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => setActiveModule(item.label)}
+                  className={`flex items-center gap-2.5 px-4 py-2 text-xs transition-colors text-left cursor-pointer ${
+                    activeModule === item.label
+                      ? "text-white bg-navy-800 border-l-2 border-gold-500"
+                      : "text-navy-300 hover:text-white border-l-2 border-transparent"
+                  }`}
+                >
+                  <SidebarIcon type={item.icon} className="w-4 h-4" />
+                  <span>{item.label}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Main content — scrollable */}
+            <div className="grow p-4 sm:p-6 overflow-y-auto overflow-x-hidden">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeModule}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+                >
+                  {renderModuleContent(activeModule)}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Monitor stand */}
+      <div className="w-28 h-10 bg-linear-to-b from-[#2a2a2a] to-[#1a1a1a] rounded-b-sm" />
+      <div className="w-48 h-2.5 bg-linear-to-b from-[#333] to-[#222] rounded-full shadow-sm" />
     </div>
   );
 }
