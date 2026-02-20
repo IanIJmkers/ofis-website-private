@@ -8,7 +8,7 @@ const shared = {
   },
   phone: "+31 (0)70 205 11 81",
   email: "contact@orchestra-contact.com",
-  linkedin: "https://linkedin.com/company/orchestra-private-office",
+  linkedin: "https://www.linkedin.com/company/orchestra-familycharityoffice/",
   myOrchestra: "https://my-orchestra.com/",
 };
 

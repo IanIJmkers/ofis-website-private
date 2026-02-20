@@ -12,6 +12,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.95.3",
     "@tailwindcss/typography": "^0.5.19",
+    "lucide-react": "^0.575.0",
     "marked": "^17.0.2",
     "motion": "^12.33.0",
     "react": "^19.2.0",

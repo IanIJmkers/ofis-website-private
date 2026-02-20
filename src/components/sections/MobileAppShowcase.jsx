@@ -69,7 +69,7 @@ export default function MobileAppShowcase() {
               rel="noopener noreferrer"
               className="group flex flex-col items-center"
             >
-              <div className="bg-white rounded-xl shadow-card group-hover:shadow-card-hover transition-shadow duration-300 p-4 mb-3">
+              <div className="hidden md:block bg-white rounded-xl shadow-card group-hover:shadow-card-hover transition-shadow duration-300 p-4 mb-3">
                 <img
                   src={qrAppStore}
                   alt="QR code App Store"
@@ -93,7 +93,7 @@ export default function MobileAppShowcase() {
               rel="noopener noreferrer"
               className="group flex flex-col items-center"
             >
-              <div className="bg-white rounded-xl shadow-card group-hover:shadow-card-hover transition-shadow duration-300 p-4 mb-3">
+              <div className="hidden md:block bg-white rounded-xl shadow-card group-hover:shadow-card-hover transition-shadow duration-300 p-4 mb-3">
                 <img
                   src={qrPlayStore}
                   alt="QR code Google Play"
