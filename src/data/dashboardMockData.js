@@ -4,25 +4,76 @@
 export const balansData = {
   years: ["31-12-2023", "31-12-2022"],
   activa: [
-    { label: "Materiële vaste activa", values: ["7.167", "7.167"] },
-    { label: "Financiële vaste activa", values: ["7.513.751", "6.541.751"] },
-    { label: "Effecten", values: ["41.788.949", "41.010.875"] },
-    { label: "Vorderingen en overlopende activa", values: ["7.450", "6.812"] },
-    { label: "Liquide middelen", values: ["1.672.095", "1.117.250"] },
+    { label: "Materiële vaste activa", values: ["7.167", "7.167"], children: [
+      { label: "Inventaris", values: ["5.000", "5.000"] },
+      { label: "Computers en apparatuur", values: ["2.167", "2.167"] },
+    ] },
+    { label: "Financiële vaste activa", values: ["7.513.751", "6.541.751"], children: [
+      { label: "Leningen u/g", values: ["982.525", "496.525"] },
+      { label: "Overige vorderingen", values: ["6.531.226", "6.045.226"] },
+    ] },
+    { label: "Effecten", values: ["41.788.949", "41.010.875"], children: [
+      { label: "Aandelen", values: ["28.450.000", "27.800.000"] },
+      { label: "Obligaties", values: ["10.338.949", "10.210.875"] },
+      { label: "Overige effecten", values: ["3.000.000", "3.000.000"] },
+    ] },
+    { label: "Vorderingen en overlopende activa", values: ["7.450", "6.812"], children: [
+      { label: "Debiteuren", values: ["4.200", "3.500"] },
+      { label: "Overlopende activa", values: ["3.250", "3.312"] },
+    ] },
+    { label: "Liquide middelen", values: ["1.672.095", "1.117.250"], children: [
+      { label: "ABN betaalrekening", values: ["1.200.000", "800.000"] },
+      { label: "Spaarrekening", values: ["472.095", "317.250"] },
+    ] },
   ],
   activaTotal: ["50.989.411", "48.683.854"],
   passiva: [
-    { label: "Reserves", values: ["46.372.147", "45.542.733"] },
-    { label: "Fondsen", values: ["3.595.826", "2.623.826"] },
-    { label: "Langlopende schulden", values: ["982.525", "496.525"] },
-    { label: "Kortlopende schulden", values: ["38.914", "20.770"] },
+    { label: "Reserves", values: ["46.372.147", "45.542.733"], children: [
+      { label: "Algemene reserve", values: ["40.000.000", "39.500.000"] },
+      { label: "Bestemmingsreserve", values: ["6.372.147", "6.042.733"] },
+    ] },
+    { label: "Fondsen", values: ["3.595.826", "2.623.826"], children: [
+      { label: "Fonds natuur", values: ["1.500.000", "1.200.000"] },
+      { label: "Fonds cultuur", values: ["1.095.826", "823.826"] },
+      { label: "Fonds onderwijs", values: ["1.000.000", "600.000"] },
+    ] },
+    { label: "Langlopende schulden", values: ["982.525", "496.525"], children: [
+      { label: "Leningen", values: ["982.525", "496.525"] },
+    ] },
+    { label: "Kortlopende schulden", values: ["38.914", "20.770"], children: [
+      { label: "Crediteuren", values: ["25.000", "12.000"] },
+      { label: "Overlopende passiva", values: ["13.914", "8.770"] },
+    ] },
   ],
   passivaTotal: ["50.989.411", "48.683.854"],
 };
 
+/* ─── Rapporten: Monthly chart data ─── */
+export const rapportenChartData = {
+  title: "Maandelijkse verdeling toekenningen",
+  year: "2023",
+  months: ["Jan", "Feb", "Mrt", "Apr", "Mei", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
+  giften:   [2200, 1500, 1700, 1600, 1700, 1500, 1100, 2900, 4200, 5200, 7500, 8000],
+  leningen: [0, 0, 0, 0, 0, 0, 0, 0, 0, 2000, 0, 0],
+};
+
+/* ─── Rapporten: Outstanding allocations ─── */
+export const openstaandeToekenningen = [
+  { project: "Projecten", relatie: "Stichting Kunst en Cultuur", datum: "17-12-2025", bedrag: "1.000,00", openstaand: "200,00", bron: "Gift: AV20250012: Kunst in de Wijk" },
+  { project: "Projecten", relatie: "Stichting Geluid van de Stad", datum: "10-12-2025", bedrag: "1.000,00", openstaand: "200,00", bron: "Gift: AV20250011: test" },
+  { project: "Projecten", relatie: "Stichting Vrienden", datum: "17-11-2025", bedrag: "1.245,00", openstaand: "1.245,00", bron: "Gift: AV20250009: test" },
+  { project: "Projecten", relatie: "Stichting Phantasia", datum: "29-10-2025", bedrag: "5.000,00", openstaand: "5.000,00", bron: "Gift: AV20250008: test" },
+  { project: "Projecten", relatie: "Stichting Natuurklanken", datum: "9-10-2025", bedrag: "5.000,00", openstaand: "1.000,00", bron: "Gift: AV20250007: Symfonie van de Natuur" },
+  { project: "Projecten", relatie: "Stichting Natuurklanken", datum: "9-10-2025", bedrag: "2.000,00", openstaand: "2.000,00", bron: "Loan: AV20250007: Symfonie van de Natuur" },
+  { project: "Definitieve aanvraag", relatie: "St. Levi Lassen", datum: "15-08-2025", bedrag: "1.000,00", openstaand: "1.000,00", bron: "Gift: AV20250006: Test aanvraag" },
+  { project: "Projecten", relatie: "Stichting De Groote Beer", datum: "16-07-2025", bedrag: "2.500,00", openstaand: "2.500,00", bron: "Gift: AV20230004: Grote Loep" },
+  { project: "Onderwijs", relatie: "Dok 99", datum: "8-07-2025", bedrag: "7.000,00", openstaand: "1.400,00", bron: "Gift: AV20250005: Apply for grant Emma" },
+];
+
 /* ─── Boekhouding: Journal post detail ─── */
 export const journaalpostData = {
   id: 90,
+  status: "Geboekt",
   tabs: ["Details", "Historie"],
   details: [
     { label: "ID:", value: "90" },
@@ -43,7 +94,9 @@ export const journaalpostData = {
       bedrag: "2.000,00",
     },
   ],
-  documenten: [],
+  documenten: [
+    { naam: "Aflossing_AV20250007.pdf", datum: "2023-10-09", grootte: "42 KB" },
+  ],
 };
 
 /* ─── Bankzaken: Bank transaction table ─── */
@@ -158,6 +211,19 @@ export const projectenData = {
   budget: "€ 2.950.000,00",
   toegekend: "€ 33.784,56",
   resterend: "€ 2.916.215,44",
+  monthlyChart: {
+    months: ["Jan", "Feb", "Mrt", "Apr", "Mei", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
+    giften:   [0, 0, 1000, 0, 5000, 0, 7500, 0, 5000, 4000, 1245, 1000],
+    leningen: [0, 0, 0, 0, 0, 0, 0, 0, 2000, 0, 0, 0],
+  },
+  aanvragenTable: [
+    { nummer: "AV20250012", aanvrager: "Stichting Kunst en Cultuur", categorie: "Culturele projecten", gift: "1.000,00", lening: "0,00", status: "Toegekend", datum: "17-12-2025" },
+    { nummer: "AV20250011", aanvrager: "Stichting Geluid van de Stad", categorie: "Definitieve aanvraag", gift: "1.000,00", lening: "0,00", status: "Toegekend", datum: "10-12-2025" },
+    { nummer: "AV20250010", aanvrager: "Stichting Kunst en Cultuur", categorie: "Culturele projecten", gift: "7.500,00", lening: "0,00", status: "Toegekend", datum: "09-10-2025" },
+    { nummer: "AV20250009", aanvrager: "Stichting Vrienden", categorie: "Onderwijs", gift: "1.245,00", lening: "0,00", status: "Toegekend", datum: "15-09-2025" },
+    { nummer: "AV20250008", aanvrager: "Stichting Phantasia", categorie: "Natuur", gift: "5.000,00", lening: "0,00", status: "Toegekend", datum: "20-08-2025" },
+    { nummer: "AV20250007", aanvrager: "Stichting Natuurklanken", categorie: "Natuur", gift: "5.000,00", lening: "2.000,00", status: "Toegekend", datum: "09-10-2025" },
+  ],
 };
 
 /* ─── Facturatie: Invoice detail ─── */
@@ -185,6 +251,11 @@ export const factuurData = {
     ],
     total: "1 350,00 €",
   },
+  referenties: [
+    { type: "RELATIE", label: "New Babylon Gardens" },
+    { type: "BETAALOPDRACHT", label: "12345" },
+  ],
+  opmerkingen: [],
 };
 
 /* ─── Relaties: Contact table ─── */
@@ -245,4 +316,17 @@ export const organizerData = {
     { aanvrager: "Stichting Phantasia", nummer: "AV20250008", status: "Toegekend", gift: "5.000,00", lening: "0,00", stemmer: "Arjan van Gulick" },
     { aanvrager: "Stichting Natuurklanken", nummer: "AV20250007", status: "Toegekend", gift: "5.000,00", lening: "2.000,00", stemmer: "Arjan van Gulick" },
   ],
+  acties: [
+    { gebruiker: "Wouter Hofhuis", omschrijving: "Voorstel budget lustrum", aangemaakt: "", deadline: "13-04-2021", uitgevoerd: false },
+    { gebruiker: "Arjan van Gulick", omschrijving: "Notulen versturen naar bestuur", aangemaakt: "27-01-2026", deadline: "03-02-2026", uitgevoerd: false },
+  ],
+  besluiten: [
+    { omschrijving: "accept test application" },
+    { omschrijving: "Het bestuur besluit het beleidsplan 2026 in de volgende vergadering te bespreken." },
+  ],
+  aanvragenSummary: {
+    open: { count: 1, bedrag: "5.000,00" },
+    goedgekeurd: { count: 1, bedrag: "7.000,00" },
+    afgekeurd: { count: 0, bedrag: "0,00" },
+  },
 };

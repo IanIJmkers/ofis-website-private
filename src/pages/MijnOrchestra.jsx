@@ -8,7 +8,8 @@ import SectionHeading from "../components/ui/SectionHeading";
 import Button from "../components/ui/Button";
 import { useLanguage } from "../context/LanguageContext";
 import {
-  balansData, journaalpostData, bankTransactiesData, projectenData,
+  balansData,
+  journaalpostData, bankTransactiesData, projectenData,
   factuurData, relatiesData, donatiesData, documentenData, organizerData,
 } from "../data/dashboardMockData";
 
@@ -195,6 +196,47 @@ function ModuleHeading({ icon, title }) {
   );
 }
 
+/* ─── Shared: Monthly Bar Chart ─── */
+function MonthlyBarChart({ months, giften, leningen, title, subtitle }) {
+  const maxVal = Math.max(...giften, ...leningen, 1);
+  const barH = 130;
+  return (
+    <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
+      <div className="px-4 py-2.5 border-b border-warm-gray-100 flex items-center justify-between">
+        <h4 className="text-sm font-semibold text-navy-900">{title}</h4>
+        {subtitle && <span className="text-[10px] text-warm-gray-400">{subtitle}</span>}
+      </div>
+      <div className="p-4">
+        <div className="flex items-center gap-4 mb-3">
+          <div className="flex items-center gap-1.5 text-[10px] text-warm-gray-600">
+            <span className="w-3 h-3 rounded-sm bg-navy-900" /> Giften ({subtitle || "2023"})
+          </div>
+          <div className="flex items-center gap-1.5 text-[10px] text-warm-gray-600">
+            <span className="w-3 h-3 rounded-sm bg-gold-600" /> Leningen ({subtitle || "2023"})
+          </div>
+        </div>
+        <svg viewBox="0 0 480 160" className="w-full h-40" preserveAspectRatio="xMidYMid meet">
+          {[0, 0.25, 0.5, 0.75, 1].map((pct) => (
+            <line key={pct} x1="20" y1={barH * (1 - pct) + 10} x2="476" y2={barH * (1 - pct) + 10} stroke="#E4E4DE" strokeWidth="0.5" />
+          ))}
+          {months.map((month, i) => {
+            const gH = (giften[i] / maxVal) * barH;
+            const lH = (leningen[i] / maxVal) * barH;
+            const x = 20 + i * 38;
+            return (
+              <g key={month}>
+                <rect x={x} y={barH - gH + 10} width={14} height={Math.max(gH, 0)} fill="#0B2A48" rx={2} />
+                <rect x={x + 16} y={barH - lH + 10} width={14} height={Math.max(lH, 0)} fill="#AA8C2B" rx={2} />
+                <text x={x + 15} y={155} textAnchor="middle" fontSize="8" fill="#A8A89E">{month}</text>
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Overzicht ─── */
 function OverzichtContent() {
   return (
@@ -209,11 +251,52 @@ function OverzichtContent() {
   );
 }
 
-/* ─── Rapporten: Balance Sheet ─── */
+/* ─── Rapporten: Balance Sheet + Chart + Table ─── */
 function RapportenContent() {
+  const [expandedRows, setExpandedRows] = useState({});
+  const toggleRow = (label) =>
+    setExpandedRows((prev) => ({ ...prev, [label]: !prev[label] }));
+
+  const renderRows = (rows) =>
+    rows.flatMap((row) => [
+      <tr
+        key={row.label}
+        className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50 cursor-pointer"
+        onClick={() => row.children && toggleRow(row.label)}
+      >
+        <td className="px-4 py-1.5 text-warm-gray-600 pl-8 flex items-center gap-1.5">
+          {row.children && (
+            <svg
+              className={`w-3 h-3 text-warm-gray-400 shrink-0 transition-transform duration-150 ${expandedRows[row.label] ? "rotate-90" : ""}`}
+              fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          )}
+          {!row.children && <span className="w-3" />}
+          {row.label}
+        </td>
+        {row.values.map((v, i) => (
+          <td key={i} className="px-4 py-1.5 text-right text-warm-gray-700 tabular-nums">{v}</td>
+        ))}
+      </tr>,
+      ...(expandedRows[row.label] && row.children
+        ? row.children.map((child) => (
+            <tr key={child.label} className="border-b border-warm-gray-50 bg-warm-gray-50/30">
+              <td className="px-4 py-1 text-warm-gray-500 pl-14 text-[11px]">{child.label}</td>
+              {child.values.map((v, i) => (
+                <td key={i} className="px-4 py-1 text-right text-warm-gray-500 tabular-nums text-[11px]">{v}</td>
+              ))}
+            </tr>
+          ))
+        : []),
+    ]);
+
   return (
     <>
       <ModuleHeading icon="reports" title="Rapporten" />
+
+      {/* Balance sheet */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
         <div className="bg-navy-900 px-4 py-2.5">
           <h4 className="text-sm font-semibold text-white">Balans</h4>
@@ -230,14 +313,7 @@ function RapportenContent() {
             </thead>
             <tbody>
               <tr><td colSpan={3} className="px-4 pt-3 pb-1 font-semibold text-navy-900">Activa</td></tr>
-              {balansData.activa.map((row) => (
-                <tr key={row.label} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
-                  <td className="px-4 py-1.5 text-warm-gray-600 pl-8">{row.label}</td>
-                  {row.values.map((v, i) => (
-                    <td key={i} className="px-4 py-1.5 text-right text-warm-gray-700 tabular-nums">{v}</td>
-                  ))}
-                </tr>
-              ))}
+              {renderRows(balansData.activa)}
               <tr className="border-t border-warm-gray-200 font-semibold">
                 <td className="px-4 py-2 text-navy-900">Totaal activa</td>
                 {balansData.activaTotal.map((v, i) => (
@@ -245,14 +321,7 @@ function RapportenContent() {
                 ))}
               </tr>
               <tr><td colSpan={3} className="px-4 pt-4 pb-1 font-semibold text-navy-900">Passiva</td></tr>
-              {balansData.passiva.map((row) => (
-                <tr key={row.label} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
-                  <td className="px-4 py-1.5 text-warm-gray-600 pl-8">{row.label}</td>
-                  {row.values.map((v, i) => (
-                    <td key={i} className="px-4 py-1.5 text-right text-warm-gray-700 tabular-nums">{v}</td>
-                  ))}
-                </tr>
-              ))}
+              {renderRows(balansData.passiva)}
               <tr className="border-t border-warm-gray-200 font-semibold">
                 <td className="px-4 py-2 text-navy-900">Totaal passiva</td>
                 {balansData.passivaTotal.map((v, i) => (
@@ -273,12 +342,15 @@ function BoekhoudingContent() {
     <>
       <ModuleHeading icon="accounting" title="Boekhouding" />
 
-      {/* Page title */}
+      {/* Page title with status badge */}
       <div className="flex items-center gap-2 mb-3">
         <svg className="w-4 h-4 text-warm-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
         </svg>
         <h4 className="text-sm font-semibold text-navy-900">Journaalpost {journaalpostData.id}</h4>
+        <span className="inline-block px-2.5 py-0.5 rounded text-[10px] font-semibold bg-green-50 text-green-700">
+          {journaalpostData.status}
+        </span>
       </div>
 
       {/* Tabs */}
@@ -297,21 +369,24 @@ function BoekhoudingContent() {
         ))}
       </div>
 
-      {/* Details panel */}
+      {/* Details panel — 2-column grid with navy header */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mb-4">
-        <div className="p-4 space-y-2.5">
+        <div className="bg-navy-900 px-4 py-2.5">
+          <h4 className="text-sm font-semibold text-white">Details</h4>
+        </div>
+        <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
           {journaalpostData.details.map((field) => (
-            <div key={field.label} className="flex text-xs gap-4">
+            <div key={field.label} className="flex text-xs gap-3">
               <span className="text-navy-900 font-semibold w-28 shrink-0">{field.label}</span>
               <span className={field.isLink ? "text-blue-600" : "text-warm-gray-700"}>
-                {field.value || ""}
+                {field.value || "\u2014"}
               </span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Items table */}
+      {/* Items table with totals row */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mb-4">
         <div className="px-3 py-2 border-b border-warm-gray-100 flex items-center justify-between">
           <h4 className="text-sm font-semibold text-navy-900">Items</h4>
@@ -342,11 +417,18 @@ function BoekhoudingContent() {
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr className="border-t border-warm-gray-200 bg-warm-gray-50">
+                <td className="px-3 py-2 text-navy-900 font-semibold">Totaal</td>
+                <td className="px-3 py-2 text-right text-navy-900 font-semibold tabular-nums whitespace-nowrap">&euro; 0,00</td>
+                <td className="px-3 py-2" />
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>
 
-      {/* Referenties */}
+      {/* Referenties — enhanced cards */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mb-4">
         <div className="px-3 py-2 border-b border-warm-gray-100">
           <h4 className="text-sm font-semibold text-navy-900">
@@ -355,33 +437,59 @@ function BoekhoudingContent() {
         </div>
         <div className="p-3 space-y-2">
           {journaalpostData.referenties.map((ref, i) => (
-            <div key={i} className="flex items-center gap-3 text-xs">
-              <span className="inline-block px-2.5 py-1 rounded text-[10px] font-semibold bg-warm-gray-100 text-warm-gray-600 uppercase tracking-wide">
-                {ref.type}
+            <div key={i} className="flex items-start gap-3 text-xs p-2.5 rounded-md bg-warm-gray-50/50 border border-warm-gray-100">
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-navy-900/10 text-navy-700 shrink-0">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
               </span>
               <div className="grow">
-                <span className="text-blue-600 font-medium">{ref.label}</span>
-                <div className="text-[10px] text-warm-gray-400">{ref.relatie} &nbsp;&nbsp;&bull;&nbsp;&nbsp; &euro; {ref.bedrag}</div>
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-navy-100 text-navy-700 uppercase tracking-wide">
+                    {ref.type}
+                  </span>
+                  <span className="text-blue-600 font-medium">{ref.label}</span>
+                </div>
+                <div className="text-[10px] text-warm-gray-400">
+                  {ref.relatie} &nbsp;&bull;&nbsp; &euro; {ref.bedrag}
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Documenten (empty) */}
+      {/* Documenten — filled */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
         <div className="px-3 py-2 border-b border-warm-gray-100 flex items-center justify-between">
           <h4 className="text-sm font-semibold text-navy-900">Documenten</h4>
-          <span className="text-[10px] text-warm-gray-400">1-0 &nbsp; 0</span>
+          <span className="text-[10px] text-warm-gray-400">
+            1-{journaalpostData.documenten.length} &nbsp; {journaalpostData.documenten.length}
+          </span>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
                 <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">Document</th>
+                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">Datum</th>
+                <th className="text-right px-3 py-2 text-warm-gray-500 font-medium">Grootte</th>
               </tr>
             </thead>
-            <tbody />
+            <tbody>
+              {journaalpostData.documenten.map((doc, i) => (
+                <tr key={i} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
+                  <td className="px-3 py-2 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-red-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-blue-600">{doc.naam}</span>
+                  </td>
+                  <td className="px-3 py-2 text-warm-gray-600">{doc.datum}</td>
+                  <td className="px-3 py-2 text-right text-warm-gray-400">{doc.grootte}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </div>
@@ -501,9 +609,9 @@ function BankzakenContent() {
   );
 }
 
-/* ─── Projecten: Chart + Budget ─── */
+/* ─── Projecten: Chart + Budget + Bar Chart + Table ─── */
 function ProjectenContent() {
-  const { chartCategories, budget, toegekend, resterend, dateRange } = projectenData;
+  const { chartCategories, budget, toegekend, resterend, dateRange, monthlyChart, aanvragenTable } = projectenData;
 
   return (
     <>
@@ -563,13 +671,59 @@ function ProjectenContent() {
           <p className="text-[10px] text-warm-gray-400 mt-1">1,15% van budget toegekend</p>
         </div>
       </div>
+
+      {/* Monthly allocations bar chart */}
+      <div className="mt-4">
+        <MonthlyBarChart
+          months={monthlyChart.months}
+          giften={monthlyChart.giften}
+          leningen={monthlyChart.leningen}
+          title="Maandelijkse verdeling toekenningen"
+          subtitle={dateRange}
+        />
+      </div>
+
+      {/* Allocations table */}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mt-4">
+        <div className="px-4 py-2.5 border-b border-warm-gray-100">
+          <h4 className="text-sm font-semibold text-navy-900">Toekenningen ({aanvragenTable.length})</h4>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
+                {["Aanvraagnummer", "Aanvrager", "Categorie", "Gift", "Lening", "Status", "Datum"].map((col) => (
+                  <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {aanvragenTable.map((row) => (
+                <tr key={row.nummer} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
+                  <td className="px-3 py-2 text-blue-600 font-medium">{row.nummer}</td>
+                  <td className="px-3 py-2 text-navy-700 font-medium">{row.aanvrager}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{row.categorie}</td>
+                  <td className="px-3 py-2 text-warm-gray-700 tabular-nums whitespace-nowrap">&euro; {row.gift}</td>
+                  <td className="px-3 py-2 text-warm-gray-700 tabular-nums whitespace-nowrap">&euro; {row.lening}</td>
+                  <td className="px-3 py-2">
+                    <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-700">
+                      {row.status}
+                    </span>
+                  </td>
+                  <td className="px-3 py-2 text-warm-gray-600">{row.datum}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </>
   );
 }
 
-/* ─── Facturatie: Invoice Detail ─── */
+/* ─── Facturatie: Invoice Detail + Referenties + Opmerkingen ─── */
 function FacturatieContent() {
-  const { fields, invoicePreview } = factuurData;
+  const { fields, invoicePreview, referenties, opmerkingen } = factuurData;
 
   return (
     <>
@@ -581,10 +735,15 @@ function FacturatieContent() {
             <h4 className="text-sm font-semibold text-white">Details</h4>
           </div>
           <div className="p-4 space-y-2.5">
-            {fields.map((field) => (
-              <div key={field.label} className="flex justify-between text-xs gap-4">
-                <span className="text-warm-gray-400 shrink-0">{field.label}</span>
-                <span className="text-warm-gray-700 font-medium text-right">{field.value}</span>
+            {fields.map((field, idx) => (
+              <div key={field.label}>
+                {idx === fields.length - 1 && <div className="border-t border-warm-gray-100 mb-2.5" />}
+                <div className="flex justify-between text-xs gap-4">
+                  <span className="text-warm-gray-400 shrink-0">{field.label}</span>
+                  <span className={`font-medium text-right ${field.label === "Geautoriseerd" ? "text-green-700" : "text-warm-gray-700"}`}>
+                    {field.value}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
@@ -655,6 +814,49 @@ function FacturatieContent() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Referenties */}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mt-4">
+        <div className="px-4 py-2.5 border-b border-warm-gray-100">
+          <h4 className="text-sm font-semibold text-navy-900">Referenties ({referenties.length})</h4>
+        </div>
+        <div className="p-4 space-y-3">
+          {referenties.map((ref, i) => (
+            <div key={i} className="flex items-center gap-4 text-xs">
+              <span className="text-navy-900 font-semibold w-36 shrink-0 uppercase text-[10px] tracking-wide">{ref.type}</span>
+              <span className="text-blue-600 font-medium">{ref.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Opmerkingen */}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mt-4">
+        <div className="px-4 py-2.5 border-b border-warm-gray-100 flex items-center justify-between">
+          <h4 className="text-sm font-semibold text-navy-900">Opmerkingen</h4>
+          <span className="text-[10px] text-warm-gray-400">1-0 van 0</span>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
+                {["Behandeld", "Opmerking", "Laatst gewijzigd"].map((col) => (
+                  <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {opmerkingen.length === 0 && (
+                <tr>
+                  <td colSpan={3} className="px-3 py-4 text-center text-warm-gray-400 text-[11px]">
+                    Geen opmerkingen
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </>
@@ -842,9 +1044,9 @@ function DocumentenContent() {
   );
 }
 
-/* ─── Organizer: Meeting View ─── */
+/* ─── Organizer: Meeting View + Acties + Besluiten ─── */
 function OrganizerContent() {
-  const { meeting, genodigden, aanvragen } = organizerData;
+  const { meeting, genodigden, aanvragen, acties, besluiten, aanvragenSummary } = organizerData;
 
   return (
     <>
@@ -895,6 +1097,22 @@ function OrganizerContent() {
         </div>
       </div>
 
+      {/* Aanvragen summary cards */}
+      <div className="grid grid-cols-3 gap-3 mb-4">
+        {[
+          { label: "Open aanvragen", count: aanvragenSummary.open.count, bedrag: aanvragenSummary.open.bedrag, color: "bg-blue-50 text-blue-700" },
+          { label: "Goedgekeurde aanvragen", count: aanvragenSummary.goedgekeurd.count, bedrag: aanvragenSummary.goedgekeurd.bedrag, color: "bg-green-50 text-green-700" },
+          { label: "Afgekeurde aanvragen", count: aanvragenSummary.afgekeurd.count, bedrag: aanvragenSummary.afgekeurd.bedrag, color: "bg-red-50 text-red-700" },
+        ].map((card) => (
+          <div key={card.label} className="bg-white rounded-lg border border-warm-gray-100 shadow-card p-3">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[10px] text-warm-gray-500 font-medium">{card.label} ({card.count})</span>
+            </div>
+            <p className="text-sm font-semibold text-navy-900 tabular-nums">&euro; {card.bedrag} &rsaquo;</p>
+          </div>
+        ))}
+      </div>
+
       {/* Applications table */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
         <div className="px-4 py-2.5 border-b border-warm-gray-100">
@@ -919,10 +1137,62 @@ function OrganizerContent() {
                       {a.status}
                     </span>
                   </td>
-                  <td className="px-3 py-2 text-warm-gray-700 tabular-nums">€ {a.gift}</td>
-                  <td className="px-3 py-2 text-warm-gray-700 tabular-nums">€ {a.lening}</td>
+                  <td className="px-3 py-2 text-warm-gray-700 tabular-nums">&euro; {a.gift}</td>
+                  <td className="px-3 py-2 text-warm-gray-700 tabular-nums">&euro; {a.lening}</td>
                   <td className="px-3 py-2 text-warm-gray-600">{a.stemmer}</td>
                   <td className="px-3 py-2 text-center">✓</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Acties */}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mt-4">
+        <div className="px-4 py-2.5 border-b border-warm-gray-100">
+          <h4 className="text-sm font-semibold text-navy-900">Acties ({acties.length})</h4>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
+                {["Gebruiker", "Omschrijving", "Aangemaakt", "Deadline", "Uitgevoerd"].map((col) => (
+                  <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {acties.map((actie, i) => (
+                <tr key={i} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
+                  <td className="px-3 py-2 text-navy-700 font-medium">{actie.gebruiker}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{actie.omschrijving}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{actie.aangemaakt || "\u2014"}</td>
+                  <td className="px-3 py-2 text-warm-gray-600">{actie.deadline}</td>
+                  <td className="px-3 py-2 text-warm-gray-500">{actie.uitgevoerd ? "✓" : "✗"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Besluiten */}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mt-4">
+        <div className="px-4 py-2.5 border-b border-warm-gray-100">
+          <h4 className="text-sm font-semibold text-navy-900">Besluiten ({besluiten.length})</h4>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
+                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">Omschrijving</th>
+              </tr>
+            </thead>
+            <tbody>
+              {besluiten.map((besluit, i) => (
+                <tr key={i} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
+                  <td className="px-3 py-2 text-warm-gray-600">{besluit.omschrijving}</td>
                 </tr>
               ))}
             </tbody>
