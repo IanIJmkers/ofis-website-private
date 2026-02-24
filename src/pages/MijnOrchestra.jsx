@@ -1236,6 +1236,19 @@ function DashboardMockup() {
         </div>
       </div>
 
+      {/* Interaction hint */}
+      <motion.div
+        className="flex items-center gap-2 mt-3 mb-1"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
+      >
+        <svg className="w-4 h-4 text-warm-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+        </svg>
+        <span className="text-xs text-warm-gray-400 tracking-wide">Klik op de modules om te interacteren</span>
+      </motion.div>
+
       {/* Monitor stand */}
       <div className="w-28 h-10 bg-linear-to-b from-[#2a2a2a] to-[#1a1a1a] rounded-b-sm" />
       <div className="w-48 h-2.5 bg-linear-to-b from-[#333] to-[#222] rounded-full shadow-sm" />
