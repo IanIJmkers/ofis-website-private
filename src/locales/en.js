@@ -17,7 +17,7 @@ export default {
     feature4Desc: "Clear task assignments and authorisations. Always know who is responsible for what and the status of ongoing matters.",
     dashboardEyebrow: "Interactive Platform",
     dashboardTitle: "One overview, full control",
-    dashboardSubtitle: "The My Orchestra platform provides you with an intuitive dashboard with modules for accounting, banking, invoicing, projects and more.",
+    dashboardSubtitle: "The My Orchestra platform provides you with an intuitive dashboard with modules for accounting, banking, invoicing, portfolio and more.",
     ctaTitle: "Ready to log in?",
     ctaSubtitle: "Log in to My Orchestra for immediate access to your financial overview, documents and reports.",
   },

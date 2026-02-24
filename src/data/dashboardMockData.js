@@ -197,35 +197,6 @@ export const bankTransactiesData = {
   ],
 };
 
-/* ─── Projecten: Budget data ─── */
-export const projectenData = {
-  dateRange: "01-01-2023 - 31-12-2023",
-  chartCategories: [
-    { label: "Definitieve aanvraag", percentage: 35, color: "#0B2A48" },
-    { label: "Pré aanvraag", percentage: 20, color: "#3D6995" },
-    { label: "Natuur", percentage: 15, color: "#9FB5CB" },
-    { label: "Onderwijs", percentage: 12, color: "#E8C872" },
-    { label: "Culturele projecten", percentage: 10, color: "#AA8C2B" },
-    { label: "Projecten", percentage: 8, color: "#D4762C" },
-  ],
-  budget: "€ 2.950.000,00",
-  toegekend: "€ 33.784,56",
-  resterend: "€ 2.916.215,44",
-  monthlyChart: {
-    months: ["Jan", "Feb", "Mrt", "Apr", "Mei", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
-    giften:   [0, 0, 1000, 0, 5000, 0, 7500, 0, 5000, 4000, 1245, 1000],
-    leningen: [0, 0, 0, 0, 0, 0, 0, 0, 2000, 0, 0, 0],
-  },
-  aanvragenTable: [
-    { nummer: "AV20250012", aanvrager: "Stichting Kunst en Cultuur", categorie: "Culturele projecten", gift: "1.000,00", lening: "0,00", status: "Toegekend", datum: "17-12-2025" },
-    { nummer: "AV20250011", aanvrager: "Stichting Geluid van de Stad", categorie: "Definitieve aanvraag", gift: "1.000,00", lening: "0,00", status: "Toegekend", datum: "10-12-2025" },
-    { nummer: "AV20250010", aanvrager: "Stichting Kunst en Cultuur", categorie: "Culturele projecten", gift: "7.500,00", lening: "0,00", status: "Toegekend", datum: "09-10-2025" },
-    { nummer: "AV20250009", aanvrager: "Stichting Vrienden", categorie: "Onderwijs", gift: "1.245,00", lening: "0,00", status: "Toegekend", datum: "15-09-2025" },
-    { nummer: "AV20250008", aanvrager: "Stichting Phantasia", categorie: "Natuur", gift: "5.000,00", lening: "0,00", status: "Toegekend", datum: "20-08-2025" },
-    { nummer: "AV20250007", aanvrager: "Stichting Natuurklanken", categorie: "Natuur", gift: "5.000,00", lening: "2.000,00", status: "Toegekend", datum: "09-10-2025" },
-  ],
-};
-
 /* ─── Facturatie: Invoice detail ─── */
 export const factuurData = {
   fields: [

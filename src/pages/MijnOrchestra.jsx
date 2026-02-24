@@ -9,7 +9,7 @@ import Button from "../components/ui/Button";
 import { useLanguage } from "../context/LanguageContext";
 import {
   balansData,
-  journaalpostData, bankTransactiesData, projectenData,
+  journaalpostData, bankTransactiesData,
   factuurData, relatiesData, donatiesData, documentenData, organizerData,
 } from "../data/dashboardMockData";
 
@@ -40,7 +40,7 @@ const sidebarItems = [
   { label: "Rapporten", icon: "reports" },
   { label: "Boekhouding", icon: "accounting" },
   { label: "Bankzaken", icon: "banking" },
-  { label: "Projecten", icon: "projects" },
+  { label: "Portefeuille", icon: "portfolio" },
   { label: "Facturatie", icon: "invoicing" },
   { label: "Relaties", icon: "relations" },
   { label: "Donaties", icon: "donations" },
@@ -54,7 +54,7 @@ const modulePaths = {
   Rapporten: "DEMOSTICHTING/Overviews/Balance/Report",
   Boekhouding: "DEMOSTICHTING/Accounting",
   Bankzaken: "DEMOSTICHTING/Banking",
-  Projecten: "DEMOSTICHTING/ProjectAdministration/Reporting",
+  Portefeuille: "DEMOSTICHTING/PortfolioManagement/Report",
   Facturatie: "DEMOSTICHTING/Invoicing/Incoming/Invoices/22",
   Relaties: "DEMOSTICHTING/RelationsManagement/Relations",
   Donaties: "DEMOSTICHTING/DonationManagement/Overview",
@@ -82,12 +82,11 @@ const dashboardCards = [
     more: 3,
   },
   {
-    title: "Projecten",
+    title: "Portefeuille",
     items: [
-      { text: "Voorstellen moeten beoordeeld worden", count: 2 },
-      { text: "Gesloten aanvragen", count: 10 },
+      { text: "Rendement verslagperiode", count: "1,90%" },
+      { text: "Rendement cumulatief", count: "76,88%" },
     ],
-    more: 3,
   },
   {
     title: "Facturatie",
@@ -125,9 +124,9 @@ function SidebarIcon({ type, className = "w-4 h-4" }) {
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
       </svg>
     ),
-    projects: (
+    portfolio: (
       <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
       </svg>
     ),
     invoicing: (
@@ -609,113 +608,26 @@ function BankzakenContent() {
   );
 }
 
-/* ─── Projecten: Chart + Budget + Bar Chart + Table ─── */
-function ProjectenContent() {
-  const { chartCategories, budget, toegekend, resterend, dateRange, monthlyChart, aanvragenTable } = projectenData;
-
+/* ─── Portefeuille: Scrollable PDF Report ─── */
+function PortefeuilleContent() {
   return (
     <>
-      <ModuleHeading icon="projects" title="Projecten" />
+      <ModuleHeading icon="portfolio" title="Portefeuille" />
       <div className="flex items-center gap-3 mb-4">
         <div className="bg-white border border-warm-gray-200 rounded-md px-3 py-1.5 text-xs text-warm-gray-500">
-          {dateRange}
+          Rapportagedatum: 4 september 2025
+        </div>
+        <div className="bg-white border border-warm-gray-200 rounded-md px-3 py-1.5 text-xs text-warm-gray-500">
+          Profiel: Vermogensbeheer Marktconform
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-        {/* Donut chart card */}
-        <div className="lg:col-span-3 bg-white rounded-lg border border-warm-gray-100 shadow-card p-5">
-          <h4 className="text-sm font-semibold text-navy-900 mb-4">Verdeling toekenningen</h4>
-          <div className="flex items-center gap-8">
-            <div
-              className="w-32 h-32 rounded-full shrink-0"
-              style={{
-                background: `conic-gradient(${chartCategories
-                  .reduce((acc, cat, i) => {
-                    const start = chartCategories.slice(0, i).reduce((s, c) => s + c.percentage, 0);
-                    return `${acc}${i > 0 ? ", " : ""}${cat.color} ${start}% ${start + cat.percentage}%`;
-                  }, "")})`,
-                mask: "radial-gradient(circle at center, transparent 38%, black 39%)",
-                WebkitMask: "radial-gradient(circle at center, transparent 38%, black 39%)",
-              }}
-            />
-            <div className="space-y-2">
-              {chartCategories.map((cat) => (
-                <div key={cat.label} className="flex items-center gap-2 text-xs">
-                  <span className="w-3 h-3 rounded-sm shrink-0" style={{ backgroundColor: cat.color }} />
-                  <span className="text-warm-gray-600">{cat.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Budget insight card */}
-        <div className="lg:col-span-2 bg-white rounded-lg border border-warm-gray-100 shadow-card p-5">
-          <h4 className="text-sm font-semibold text-navy-900 mb-4">Budget inzicht</h4>
-          <div className="space-y-3">
-            {[
-              { label: "Budget", value: budget },
-              { label: "Toegekend", value: toegekend },
-              { label: "Resterend", value: resterend },
-            ].map((row) => (
-              <div key={row.label} className="flex justify-between items-center">
-                <span className="text-xs text-warm-gray-500">{row.label}</span>
-                <span className="text-sm font-semibold tabular-nums text-navy-900">{row.value}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-4 h-2 bg-warm-gray-100 rounded-full overflow-hidden">
-            <div className="h-full bg-gold-600 rounded-full" style={{ width: "1.15%" }} />
-          </div>
-          <p className="text-[10px] text-warm-gray-400 mt-1">1,15% van budget toegekend</p>
-        </div>
-      </div>
-
-      {/* Monthly allocations bar chart */}
-      <div className="mt-4">
-        <MonthlyBarChart
-          months={monthlyChart.months}
-          giften={monthlyChart.giften}
-          leningen={monthlyChart.leningen}
-          title="Maandelijkse verdeling toekenningen"
-          subtitle={dateRange}
+      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
+        <iframe
+          src="/docs/portefeuille-rapport.pdf"
+          title="Portefeuille Rapport"
+          className="w-full h-150 border-0"
         />
-      </div>
-
-      {/* Allocations table */}
-      <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mt-4">
-        <div className="px-4 py-2.5 border-b border-warm-gray-100">
-          <h4 className="text-sm font-semibold text-navy-900">Toekenningen ({aanvragenTable.length})</h4>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs">
-            <thead>
-              <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
-                {["Aanvraagnummer", "Aanvrager", "Categorie", "Gift", "Lening", "Status", "Datum"].map((col) => (
-                  <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {aanvragenTable.map((row) => (
-                <tr key={row.nummer} className="border-b border-warm-gray-50 hover:bg-warm-gray-50/50">
-                  <td className="px-3 py-2 text-blue-600 font-medium">{row.nummer}</td>
-                  <td className="px-3 py-2 text-navy-700 font-medium">{row.aanvrager}</td>
-                  <td className="px-3 py-2 text-warm-gray-600">{row.categorie}</td>
-                  <td className="px-3 py-2 text-warm-gray-700 tabular-nums whitespace-nowrap">&euro; {row.gift}</td>
-                  <td className="px-3 py-2 text-warm-gray-700 tabular-nums whitespace-nowrap">&euro; {row.lening}</td>
-                  <td className="px-3 py-2">
-                    <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-700">
-                      {row.status}
-                    </span>
-                  </td>
-                  <td className="px-3 py-2 text-warm-gray-600">{row.datum}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
       </div>
     </>
   );
@@ -1210,7 +1122,7 @@ function renderModuleContent(module) {
     case "Rapporten":     return <RapportenContent />;
     case "Boekhouding":   return <BoekhoudingContent />;
     case "Bankzaken":     return <BankzakenContent />;
-    case "Projecten":     return <ProjectenContent />;
+    case "Portefeuille":  return <PortefeuilleContent />;
     case "Facturatie":    return <FacturatieContent />;
     case "Relaties":      return <RelatiesContent />;
     case "Donaties":      return <DonatiesContent />;

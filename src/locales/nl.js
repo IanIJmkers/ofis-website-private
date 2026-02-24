@@ -17,7 +17,7 @@ export default {
     feature4Desc: "Duidelijke taaktoewijzingen en autorisaties. Weet altijd wie waarvoor verantwoordelijk is en wat de status is van lopende zaken.",
     dashboardEyebrow: "Interactief Platform",
     dashboardTitle: "E\u00e9n overzicht, volledige controle",
-    dashboardSubtitle: "Het Mijn Orchestra platform biedt u een intu\u00eftief dashboard met modules voor boekhouding, bankzaken, facturatie, projecten en meer.",
+    dashboardSubtitle: "Het Mijn Orchestra platform biedt u een intu\u00eftief dashboard met modules voor boekhouding, bankzaken, facturatie, portefeuille en meer.",
     ctaTitle: "Klaar om in te loggen?",
     ctaSubtitle: "Log in op Mijn Orchestra voor direct toegang tot uw financi\u00eble overzicht, documenten en rapportages.",
   },

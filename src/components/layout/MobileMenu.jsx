@@ -5,6 +5,8 @@ import { useLanguage } from "../../context/LanguageContext";
 import { getNavigation } from "../../data/navigation";
 import { getSiteMetadata } from "../../data/siteMetadata";
 import LanguageToggle from "../ui/LanguageToggle";
+import orchestraWhite from "../../assets/images/OrchestraWhite.png";
+import myOrchestraWhite from "../../assets/images/MyOrchestraWhite.png";
 
 export default function MobileMenu({ open, onClose }) {
   const [expanded, setExpanded] = useState(null);
@@ -41,9 +43,11 @@ export default function MobileMenu({ open, onClose }) {
           >
             {/* Close button */}
             <div className="flex items-center justify-between p-6">
-              <span className="text-xl font-heading text-white">
-                {meta.companyName}
-              </span>
+              <img
+                src={orchestraWhite}
+                alt="Orchestra"
+                className="h-7 w-auto"
+              />
               <div className="flex items-center gap-3">
                 <LanguageToggle transparent />
                 <button
@@ -144,9 +148,13 @@ export default function MobileMenu({ open, onClose }) {
                 <Link
                   to="/mijn-orchestra"
                   onClick={onClose}
-                  className="block w-full text-center px-6 py-3 bg-gold-700 text-white text-sm font-semibold tracking-wider uppercase rounded-md hover:bg-gold-600 transition-colors"
+                  className="flex items-center justify-center px-6 py-3 bg-gold-700 rounded-md hover:bg-gold-600 transition-colors"
                 >
-                  {t("nav", "mijnOrchestra")}
+                  <img
+                    src={myOrchestraWhite}
+                    alt="MyOrchestra"
+                    className="h-4 w-auto"
+                  />
                 </Link>
               </div>
             </nav>

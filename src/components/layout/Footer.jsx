@@ -4,6 +4,7 @@ import { useLanguage } from "../../context/LanguageContext";
 import { getSiteMetadata } from "../../data/siteMetadata";
 import { getRegulators } from "../../data/regulators";
 import PdfModal from "../ui/PdfModal";
+import orchestraWhite from "../../assets/images/OrchestraWhite.png";
 
 const quickLinkPaths = [
   "/de-essentie",
@@ -49,9 +50,11 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             {/* Company */}
             <div>
-              <h3 className="text-2xl font-heading text-white mb-4">
-                {meta.companyName}
-              </h3>
+              <img
+                src={orchestraWhite}
+                alt="Orchestra"
+                className="h-8 w-auto mb-4"
+              />
               <p className="text-navy-300 text-sm leading-relaxed mb-6">
                 {meta.description}
               </p>

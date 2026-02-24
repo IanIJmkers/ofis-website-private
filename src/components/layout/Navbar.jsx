@@ -8,6 +8,9 @@ import useScrollDirection from "../../hooks/useScrollDirection";
 import LanguageToggle from "../ui/LanguageToggle";
 import NavDropdown from "./NavDropdown";
 import MobileMenu from "./MobileMenu";
+import orchestraBlue from "../../assets/images/OrchestraBlue.png";
+import orchestraWhite from "../../assets/images/OrchestraWhite.png";
+import myOrchestraWhite from "../../assets/images/MyOrchestraWhite.png";
 
 export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -40,13 +43,11 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
-              <span
-                className={`text-2xl font-heading ${
-                  useTransparent ? "text-white" : "text-navy-900"
-                }`}
-              >
-                {meta.companyName}
-              </span>
+              <img
+                src={useTransparent ? orchestraWhite : orchestraBlue}
+                alt="Orchestra"
+                className="h-8 w-auto"
+              />
             </Link>
 
             {/* Desktop Navigation */}
@@ -116,9 +117,13 @@ export default function Navbar() {
               <LanguageToggle transparent={useTransparent} />
               <Link
                 to="/mijn-orchestra"
-                className="px-5 py-2.5 text-xs font-semibold tracking-wider uppercase bg-gold-700 text-white rounded-md hover:bg-gold-600 transition-colors duration-200"
+                className="px-5 py-2.5 bg-gold-700 rounded-md hover:bg-gold-600 transition-colors duration-200 flex items-center"
               >
-                {t("nav", "mijnOrchestra")}
+                <img
+                  src={myOrchestraWhite}
+                  alt="MyOrchestra"
+                  className="h-4 w-auto"
+                />
               </Link>
             </div>
 
