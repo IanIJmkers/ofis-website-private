@@ -36,69 +36,69 @@ const featureIcons = [
 
 /* ─── Sidebar items for the dashboard mockup ─── */
 const sidebarItems = [
-  { label: "Overzicht", icon: "overview" },
-  { label: "Rapporten", icon: "reports" },
-  { label: "Boekhouding", icon: "accounting" },
-  { label: "Bankzaken", icon: "banking" },
-  { label: "Portefeuille", icon: "portfolio" },
-  { label: "Facturatie", icon: "invoicing" },
-  { label: "Relaties", icon: "relations" },
-  { label: "Donaties", icon: "donations" },
-  { label: "Documenten", icon: "documents" },
-  { label: "Organizer", icon: "organizer" },
+  { key: "overview", icon: "overview", titleKey: "sideOverview" },
+  { key: "reports", icon: "reports", titleKey: "sideReports" },
+  { key: "accounting", icon: "accounting", titleKey: "sideAccounting" },
+  { key: "banking", icon: "banking", titleKey: "sideBanking" },
+  { key: "portfolio", icon: "portfolio", titleKey: "sidePortfolio" },
+  { key: "invoicing", icon: "invoicing", titleKey: "sideInvoicing" },
+  { key: "relations", icon: "relations", titleKey: "sideRelations" },
+  { key: "donations", icon: "donations", titleKey: "sideDonations" },
+  { key: "documents", icon: "documents", titleKey: "sideDocuments" },
+  { key: "organizer", icon: "organizer", titleKey: "sideOrganizer" },
 ];
 
 /* ─── URL paths for each module ─── */
 const modulePaths = {
-  Overzicht: "DEMOSTICHTING/Overview",
-  Rapporten: "DEMOSTICHTING/Overviews/Balance/Report",
-  Boekhouding: "DEMOSTICHTING/Accounting",
-  Bankzaken: "DEMOSTICHTING/Banking",
-  Portefeuille: "DEMOSTICHTING/PortfolioManagement/Report",
-  Facturatie: "DEMOSTICHTING/Invoicing/Incoming/Invoices/22",
-  Relaties: "DEMOSTICHTING/RelationsManagement/Relations",
-  Donaties: "DEMOSTICHTING/DonationManagement/Overview",
-  Documenten: "DEMOSTICHTING/DocumentManagement/Documents",
-  Organizer: "DEMOSTICHTING/Organizer/Meetings/10",
+  overview: "DEMOSTICHTING/Overview",
+  reports: "DEMOSTICHTING/Overviews/Balance/Report",
+  accounting: "DEMOSTICHTING/Accounting",
+  banking: "DEMOSTICHTING/Banking",
+  portfolio: "DEMOSTICHTING/PortfolioManagement/Report",
+  invoicing: "DEMOSTICHTING/Invoicing/Incoming/Invoices/22",
+  relations: "DEMOSTICHTING/RelationsManagement/Relations",
+  donations: "DEMOSTICHTING/DonationManagement/Overview",
+  documents: "DEMOSTICHTING/DocumentManagement/Documents",
+  organizer: "DEMOSTICHTING/Organizer/Meetings/10",
 };
 
 /* ─── Dashboard cards data (for Overzicht) ─── */
 const dashboardCards = [
-  { title: "Rapporten", items: [] },
+  { titleKey: "sideReports", items: [] },
   {
-    title: "Boekhouding",
+    titleKey: "sideAccounting",
     items: [
-      { text: "Ongeboekte banktransacties", count: 2 },
-      { text: "Bankrekeningen in ongeboekte banktransacties", count: 1 },
+      { textKey: "cardUnbookedTx", count: 2 },
+      { textKey: "cardBankAccountsUnbooked", count: 1 },
     ],
     more: 4,
   },
   {
-    title: "Bankzaken",
+    titleKey: "sideBanking",
     items: [
-      { text: "Betaalopdrachten kunnen beoordeeld worden", count: 56 },
-      { text: "Onautoriseerde betaalopdrachten", count: 56 },
+      { textKey: "cardPaymentOrders", count: 56 },
+      { textKey: "cardUnauthorizedPayments", count: 56 },
     ],
     more: 3,
   },
   {
-    title: "Portefeuille",
+    titleKey: "sidePortfolio",
     items: [
-      { text: "Rendement verslagperiode", count: "1,90%" },
-      { text: "Rendement cumulatief", count: "76,88%" },
+      { textKey: "cardReturnPeriod", count: "1,90%" },
+      { textKey: "cardReturnCumulative", count: "76,88%" },
     ],
   },
   {
-    title: "Facturatie",
+    titleKey: "sideInvoicing",
     items: [
-      { text: "Niet verwerkte factuur documenten", count: 3 },
-      { text: "Facturen met een opmerking", count: 1 },
-      { text: "Binnenkomende facturen kunnen beoordeeld worden", count: 4 },
+      { textKey: "cardUnprocessedInvoices", count: 3 },
+      { textKey: "cardInvoiceRemarks", count: 1 },
+      { textKey: "cardInvoicesToReview", count: 4 },
     ],
   },
-  { title: "Relaties", items: [{ text: "Relatieherinnering", count: 5 }] },
-  { title: "Donaties", items: [] },
-  { title: "Documenten", items: [] },
+  { titleKey: "sideRelations", items: [{ textKey: "cardRelationReminder", count: 5 }] },
+  { titleKey: "sideDonations", items: [] },
+  { titleKey: "sideDocuments", items: [] },
 ];
 
 /* ─── Sidebar icon component ─── */
@@ -159,23 +159,23 @@ function SidebarIcon({ type, className = "w-4 h-4" }) {
 }
 
 /* ─── Dashboard Card ─── */
-function DashboardCard({ title, items, more }) {
+function DashboardCard({ titleKey, items, more, t }) {
   return (
     <div className="bg-white rounded-lg border border-warm-gray-100 overflow-hidden shadow-card hover:shadow-card-hover transition-shadow duration-300">
       <div className="bg-navy-900 px-4 py-2.5">
-        <h4 className="text-sm font-semibold text-white">{title}</h4>
+        <h4 className="text-sm font-semibold text-white">{t("dashboard", titleKey)}</h4>
       </div>
       <div className="p-4 min-h-[80px]">
         {items.map((item) => (
-          <div key={item.text} className="flex items-start justify-between gap-3 mb-2 last:mb-0">
-            <span className="text-xs text-warm-gray-600 leading-snug">{item.text}</span>
+          <div key={item.textKey} className="flex items-start justify-between gap-3 mb-2 last:mb-0">
+            <span className="text-xs text-warm-gray-600 leading-snug">{t("dashboard", item.textKey)}</span>
             <span className="shrink-0 inline-flex items-center justify-center min-w-[22px] h-[22px] rounded-full bg-gold-600 text-white text-[10px] font-bold px-1.5">
               {item.count}
             </span>
           </div>
         ))}
         {more && (
-          <p className="text-[11px] text-warm-gray-400 mt-2">En {more} meer</p>
+          <p className="text-[11px] text-warm-gray-400 mt-2">{t("dashboard", "andMore").replace("{count}", more)}</p>
         )}
       </div>
     </div>
@@ -237,13 +237,13 @@ function MonthlyBarChart({ months, giften, leningen, title, subtitle }) {
 }
 
 /* ─── Overzicht ─── */
-function OverzichtContent() {
+function OverzichtContent({ t }) {
   return (
     <>
-      <ModuleHeading icon="overview" title="Overzicht" />
+      <ModuleHeading icon="overview" title={t("dashboard", "sideOverview")} />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
         {dashboardCards.map((card) => (
-          <DashboardCard key={card.title} {...card} />
+          <DashboardCard key={card.titleKey} {...card} t={t} />
         ))}
       </div>
     </>
@@ -251,7 +251,7 @@ function OverzichtContent() {
 }
 
 /* ─── Rapporten: Balance Sheet + Chart + Table ─── */
-function RapportenContent() {
+function RapportenContent({ t }) {
   const [expandedRows, setExpandedRows] = useState({});
   const toggleRow = (label) =>
     setExpandedRows((prev) => ({ ...prev, [label]: !prev[label] }));
@@ -293,12 +293,12 @@ function RapportenContent() {
 
   return (
     <>
-      <ModuleHeading icon="reports" title="Rapporten" />
+      <ModuleHeading icon="reports" title={t("dashboard", "sideReports")} />
 
       {/* Balance sheet */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
         <div className="bg-navy-900 px-4 py-2.5">
-          <h4 className="text-sm font-semibold text-white">Balans</h4>
+          <h4 className="text-sm font-semibold text-white">{t("dashboard", "balanceSheet")}</h4>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -311,18 +311,18 @@ function RapportenContent() {
               </tr>
             </thead>
             <tbody>
-              <tr><td colSpan={3} className="px-4 pt-3 pb-1 font-semibold text-navy-900">Activa</td></tr>
+              <tr><td colSpan={3} className="px-4 pt-3 pb-1 font-semibold text-navy-900">{t("dashboard", "assets")}</td></tr>
               {renderRows(balansData.activa)}
               <tr className="border-t border-warm-gray-200 font-semibold">
-                <td className="px-4 py-2 text-navy-900">Totaal activa</td>
+                <td className="px-4 py-2 text-navy-900">{t("dashboard", "totalAssets")}</td>
                 {balansData.activaTotal.map((v, i) => (
                   <td key={i} className="px-4 py-2 text-right text-navy-900 tabular-nums">{v}</td>
                 ))}
               </tr>
-              <tr><td colSpan={3} className="px-4 pt-4 pb-1 font-semibold text-navy-900">Passiva</td></tr>
+              <tr><td colSpan={3} className="px-4 pt-4 pb-1 font-semibold text-navy-900">{t("dashboard", "liabilities")}</td></tr>
               {renderRows(balansData.passiva)}
               <tr className="border-t border-warm-gray-200 font-semibold">
-                <td className="px-4 py-2 text-navy-900">Totaal passiva</td>
+                <td className="px-4 py-2 text-navy-900">{t("dashboard", "totalLiabilities")}</td>
                 {balansData.passivaTotal.map((v, i) => (
                   <td key={i} className="px-4 py-2 text-right text-navy-900 tabular-nums">{v}</td>
                 ))}
@@ -336,17 +336,17 @@ function RapportenContent() {
 }
 
 /* ─── Boekhouding: Journal Post Detail ─── */
-function BoekhoudingContent() {
+function BoekhoudingContent({ t }) {
   return (
     <>
-      <ModuleHeading icon="accounting" title="Boekhouding" />
+      <ModuleHeading icon="accounting" title={t("dashboard", "sideAccounting")} />
 
       {/* Page title with status badge */}
       <div className="flex items-center gap-2 mb-3">
         <svg className="w-4 h-4 text-warm-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
         </svg>
-        <h4 className="text-sm font-semibold text-navy-900">Journaalpost {journaalpostData.id}</h4>
+        <h4 className="text-sm font-semibold text-navy-900">{t("dashboard", "journalEntry")} {journaalpostData.id}</h4>
         <span className="inline-block px-2.5 py-0.5 rounded text-[10px] font-semibold bg-green-50 text-green-700">
           {journaalpostData.status}
         </span>
@@ -371,7 +371,7 @@ function BoekhoudingContent() {
       {/* Details panel — 2-column grid with navy header */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mb-4">
         <div className="bg-navy-900 px-4 py-2.5">
-          <h4 className="text-sm font-semibold text-white">Details</h4>
+          <h4 className="text-sm font-semibold text-white">{t("dashboard", "details")}</h4>
         </div>
         <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
           {journaalpostData.details.map((field) => (
@@ -388,7 +388,7 @@ function BoekhoudingContent() {
       {/* Items table with totals row */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mb-4">
         <div className="px-3 py-2 border-b border-warm-gray-100 flex items-center justify-between">
-          <h4 className="text-sm font-semibold text-navy-900">Items</h4>
+          <h4 className="text-sm font-semibold text-navy-900">{t("dashboard", "items")}</h4>
           <span className="text-[10px] text-warm-gray-400">
             1-{journaalpostData.items.length} &nbsp; {journaalpostData.items.length}
           </span>
@@ -397,9 +397,9 @@ function BoekhoudingContent() {
           <table className="w-full text-xs">
             <thead>
               <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
-                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">Grootboekrekening</th>
-                <th className="text-right px-3 py-2 text-warm-gray-500 font-medium">Bedrag (Euro)</th>
-                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">Kostenplaats</th>
+                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">{t("dashboard", "ledgerAccount")}</th>
+                <th className="text-right px-3 py-2 text-warm-gray-500 font-medium">{t("dashboard", "amountEuro")}</th>
+                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">{t("dashboard", "costCentre")}</th>
               </tr>
             </thead>
             <tbody>
@@ -418,7 +418,7 @@ function BoekhoudingContent() {
             </tbody>
             <tfoot>
               <tr className="border-t border-warm-gray-200 bg-warm-gray-50">
-                <td className="px-3 py-2 text-navy-900 font-semibold">Totaal</td>
+                <td className="px-3 py-2 text-navy-900 font-semibold">{t("dashboard", "total")}</td>
                 <td className="px-3 py-2 text-right text-navy-900 font-semibold tabular-nums whitespace-nowrap">&euro; 0,00</td>
                 <td className="px-3 py-2" />
               </tr>
@@ -431,7 +431,7 @@ function BoekhoudingContent() {
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mb-4">
         <div className="px-3 py-2 border-b border-warm-gray-100">
           <h4 className="text-sm font-semibold text-navy-900">
-            Referenties ({journaalpostData.referenties.length})
+            {t("dashboard", "references")} ({journaalpostData.referenties.length})
           </h4>
         </div>
         <div className="p-3 space-y-2">
@@ -461,7 +461,7 @@ function BoekhoudingContent() {
       {/* Documenten — filled */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
         <div className="px-3 py-2 border-b border-warm-gray-100 flex items-center justify-between">
-          <h4 className="text-sm font-semibold text-navy-900">Documenten</h4>
+          <h4 className="text-sm font-semibold text-navy-900">{t("dashboard", "documents")}</h4>
           <span className="text-[10px] text-warm-gray-400">
             1-{journaalpostData.documenten.length} &nbsp; {journaalpostData.documenten.length}
           </span>
@@ -470,9 +470,9 @@ function BoekhoudingContent() {
           <table className="w-full text-xs">
             <thead>
               <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
-                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">Document</th>
-                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">Datum</th>
-                <th className="text-right px-3 py-2 text-warm-gray-500 font-medium">Grootte</th>
+                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">{t("dashboard", "document")}</th>
+                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">{t("dashboard", "date")}</th>
+                <th className="text-right px-3 py-2 text-warm-gray-500 font-medium">{t("dashboard", "size")}</th>
               </tr>
             </thead>
             <tbody>
@@ -497,14 +497,14 @@ function BoekhoudingContent() {
 }
 
 /* ─── Bankzaken: Bank Transaction Table ─── */
-function BankzakenContent() {
+function BankzakenContent({ t }) {
   return (
     <>
-      <ModuleHeading icon="banking" title="Bankzaken" />
+      <ModuleHeading icon="banking" title={t("dashboard", "sideBanking")} />
 
       {/* Tabs */}
       <div className="flex gap-4 mb-4 border-b border-warm-gray-200">
-        {bankTransactiesData.tabs.map((tab, i) => (
+        {[t("dashboard", "all"), t("dashboard", "toAuthorise")].map((tab, i) => (
           <span
             key={tab}
             className={`text-xs pb-2 cursor-pointer ${
@@ -525,19 +525,19 @@ function BankzakenContent() {
         </span>
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium bg-green-50 text-green-700 cursor-default">
-            Keur goed
+            {t("dashboard", "approve")}
             <span className="inline-flex items-center justify-center min-w-4.5 h-4.5 rounded-full bg-gold-600 text-white text-[9px] font-bold px-1">
               {bankTransactiesData.approveCount}
             </span>
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium bg-red-50 text-red-700 cursor-default">
-            Wijs af
+            {t("dashboard", "reject")}
             <span className="inline-flex items-center justify-center min-w-4.5 h-4.5 rounded-full bg-gold-600 text-white text-[9px] font-bold px-1">
               {bankTransactiesData.rejectCount}
             </span>
           </span>
           <span className="px-3 py-1.5 rounded text-[11px] font-medium bg-warm-gray-100 text-warm-gray-600 cursor-default">
-            Beoordeel
+            {t("dashboard", "review")}
           </span>
         </div>
       </div>
@@ -548,7 +548,7 @@ function BankzakenContent() {
           <table className="w-full text-xs min-w-300">
             <thead>
               <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
-                {["ID", "Datum", "Tegenrekening", "Bedrag", "Herkomst", "Oordeel", "Beoordelingen", "Omschrijving", "Betalingskenmerk", "Bankrekening", "Document"].map((col) => (
+                {["ID", t("dashboard", "date"), t("dashboard", "counterparty"), t("dashboard", "amount"), t("dashboard", "source"), t("dashboard", "verdict"), t("dashboard", "reviews"), t("dashboard", "description"), t("dashboard", "paymentRef"), t("dashboard", "bankAccount"), t("dashboard", "document")].map((col) => (
                   <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
                 ))}
               </tr>
@@ -609,16 +609,16 @@ function BankzakenContent() {
 }
 
 /* ─── Portefeuille: Scrollable PDF Report ─── */
-function PortefeuilleContent() {
+function PortefeuilleContent({ t }) {
   return (
     <>
-      <ModuleHeading icon="portfolio" title="Portefeuille" />
+      <ModuleHeading icon="portfolio" title={t("dashboard", "sidePortfolio")} />
       <div className="flex items-center gap-3 mb-4">
         <div className="bg-white border border-warm-gray-200 rounded-md px-3 py-1.5 text-xs text-warm-gray-500">
-          Rapportagedatum: 4 september 2025
+          {t("dashboard", "reportDate")}: 4 september 2025
         </div>
         <div className="bg-white border border-warm-gray-200 rounded-md px-3 py-1.5 text-xs text-warm-gray-500">
-          Profiel: Vermogensbeheer Marktconform
+          {t("dashboard", "profile")}: {t("dashboard", "profileName")}
         </div>
       </div>
 
@@ -634,17 +634,17 @@ function PortefeuilleContent() {
 }
 
 /* ─── Facturatie: Invoice Detail + Referenties + Opmerkingen ─── */
-function FacturatieContent() {
+function FacturatieContent({ t }) {
   const { fields, invoicePreview, referenties, opmerkingen } = factuurData;
 
   return (
     <>
-      <ModuleHeading icon="invoicing" title="Facturatie" />
+      <ModuleHeading icon="invoicing" title={t("dashboard", "sideInvoicing")} />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Invoice details */}
         <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
           <div className="bg-navy-900 px-4 py-2.5">
-            <h4 className="text-sm font-semibold text-white">Details</h4>
+            <h4 className="text-sm font-semibold text-white">{t("dashboard", "details")}</h4>
           </div>
           <div className="p-4 space-y-2.5">
             {fields.map((field, idx) => (
@@ -677,21 +677,21 @@ function FacturatieContent() {
             </div>
 
             <div className="text-center mb-3">
-              <span className="text-lg font-bold text-red-600">Factuur</span>
+              <span className="text-lg font-bold text-red-600">{t("dashboard", "invoice")}</span>
             </div>
 
             {/* To + meta */}
             <div className="flex justify-between text-[9px] text-warm-gray-500 mb-3">
               <div>
-                <p className="font-medium text-warm-gray-600 mb-0.5">Naar</p>
+                <p className="font-medium text-warm-gray-600 mb-0.5">{t("dashboard", "to")}</p>
                 {invoicePreview.to.split("\n").map((line, i) => (
                   <p key={i}>{line}</p>
                 ))}
               </div>
               <div className="text-right space-y-0.5">
-                <p><span className="text-warm-gray-400">Factuurnummer</span> {invoicePreview.number}</p>
-                <p><span className="text-warm-gray-400">Factuurdatum</span> {invoicePreview.date}</p>
-                <p><span className="text-warm-gray-400">Vervaldag</span> {invoicePreview.date}</p>
+                <p><span className="text-warm-gray-400">{t("dashboard", "invoiceNumber")}</span> {invoicePreview.number}</p>
+                <p><span className="text-warm-gray-400">{t("dashboard", "invoiceDate")}</span> {invoicePreview.date}</p>
+                <p><span className="text-warm-gray-400">{t("dashboard", "dueDate")}</span> {invoicePreview.date}</p>
               </div>
             </div>
 
@@ -699,11 +699,11 @@ function FacturatieContent() {
             <table className="w-full text-[9px] mb-3">
               <thead>
                 <tr className="border-b border-warm-gray-200">
-                  <th className="text-left py-1 text-warm-gray-500 font-medium">Beschrijving</th>
-                  <th className="text-right py-1 text-warm-gray-500 font-medium">Aantal</th>
-                  <th className="text-right py-1 text-warm-gray-500 font-medium">Eenheid</th>
-                  <th className="text-right py-1 text-warm-gray-500 font-medium">Tarief</th>
-                  <th className="text-right py-1 text-warm-gray-500 font-medium">Totaal</th>
+                  <th className="text-left py-1 text-warm-gray-500 font-medium">{t("dashboard", "description")}</th>
+                  <th className="text-right py-1 text-warm-gray-500 font-medium">{t("dashboard", "quantity")}</th>
+                  <th className="text-right py-1 text-warm-gray-500 font-medium">{t("dashboard", "unit")}</th>
+                  <th className="text-right py-1 text-warm-gray-500 font-medium">{t("dashboard", "rate")}</th>
+                  <th className="text-right py-1 text-warm-gray-500 font-medium">{t("dashboard", "total")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -721,7 +721,7 @@ function FacturatieContent() {
 
             <div className="flex justify-end">
               <div className="text-right">
-                <span className="text-xs font-semibold text-red-600">Totaalbedrag </span>
+                <span className="text-xs font-semibold text-red-600">{t("dashboard", "totalAmount")} </span>
                 <span className="text-xs font-bold text-red-600">{invoicePreview.total}</span>
               </div>
             </div>
@@ -732,7 +732,7 @@ function FacturatieContent() {
       {/* Referenties */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mt-4">
         <div className="px-4 py-2.5 border-b border-warm-gray-100">
-          <h4 className="text-sm font-semibold text-navy-900">Referenties ({referenties.length})</h4>
+          <h4 className="text-sm font-semibold text-navy-900">{t("dashboard", "references")} ({referenties.length})</h4>
         </div>
         <div className="p-4 space-y-3">
           {referenties.map((ref, i) => (
@@ -747,14 +747,14 @@ function FacturatieContent() {
       {/* Opmerkingen */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mt-4">
         <div className="px-4 py-2.5 border-b border-warm-gray-100 flex items-center justify-between">
-          <h4 className="text-sm font-semibold text-navy-900">Opmerkingen</h4>
-          <span className="text-[10px] text-warm-gray-400">1-0 van 0</span>
+          <h4 className="text-sm font-semibold text-navy-900">{t("dashboard", "comments")}</h4>
+          <span className="text-[10px] text-warm-gray-400">1-0 {t("dashboard", "ofTotal")} 0</span>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
-                {["Behandeld", "Opmerking", "Laatst gewijzigd"].map((col) => (
+                {[t("dashboard", "handled"), t("dashboard", "comment"), t("dashboard", "lastModified")].map((col) => (
                   <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
                 ))}
               </tr>
@@ -763,7 +763,7 @@ function FacturatieContent() {
               {opmerkingen.length === 0 && (
                 <tr>
                   <td colSpan={3} className="px-3 py-4 text-center text-warm-gray-400 text-[11px]">
-                    Geen opmerkingen
+                    {t("dashboard", "noComments")}
                   </td>
                 </tr>
               )}
@@ -776,13 +776,13 @@ function FacturatieContent() {
 }
 
 /* ─── Relaties: Contact Table ─── */
-function RelatiesContent() {
+function RelatiesContent({ t }) {
   return (
     <>
-      <ModuleHeading icon="relations" title="Relaties" />
+      <ModuleHeading icon="relations" title={t("dashboard", "sideRelations")} />
       {/* Filter bar */}
       <div className="flex flex-wrap gap-2 mb-4">
-        {["Klanten", "Leveranciers", "Donateurs", "Projectrelaties", "Personeel"].map((filter) => (
+        {[t("dashboard", "customers"), t("dashboard", "suppliers"), t("dashboard", "donors"), t("dashboard", "projectRelations"), t("dashboard", "staff")].map((filter) => (
           <span key={filter} className="px-3 py-1 rounded-full text-[10px] font-medium bg-warm-gray-100 text-warm-gray-600 cursor-pointer hover:bg-warm-gray-200 transition-colors">
             {filter}
           </span>
@@ -793,7 +793,7 @@ function RelatiesContent() {
           <table className="w-full text-xs min-w-175">
             <thead>
               <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
-                {["Type", "Naam", "Adres", "Postcode", "Plaats", "Telefoon", "E-mailadres", "Status"].map((col) => (
+                {[t("dashboard", "type"), t("dashboard", "name"), t("dashboard", "address"), t("dashboard", "postalCode"), t("dashboard", "city"), t("dashboard", "phone"), t("dashboard", "email"), t("dashboard", "status")].map((col) => (
                   <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
                 ))}
               </tr>
@@ -823,7 +823,7 @@ function RelatiesContent() {
           </table>
         </div>
         <div className="px-3 py-2 text-[10px] text-warm-gray-400 border-t border-warm-gray-100">
-          1 – {relatiesData.length} van 112
+          1 – {relatiesData.length} {t("dashboard", "ofTotal")} 112
         </div>
       </div>
     </>
@@ -831,7 +831,7 @@ function RelatiesContent() {
 }
 
 /* ─── Donaties: Chart + Table ─── */
-function DonatiesContent() {
+function DonatiesContent({ t }) {
   const { chartValues, table, totaal } = donatiesData;
   const max = Math.max(...chartValues);
   const chartW = 100;
@@ -843,12 +843,12 @@ function DonatiesContent() {
 
   return (
     <>
-      <ModuleHeading icon="donations" title="Donaties" />
+      <ModuleHeading icon="donations" title={t("dashboard", "sideDonations")} />
 
       {/* Tabs */}
       <div className="flex gap-4 mb-4 border-b border-warm-gray-200">
-        <span className="text-xs font-medium text-navy-900 pb-2 border-b-2 border-navy-900 -mb-px">Cumulatief maandelijks gedoneerd bedrag</span>
-        <span className="text-xs text-warm-gray-400 pb-2 cursor-pointer hover:text-warm-gray-600">Donaties per oormerk</span>
+        <span className="text-xs font-medium text-navy-900 pb-2 border-b-2 border-navy-900 -mb-px">{t("dashboard", "cumulativeMonthly")}</span>
+        <span className="text-xs text-warm-gray-400 pb-2 cursor-pointer hover:text-warm-gray-600">{t("dashboard", "donationsPerEarmark")}</span>
       </div>
 
       {/* Area chart */}
@@ -864,19 +864,19 @@ function DonatiesContent() {
         <div className="flex justify-between text-[9px] text-warm-gray-400 mt-1 px-1">
           {["0", "2", "4", "6", "8", "10", "12"].map((m) => <span key={m}>{m}</span>)}
         </div>
-        <p className="text-center text-[9px] text-warm-gray-400 mt-1">Maand</p>
+        <p className="text-center text-[9px] text-warm-gray-400 mt-1">{t("dashboard", "month")}</p>
       </div>
 
       {/* Donations table */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
         <div className="px-4 py-2.5 border-b border-warm-gray-100">
-          <h4 className="text-sm font-semibold text-navy-900">Alle donaties</h4>
+          <h4 className="text-sm font-semibold text-navy-900">{t("dashboard", "allDonations")}</h4>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs min-w-162.5">
             <thead>
               <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
-                {["ID", "Afkomst", "Donateur", "Bedrag", "Datum", "Omschrijving", "Oormerk", "Incasso status"].map((col) => (
+                {["ID", t("dashboard", "origin"), t("dashboard", "donor"), t("dashboard", "amount"), t("dashboard", "date"), t("dashboard", "description"), t("dashboard", "earmark"), t("dashboard", "collectionStatus")].map((col) => (
                   <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
                 ))}
               </tr>
@@ -906,7 +906,7 @@ function DonatiesContent() {
 }
 
 /* ─── Documenten: File Listing ─── */
-function DocumentenContent() {
+function DocumentenContent({ t }) {
   function formatSize(bytes) {
     const num = parseInt(bytes, 10);
     if (num >= 1000000) return `${(num / 1000000).toFixed(1)} MB`;
@@ -915,16 +915,16 @@ function DocumentenContent() {
 
   return (
     <>
-      <ModuleHeading icon="documents" title="Documenten" />
+      <ModuleHeading icon="documents" title={t("dashboard", "sideDocuments")} />
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
         <div className="px-3 py-2 border-b border-warm-gray-100 flex items-center justify-between">
-          <span className="text-[10px] text-warm-gray-400">1-{documentenData.length} van 134</span>
+          <span className="text-[10px] text-warm-gray-400">1-{documentenData.length} {t("dashboard", "ofTotal")} 134</span>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs min-w-162.5">
             <thead>
               <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
-                {["ID", "Naam", "Grootte", "Laatst gewijzigd", "Aangemaakt", "Labels"].map((col) => (
+                {["ID", t("dashboard", "name"), t("dashboard", "size"), t("dashboard", "lastModified"), t("dashboard", "created"), t("dashboard", "labels")].map((col) => (
                   <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
                 ))}
               </tr>
@@ -957,12 +957,12 @@ function DocumentenContent() {
 }
 
 /* ─── Organizer: Meeting View + Acties + Besluiten ─── */
-function OrganizerContent() {
+function OrganizerContent({ t }) {
   const { meeting, genodigden, aanvragen, acties, besluiten, aanvragenSummary } = organizerData;
 
   return (
     <>
-      <ModuleHeading icon="organizer" title="Organizer" />
+      <ModuleHeading icon="organizer" title={t("dashboard", "sideOrganizer")} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
         {/* Meeting details */}
@@ -972,12 +972,12 @@ function OrganizerContent() {
           </div>
           <div className="p-4 space-y-2">
             {[
-              { label: "Omschrijving", value: meeting.omschrijving },
-              { label: "Start", value: meeting.start },
-              { label: "Eind", value: meeting.eind },
-              { label: "Locatie", value: meeting.locatie },
-              { label: "Notulist", value: meeting.notulist },
-              { label: "Gesloten", value: meeting.gesloten },
+              { label: t("dashboard", "description"), value: meeting.omschrijving },
+              { label: t("dashboard", "start"), value: meeting.start },
+              { label: t("dashboard", "end"), value: meeting.eind },
+              { label: t("dashboard", "location"), value: meeting.locatie },
+              { label: t("dashboard", "secretary"), value: meeting.notulist },
+              { label: t("dashboard", "closed"), value: meeting.gesloten },
             ].map((row) => (
               <div key={row.label} className="flex text-xs gap-4">
                 <span className="text-warm-gray-400 w-24 shrink-0">{row.label}</span>
@@ -990,13 +990,13 @@ function OrganizerContent() {
         {/* Attendees */}
         <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
           <div className="bg-navy-900 px-4 py-2.5">
-            <h4 className="text-sm font-semibold text-white">Genodigden</h4>
+            <h4 className="text-sm font-semibold text-white">{t("dashboard", "attendees")}</h4>
           </div>
           <div className="p-4">
             <div className="flex text-[10px] text-warm-gray-400 gap-4 mb-2 pb-1 border-b border-warm-gray-100">
-              <span className="grow">Gebruiker</span>
-              <span className="w-16 text-center">Aanwezig</span>
-              <span className="w-16 text-center">Ondertekend</span>
+              <span className="grow">{t("dashboard", "user")}</span>
+              <span className="w-16 text-center">{t("dashboard", "present")}</span>
+              <span className="w-16 text-center">{t("dashboard", "signed")}</span>
             </div>
             {genodigden.map((g) => (
               <div key={g.naam} className="flex items-center text-xs gap-4 py-1.5">
@@ -1012,9 +1012,9 @@ function OrganizerContent() {
       {/* Aanvragen summary cards */}
       <div className="grid grid-cols-3 gap-3 mb-4">
         {[
-          { label: "Open aanvragen", count: aanvragenSummary.open.count, bedrag: aanvragenSummary.open.bedrag, color: "bg-blue-50 text-blue-700" },
-          { label: "Goedgekeurde aanvragen", count: aanvragenSummary.goedgekeurd.count, bedrag: aanvragenSummary.goedgekeurd.bedrag, color: "bg-green-50 text-green-700" },
-          { label: "Afgekeurde aanvragen", count: aanvragenSummary.afgekeurd.count, bedrag: aanvragenSummary.afgekeurd.bedrag, color: "bg-red-50 text-red-700" },
+          { label: t("dashboard", "openApplications"), count: aanvragenSummary.open.count, bedrag: aanvragenSummary.open.bedrag, color: "bg-blue-50 text-blue-700" },
+          { label: t("dashboard", "approvedApplications"), count: aanvragenSummary.goedgekeurd.count, bedrag: aanvragenSummary.goedgekeurd.bedrag, color: "bg-green-50 text-green-700" },
+          { label: t("dashboard", "rejectedApplications"), count: aanvragenSummary.afgekeurd.count, bedrag: aanvragenSummary.afgekeurd.bedrag, color: "bg-red-50 text-red-700" },
         ].map((card) => (
           <div key={card.label} className="bg-white rounded-lg border border-warm-gray-100 shadow-card p-3">
             <div className="flex items-center justify-between mb-1">
@@ -1028,13 +1028,13 @@ function OrganizerContent() {
       {/* Applications table */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden">
         <div className="px-4 py-2.5 border-b border-warm-gray-100">
-          <h4 className="text-sm font-semibold text-navy-900">Goedgekeurde aanvragen ({aanvragen.length})</h4>
+          <h4 className="text-sm font-semibold text-navy-900">{t("dashboard", "approvedApplications")} ({aanvragen.length})</h4>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs min-w-150">
             <thead>
               <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
-                {["Aanvrager", "Aanvraagnummer", "Status", "Gift", "Lening", "Voor stemmers", "Consensus"].map((col) => (
+                {[t("dashboard", "applicant"), t("dashboard", "applicationNumber"), t("dashboard", "status"), t("dashboard", "gift"), t("dashboard", "loan"), t("dashboard", "proVoters"), t("dashboard", "consensus")].map((col) => (
                   <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
                 ))}
               </tr>
@@ -1063,13 +1063,13 @@ function OrganizerContent() {
       {/* Acties */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mt-4">
         <div className="px-4 py-2.5 border-b border-warm-gray-100">
-          <h4 className="text-sm font-semibold text-navy-900">Acties ({acties.length})</h4>
+          <h4 className="text-sm font-semibold text-navy-900">{t("dashboard", "actions")} ({acties.length})</h4>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
-                {["Gebruiker", "Omschrijving", "Aangemaakt", "Deadline", "Uitgevoerd"].map((col) => (
+                {[t("dashboard", "user"), t("dashboard", "description"), t("dashboard", "created"), t("dashboard", "deadline"), t("dashboard", "executed")].map((col) => (
                   <th key={col} className="text-left px-3 py-2 text-warm-gray-500 font-medium whitespace-nowrap">{col}</th>
                 ))}
               </tr>
@@ -1092,13 +1092,13 @@ function OrganizerContent() {
       {/* Besluiten */}
       <div className="bg-white rounded-lg border border-warm-gray-100 shadow-card overflow-hidden mt-4">
         <div className="px-4 py-2.5 border-b border-warm-gray-100">
-          <h4 className="text-sm font-semibold text-navy-900">Besluiten ({besluiten.length})</h4>
+          <h4 className="text-sm font-semibold text-navy-900">{t("dashboard", "decisions")} ({besluiten.length})</h4>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="bg-warm-gray-50 border-b border-warm-gray-200">
-                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">Omschrijving</th>
+                <th className="text-left px-3 py-2 text-warm-gray-500 font-medium">{t("dashboard", "description")}</th>
               </tr>
             </thead>
             <tbody>
@@ -1116,28 +1116,52 @@ function OrganizerContent() {
 }
 
 /* ─── Module Content Dispatcher ─── */
-function renderModuleContent(module) {
+function renderModuleContent(module, t) {
   switch (module) {
-    case "Overzicht":     return <OverzichtContent />;
-    case "Rapporten":     return <RapportenContent />;
-    case "Boekhouding":   return <BoekhoudingContent />;
-    case "Bankzaken":     return <BankzakenContent />;
-    case "Portefeuille":  return <PortefeuilleContent />;
-    case "Facturatie":    return <FacturatieContent />;
-    case "Relaties":      return <RelatiesContent />;
-    case "Donaties":      return <DonatiesContent />;
-    case "Documenten":    return <DocumentenContent />;
-    case "Organizer":     return <OrganizerContent />;
-    default:              return <OverzichtContent />;
+    case "overview":      return <OverzichtContent t={t} />;
+    case "reports":       return <RapportenContent t={t} />;
+    case "accounting":    return <BoekhoudingContent t={t} />;
+    case "banking":       return <BankzakenContent t={t} />;
+    case "portfolio":     return <PortefeuilleContent t={t} />;
+    case "invoicing":     return <FacturatieContent t={t} />;
+    case "relations":     return <RelatiesContent t={t} />;
+    case "donations":     return <DonatiesContent t={t} />;
+    case "documents":     return <DocumentenContent t={t} />;
+    case "organizer":     return <OrganizerContent t={t} />;
+    default:              return <OverzichtContent t={t} />;
   }
 }
 
 /* ─── Interactive Dashboard Mockup ─── */
 function DashboardMockup() {
-  const [activeModule, setActiveModule] = useState("Overzicht");
+  const { t } = useLanguage();
+  const [activeModule, setActiveModule] = useState("overview");
 
   return (
     <div className="flex flex-col items-center">
+      {/* Interaction hint — above screen, left-aligned */}
+      <motion.div
+        className="hidden sm:flex items-center gap-2.5 self-start mb-5 ml-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
+      >
+        <svg className="w-5 h-5 text-warm-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+        </svg>
+        <span className="text-sm text-warm-gray-400 tracking-wide">{t("mijnOrchestra", "dashboardHint")}</span>
+        <motion.svg
+          className="w-4 h-4 text-warm-gray-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          animate={{ y: [0, 3, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </motion.svg>
+      </motion.div>
+
       {/* Monitor bezel */}
       <div className="w-full rounded-2xl border-8 border-[#1a1a1a] bg-[#1a1a1a] shadow-[0_8px_40px_rgba(0,0,0,0.25)] overflow-hidden">
         {/* Screen area */}
@@ -1187,15 +1211,15 @@ function DashboardMockup() {
             <div className="flex sm:hidden overflow-x-auto border-b border-navy-800 bg-navy-900 px-2 py-1.5 gap-1 absolute left-0 right-0 z-10">
               {sidebarItems.map((item) => (
                 <button
-                  key={item.label}
-                  onClick={() => setActiveModule(item.label)}
+                  key={item.key}
+                  onClick={() => setActiveModule(item.key)}
                   className={`shrink-0 px-3 py-1.5 rounded text-[10px] transition-colors whitespace-nowrap cursor-pointer ${
-                    activeModule === item.label
+                    activeModule === item.key
                       ? "bg-navy-800 text-white"
                       : "text-navy-300 hover:text-white"
                   }`}
                 >
-                  {item.label}
+                  {t("dashboard", item.titleKey)}
                 </button>
               ))}
             </div>
@@ -1204,16 +1228,16 @@ function DashboardMockup() {
             <div className="hidden sm:flex flex-col w-44 bg-navy-900 shrink-0 py-4">
               {sidebarItems.map((item) => (
                 <button
-                  key={item.label}
-                  onClick={() => setActiveModule(item.label)}
+                  key={item.key}
+                  onClick={() => setActiveModule(item.key)}
                   className={`flex items-center gap-2.5 px-4 py-2 text-xs transition-colors text-left cursor-pointer ${
-                    activeModule === item.label
+                    activeModule === item.key
                       ? "text-white bg-navy-800 border-l-2 border-gold-500"
                       : "text-navy-300 hover:text-white border-l-2 border-transparent"
                   }`}
                 >
                   <SidebarIcon type={item.icon} className="w-4 h-4" />
-                  <span>{item.label}</span>
+                  <span>{t("dashboard", item.titleKey)}</span>
                 </button>
               ))}
             </div>
@@ -1228,26 +1252,13 @@ function DashboardMockup() {
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
                 >
-                  {renderModuleContent(activeModule)}
+                  {renderModuleContent(activeModule, t)}
                 </motion.div>
               </AnimatePresence>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Interaction hint */}
-      <motion.div
-        className="flex items-center gap-2 mt-3 mb-1"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
-      >
-        <svg className="w-4 h-4 text-warm-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
-        </svg>
-        <span className="text-xs text-warm-gray-400 tracking-wide">Klik op de modules om te interacteren</span>
-      </motion.div>
 
       {/* Monitor stand */}
       <div className="w-28 h-10 bg-linear-to-b from-[#2a2a2a] to-[#1a1a1a] rounded-b-sm" />

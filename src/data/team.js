@@ -12,6 +12,8 @@ import arvindBisoenPhoto from "../assets/images/team/arvind-bisoen.jpg";
 import christelPoorterPhoto from "../assets/images/team/christel-poorter.jpg";
 import carolineGroenBokPhoto from "../assets/images/team/caroline-groen-bok.jpg";
 import guusDrijverPhoto from "../assets/images/team/guus-drijver.jpg";
+import emmaDeNiePhoto from "../assets/images/team/emma-de-nie.jpg";
+
 
 const members = [
   {
@@ -134,7 +136,8 @@ const members = [
     name: "Emma de Nie",
     role: { nl: "Backend Developer", en: "Backend Developer" },
     email: "e.denie@orchestra-contact.com",
-    photo: null,
+    linkedin: "https://www.linkedin.com/in/emmadenie/",
+    photo: emmaDeNiePhoto,
   },
   {
     name: "Boris Rostovskiy",

@@ -5,7 +5,7 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import CookieConsent from "../components/ui/CookieConsent";
 
-const BASE_TITLE = "Orchestra Charity Office";
+const BASE_TITLE = "Orchestra Private Office";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
