@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home";
 import DeEssentie from "../pages/DeEssentie";
@@ -29,6 +29,8 @@ export const router = createBrowserRouter([
       },
       { path: "contact", element: <Contact />, handle: { titleKey: "contact" } },
       { path: "mijn-orchestra", element: <MijnOrchestra />, handle: { titleKey: "mijnOrchestra" } },
+      { path: "en/*", element: <Navigate to="/" replace /> },
+      { path: "nl/*", element: <Navigate to="/" replace /> },
     ],
   },
 ]);
