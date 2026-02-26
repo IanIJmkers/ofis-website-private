@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { motion } from "motion/react";
 import PageTransition from "../components/animation/PageTransition";
 import AnimatedSection from "../components/animation/AnimatedSection";
@@ -10,6 +11,7 @@ import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
 import { getPillars } from "../data/pillars";
 import { useLanguage } from "../context/LanguageContext";
+import impactChart from "../assets/images/impact.jpg";
 
 const pillarIcons = {
   governance: (
@@ -117,51 +119,64 @@ export default function UwPrivateOffice() {
 
       {/* Pillar detail sections */}
       {pillars.map((pillar, index) => (
-        <SectionWrapper
-          key={pillar.id}
-          bg={index % 2 === 0 ? "white" : "cream"}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-            <AnimatedSection
-              direction={index % 2 === 0 ? "left" : "right"}
-              className={index % 2 !== 0 ? "lg:order-2" : ""}
-            >
-              <div className="text-gold-700 mb-4">
-                {pillarIcons[pillar.icon]}
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-heading text-navy-900 mb-4">
-                {pillar.title}
-              </h2>
-              <div className="h-0.75 w-10 bg-gold-700 mb-6" />
-              <p className="text-warm-gray-600 leading-relaxed text-lg">
-                {pillar.fullDescription}
-              </p>
-            </AnimatedSection>
+        <Fragment key={pillar.id}>
+          <SectionWrapper
+            bg={index % 2 === 0 ? "white" : "cream"}
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+              <AnimatedSection
+                direction={index % 2 === 0 ? "left" : "right"}
+                className={index % 2 !== 0 ? "lg:order-2" : ""}
+              >
+                <div className="text-gold-700 mb-4">
+                  {pillarIcons[pillar.icon]}
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-heading text-navy-900 mb-4">
+                  {pillar.title}
+                </h2>
+                <div className="h-0.75 w-10 bg-gold-700 mb-6" />
+                <p className="text-warm-gray-600 leading-relaxed text-lg">
+                  {pillar.fullDescription}
+                </p>
+              </AnimatedSection>
 
-            <AnimatedSection
-              direction={index % 2 === 0 ? "right" : "left"}
-              delay={0.15}
-              className={index % 2 !== 0 ? "lg:order-1" : ""}
-            >
-              <StaggerChildren className="space-y-4">
-                {pillar.features.map((feature) => (
-                  <motion.div
-                    key={feature.title}
-                    variants={staggerItem}
-                    className="bg-white rounded-lg shadow-card p-6"
-                  >
-                    <h3 className="text-lg font-heading text-navy-900 mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-sm text-warm-gray-500 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </StaggerChildren>
-            </AnimatedSection>
-          </div>
-        </SectionWrapper>
+              <AnimatedSection
+                direction={index % 2 === 0 ? "right" : "left"}
+                delay={0.15}
+                className={index % 2 !== 0 ? "lg:order-1" : ""}
+              >
+                <StaggerChildren className="space-y-4">
+                  {pillar.features.map((feature) => (
+                    <motion.div
+                      key={feature.title}
+                      variants={staggerItem}
+                      className="bg-white rounded-lg shadow-card p-6"
+                    >
+                      <h3 className="text-lg font-heading text-navy-900 mb-2">
+                        {feature.title}
+                      </h3>
+                      <p className="text-sm text-warm-gray-500 leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </motion.div>
+                  ))}
+                </StaggerChildren>
+              </AnimatedSection>
+            </div>
+          </SectionWrapper>
+
+          {pillar.id === "vermogensbeheer" && (
+            <SectionWrapper bg="cream" size="sm">
+              <AnimatedSection className="max-w-4xl mx-auto">
+                <img
+                  src={impactChart}
+                  alt="Impactkosten grafiek 1967 – 2026"
+                  className="w-full h-auto rounded-xl shadow-card"
+                />
+              </AnimatedSection>
+            </SectionWrapper>
+          )}
+        </Fragment>
       ))}
 
       {/* Smooth transition */}
