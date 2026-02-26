@@ -1,4 +1,8 @@
 {
+  "redirects": [
+    { "source": "/en/:path*", "destination": "/:path*", "permanent": true },
+    { "source": "/nl/:path*", "destination": "/:path*", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/((?!assets|docs|r\\.png).*)", "destination": "/index.html" }
   ]
