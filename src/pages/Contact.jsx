@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
+import { getCountries, getCountryCallingCode } from "react-phone-number-input";
 import PageTransition from "../components/animation/PageTransition";
 import AnimatedSection from "../components/animation/AnimatedSection";
 import SectionWrapper from "../components/layout/SectionWrapper";
@@ -8,6 +9,126 @@ import CTASection from "../components/sections/CTASection";
 import { getSiteMetadata } from "../data/siteMetadata";
 import { submitContactForm } from "../lib/contact";
 import { useLanguage } from "../context/LanguageContext";
+
+const COUNTRY_NAMES = {
+  NL: "Netherlands", US: "United States", GB: "United Kingdom", DE: "Germany",
+  BE: "Belgium", FR: "France", ES: "Spain", IT: "Italy", PT: "Portugal",
+  AT: "Austria", CH: "Switzerland", SE: "Sweden", NO: "Norway", DK: "Denmark",
+  FI: "Finland", PL: "Poland", CZ: "Czech Republic", IE: "Ireland",
+  AU: "Australia", CA: "Canada", BR: "Brazil", MX: "Mexico", JP: "Japan",
+  CN: "China", IN: "India", KR: "South Korea", RU: "Russia", TR: "Turkey",
+  ZA: "South Africa", AE: "UAE", SA: "Saudi Arabia", IL: "Israel",
+  SG: "Singapore", HK: "Hong Kong", TW: "Taiwan", TH: "Thailand",
+  ID: "Indonesia", MY: "Malaysia", PH: "Philippines", VN: "Vietnam",
+  NZ: "New Zealand", AR: "Argentina", CL: "Chile", CO: "Colombia",
+  GR: "Greece", HU: "Hungary", RO: "Romania", BG: "Bulgaria",
+  HR: "Croatia", SK: "Slovakia", LU: "Luxembourg", LT: "Lithuania",
+  LV: "Latvia", EE: "Estonia", SI: "Slovenia", CY: "Cyprus", MT: "Malta",
+};
+
+const COUNTRIES = getCountries()
+  .map((code) => {
+    try {
+      return { code, callingCode: getCountryCallingCode(code), name: COUNTRY_NAMES[code] || code };
+    } catch { return null; }
+  })
+  .filter(Boolean)
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+function CountryPhoneInput({ value, onChange, className }) {
+  const [country, setCountry] = useState("NL");
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const dropdownRef = useRef(null);
+  const searchRef = useRef(null);
+  const callingCode = getCountryCallingCode(country);
+
+  useEffect(() => {
+    if (open && searchRef.current) searchRef.current.focus();
+  }, [open]);
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  const filtered = search
+    ? COUNTRIES.filter((c) =>
+        c.name.toLowerCase().includes(search.toLowerCase()) ||
+        c.code.toLowerCase().includes(search.toLowerCase()) ||
+        `+${c.callingCode}`.includes(search)
+      )
+    : COUNTRIES;
+
+  const selectCountry = (c) => {
+    setCountry(c.code);
+    setOpen(false);
+    setSearch("");
+    onChange(`+${c.callingCode}${value.replace(/^\+\d+\s*/, "")}`);
+  };
+
+  const handleNumberChange = (e) => {
+    const localNumber = e.target.value.replace(/[^\d\s]/g, "");
+    onChange(`+${callingCode}${localNumber}`);
+  };
+
+  const localNumber = value.replace(`+${callingCode}`, "").trim();
+
+  return (
+    <div className={className}>
+      <div className="phone-country-select" ref={dropdownRef}>
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          className="phone-country-label"
+        >
+          {country} +{callingCode}
+          <svg className="w-3.5 h-3.5 ml-1 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        {open && (
+          <div className="phone-country-menu">
+            <input
+              ref={searchRef}
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search..."
+              className="phone-country-search"
+            />
+            <div className="phone-country-list">
+              {filtered.map((c) => (
+                <button
+                  key={c.code}
+                  type="button"
+                  onClick={() => selectCountry(c)}
+                  className={`phone-country-option${c.code === country ? " active" : ""}`}
+                >
+                  <span>{c.name}</span>
+                  <span className="phone-country-code">+{c.callingCode}</span>
+                </button>
+              ))}
+              {filtered.length === 0 && (
+                <p className="phone-country-empty">No results</p>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+      <input
+        type="tel"
+        value={localNumber}
+        onChange={handleNumberChange}
+        placeholder="6 12345678"
+        className="phone-number-input"
+      />
+    </div>
+  );
+}
 
 export default function Contact() {
   const { language, t } = useLanguage();
@@ -93,148 +214,162 @@ export default function Contact() {
           {/* Left: Form */}
           <AnimatedSection className="lg:col-span-3" direction="left">
             <div className="bg-white rounded-lg shadow-card p-8 sm:p-10">
-              <h2 className="text-2xl font-heading text-navy-900 mb-2">
-                {t("contact", "formTitle")}
-              </h2>
-              <div className="h-0.75 w-10 bg-gold-700 mb-6" />
-              <p className="text-sm text-warm-gray-500 leading-relaxed mb-8">
-                {t("contact", "formDescription")}
-              </p>
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name + Organisation */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                    >
-                      {t("contact", "labelName")}{" "}
-                      <span className="text-gold-700">*</span>
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder={t("contact", "placeholderName")}
-                      className={inputClasses}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="organization"
-                      className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                    >
-                      {t("contact", "labelOrganization")}
-                    </label>
-                    <input
-                      id="organization"
-                      name="organization"
-                      type="text"
-                      value={form.organization}
-                      onChange={handleChange}
-                      placeholder={t("contact", "placeholderOrg")}
-                      className={inputClasses}
-                    />
-                  </div>
-                </div>
-
-                {/* Email + Phone */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                    >
-                      {t("contact", "labelEmail")}{" "}
-                      <span className="text-gold-700">*</span>
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder={t("contact", "placeholderEmail")}
-                      className={inputClasses}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                    >
-                      {t("contact", "labelPhone")}{" "}
-                      <span className="text-gold-700">*</span>
-                    </label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      required
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder={t("contact", "placeholderPhone")}
-                      className={inputClasses}
-                    />
-                  </div>
-                </div>
-
-                {/* Message */}
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                  >
-                    {t("contact", "labelMessage")}{" "}
-                    <span className="text-gold-700">*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    value={form.message}
-                    onChange={handleChange}
-                    placeholder={t("contact", "placeholderMessage")}
-                    className={`${inputClasses} resize-none`}
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="lg"
-                  disabled={status === "sending"}
+              {status === "success" ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="flex flex-col items-center justify-center text-center py-12"
                 >
-                  {status === "sending"
-                    ? t("contact", "submitSending")
-                    : t("contact", "submitButton")}
-                </Button>
-
-                {status === "success" && (
-                  <div className="mt-4 p-4 rounded-md bg-green-50 border border-green-200">
-                    <p className="text-sm font-semibold text-green-800">
-                      {t("contact", "successTitle")}
-                    </p>
-                    <p className="text-sm text-green-700 mt-1">
-                      {t("contact", "successMessage")}
-                    </p>
+                  <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-6">
+                    <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
-                )}
+                  <h2 className="text-2xl font-heading text-navy-900 mb-3">
+                    {t("contact", "successTitle")}
+                  </h2>
+                  <p className="text-warm-gray-500 leading-relaxed max-w-md mb-8">
+                    {t("contact", "successMessage")}
+                  </p>
+                  <Button
+                    variant="secondary"
+                    size="md"
+                    onClick={() => setStatus("idle")}
+                  >
+                    {t("contact", "sendAnother")}
+                  </Button>
+                </motion.div>
+              ) : (
+                <>
+                  <h2 className="text-2xl font-heading text-navy-900 mb-2">
+                    {t("contact", "formTitle")}
+                  </h2>
+                  <div className="h-0.75 w-10 bg-gold-700 mb-6" />
+                  <p className="text-sm text-warm-gray-500 leading-relaxed mb-8">
+                    {t("contact", "formDescription")}
+                  </p>
 
-                {status === "error" && (
-                  <div className="mt-4 p-4 rounded-md bg-red-50 border border-red-200">
-                    <p className="text-sm text-red-700">
-                      {t("contact", "errorMessage")}
-                    </p>
-                  </div>
-                )}
-              </form>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Name + Organisation */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <label
+                          htmlFor="name"
+                          className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                        >
+                          {t("contact", "labelName")}{" "}
+                          <span className="text-gold-700">*</span>
+                        </label>
+                        <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          required
+                          value={form.name}
+                          onChange={handleChange}
+                          placeholder={t("contact", "placeholderName")}
+                          className={inputClasses}
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="organization"
+                          className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                        >
+                          {t("contact", "labelOrganization")}
+                        </label>
+                        <input
+                          id="organization"
+                          name="organization"
+                          type="text"
+                          value={form.organization}
+                          onChange={handleChange}
+                          placeholder={t("contact", "placeholderOrg")}
+                          className={inputClasses}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Email + Phone */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                        >
+                          {t("contact", "labelEmail")}{" "}
+                          <span className="text-gold-700">*</span>
+                        </label>
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          required
+                          value={form.email}
+                          onChange={handleChange}
+                          placeholder={t("contact", "placeholderEmail")}
+                          className={inputClasses}
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="phone"
+                          className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                        >
+                          {t("contact", "labelPhone")}{" "}
+                          <span className="text-gold-700">*</span>
+                        </label>
+                        <CountryPhoneInput
+                          value={form.phone}
+                          onChange={(value) => setForm((prev) => ({ ...prev, phone: value || "" }))}
+                          className="phone-input-custom"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Message */}
+                    <div>
+                      <label
+                        htmlFor="message"
+                        className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                      >
+                        {t("contact", "labelMessage")}{" "}
+                        <span className="text-gold-700">*</span>
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        required
+                        rows={5}
+                        value={form.message}
+                        onChange={handleChange}
+                        placeholder={t("contact", "placeholderMessage")}
+                        className={`${inputClasses} resize-none`}
+                      />
+                    </div>
+
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      size="lg"
+                      disabled={status === "sending"}
+                    >
+                      {status === "sending"
+                        ? t("contact", "submitSending")
+                        : t("contact", "submitButton")}
+                    </Button>
+
+                    {status === "error" && (
+                      <div className="mt-4 p-4 rounded-md bg-red-50 border border-red-200">
+                        <p className="text-sm text-red-700">
+                          {t("contact", "errorMessage")}
+                        </p>
+                      </div>
+                    )}
+                  </form>
+                </>
+              )}
             </div>
           </AnimatedSection>
 

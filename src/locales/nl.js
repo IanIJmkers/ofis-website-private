@@ -242,6 +242,7 @@ export default {
     successMessage: "Wij nemen binnen twee werkdagen contact met u op.",
     errorMessage:
       "Er is iets misgegaan. Probeer het later opnieuw of neem telefonisch contact met ons op.",
+    sendAnother: "Sluiten",
 
     contactDetailsTitle: "Contactgegevens",
     addressLabel: "Adres",

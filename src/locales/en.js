@@ -243,6 +243,7 @@ export default {
     successMessage: "We will contact you within two business days.",
     errorMessage:
       "Something went wrong. Please try again later or contact us by phone.",
+    sendAnother: "Dismiss",
 
     contactDetailsTitle: "Contact Details",
     addressLabel: "Address",
