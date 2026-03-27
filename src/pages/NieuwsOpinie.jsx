@@ -75,8 +75,8 @@ export default function NieuwsOpinie() {
     });
   }
 
-  const featuredArticle = articles[0] || null;
-  const remainingArticles = articles.slice(1);
+  const featuredArticle = activeCategory === "all" ? (articles[0] || null) : null;
+  const remainingArticles = activeCategory === "all" ? articles.slice(1) : articles;
   const categories = extractCategories(articles);
   const filteredArticles =
     activeCategory === "all"

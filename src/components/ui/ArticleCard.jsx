@@ -9,6 +9,8 @@ export const categoryColors = {
   Governance: "bg-navy-100 text-navy-700",
   Sector: "bg-warm-gray-200 text-warm-gray-700",
   Opinie: "bg-gold-100 text-gold-800",
+  Marktupdate: "bg-gold-100 text-gold-800",
+  Newsletter: "bg-navy-100 text-navy-800",
 };
 
 export default function ArticleCard({ article, formatDate }) {
