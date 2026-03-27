@@ -6,6 +6,24 @@ marked.setOptions({
   breaks: true,
 });
 
+/** Decode HTML entities (e.g. &#39; → ') in a string */
+function decodeEntities(str) {
+  if (!str) return str;
+  const el = document.createElement("textarea");
+  el.innerHTML = str;
+  return el.value;
+}
+
+/** Decode HTML entities in title and excerpt fields of a post */
+function decodePost(post) {
+  if (!post) return post;
+  return {
+    ...post,
+    title: decodeEntities(post.title),
+    excerpt: decodeEntities(post.excerpt),
+  };
+}
+
 /**
  * Detects if content is Markdown (vs already-HTML) and converts accordingly.
  * Handles: # headings, [interne link: X] placeholders, H3: prefix syntax.
@@ -54,7 +72,7 @@ export async function fetchPublishedPosts() {
     return [];
   }
 
-  return data;
+  return data.map(decodePost);
 }
 
 export async function fetchPostBySlug(slug) {
@@ -71,7 +89,7 @@ export async function fetchPostBySlug(slug) {
     return null;
   }
 
-  return data;
+  return decodePost(data);
 }
 
 export async function fetchRelatedPosts(category, excludeSlug, limit = 3) {
@@ -90,7 +108,7 @@ export async function fetchRelatedPosts(category, excludeSlug, limit = 3) {
     return [];
   }
 
-  return data;
+  return data.map(decodePost);
 }
 
 export async function fetchRecentPosts(excludeSlug, limit = 3) {
@@ -108,7 +126,7 @@ export async function fetchRecentPosts(excludeSlug, limit = 3) {
     return [];
   }
 
-  return data;
+  return data.map(decodePost);
 }
 
 export function extractCategories(posts) {
