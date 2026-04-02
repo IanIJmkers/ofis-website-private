@@ -136,7 +136,7 @@ export default function NieuwsOpinie() {
                   <img
                     src={featuredArticle.featured_image}
                     alt={featuredArticle.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               ) : (

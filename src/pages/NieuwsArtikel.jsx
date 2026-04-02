@@ -355,7 +355,7 @@ export default function NieuwsArtikel() {
                   transition={{ duration: 0.6 }}
                   src={post.featured_image}
                   alt={post.title}
-                  className="w-full rounded-xl shadow-card object-cover max-h-130"
+                  className="w-full rounded-xl shadow-card"
                 />
               </div>
             </section>
