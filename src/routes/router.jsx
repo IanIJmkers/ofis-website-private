@@ -5,6 +5,7 @@ import PrivateOffice from "../pages/PrivateOffice";
 import About from "../pages/About";
 import News from "../pages/News";
 import Contact from "../pages/Contact";
+import FixedFee from "../pages/FixedFee";
 import NotFound from "../pages/NotFound";
 
 const pages = [
@@ -43,6 +44,13 @@ const pages = [
     element: <Contact />,
     nlTitle: "Contact",
     enTitle: "Contact",
+  },
+  {
+    nlPath: "vaste-vergoeding",
+    enPath: "fixed-fee",
+    element: <FixedFee />,
+    nlTitle: "Vaste vergoeding",
+    enTitle: "Fixed fee",
   },
 ];
 

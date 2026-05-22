@@ -60,8 +60,23 @@ export default function About() {
         </div>
       </SectionWrapper>
 
-      {/* Platform */}
+      {/* Methodology */}
       <SectionWrapper bg="white" size="lg">
+        <div className="max-w-3xl mx-auto">
+          <AnimatedSection>
+            <h2 className="text-3xl sm:text-4xl font-heading text-navy-900 mb-4">
+              {t("about.methodologyTitle")}
+            </h2>
+            <div className="h-0.75 w-10 bg-gold-700 mb-8" />
+            <p className="text-lg text-warm-gray-600 leading-relaxed">
+              {t("about.methodologyDescription")}
+            </p>
+          </AnimatedSection>
+        </div>
+      </SectionWrapper>
+
+      {/* Platform */}
+      <SectionWrapper bg="cream" size="lg">
         <div className="max-w-3xl mx-auto">
           <AnimatedSection>
             <h2 className="text-3xl sm:text-4xl font-heading text-navy-900 mb-4">
@@ -76,7 +91,7 @@ export default function About() {
       </SectionWrapper>
 
       {/* Regulation */}
-      <SectionWrapper bg="cream" size="md">
+      <SectionWrapper bg="white" size="md">
         <div className="max-w-3xl mx-auto">
           <AnimatedSection>
             <h2 className="text-3xl sm:text-4xl font-heading text-navy-900 mb-4">

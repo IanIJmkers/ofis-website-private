@@ -5,9 +5,14 @@ import { useLanguage } from "../../i18n/LanguageContext";
 export default function HeroSection() {
   const { lang, t } = useLanguage();
 
-  const privateOfficePath =
-    lang === "en" ? "/en/your-private-office" : "/uw-private-office";
   const contactPath = lang === "en" ? "/en/contact" : "/contact";
+
+  const handleScrollToPhilosophy = () => {
+    const el = document.getElementById("philosophy");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <section className="relative min-h-[90vh] flex items-center bg-navy-900 overflow-hidden">
@@ -63,7 +68,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="flex flex-wrap gap-4"
           >
-            <Button href={privateOfficePath} variant="primary" size="lg">
+            <Button onClick={handleScrollToPhilosophy} variant="primary" size="lg">
               {t("hero.cta1")}
             </Button>
             <Button href={contactPath} variant="outline-light" size="lg">

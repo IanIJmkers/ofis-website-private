@@ -36,6 +36,7 @@ export function LanguageProvider({ children }) {
         "/over-ons": "/en/about",
         "/nieuws": "/en/news",
         "/contact": "/en/contact",
+        "/vaste-vergoeding": "/en/fixed-fee",
       };
       navigate(pathMap[currentPath] || "/en");
     } else if (newLang === "nl" && lang === "en") {
@@ -46,6 +47,7 @@ export function LanguageProvider({ children }) {
         "/en/about": "/over-ons",
         "/en/news": "/nieuws",
         "/en/contact": "/contact",
+        "/en/fixed-fee": "/vaste-vergoeding",
       };
       navigate(pathMap[currentPath] || "/");
     }

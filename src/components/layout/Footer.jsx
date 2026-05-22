@@ -27,7 +27,10 @@ export default function Footer() {
     },
   ];
 
+  const fixedFeePath = lang === "en" ? "/en/fixed-fee" : "/vaste-vergoeding";
+
   const legalLinks = [
+    { label: t("footer.tariff"), path: fixedFeePath },
     { label: t("footer.termsOrchestra"), path: "#" },
     { label: t("footer.termsGA"), path: "#" },
     { label: t("footer.termsMyOrchestra"), path: "#" },

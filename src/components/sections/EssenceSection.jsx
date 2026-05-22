@@ -26,9 +26,6 @@ export default function EssenceSection() {
             {t("essence.body1")}
           </p>
           <p className="mt-6 text-lg text-warm-gray-600 leading-relaxed">
-            {t("essence.body2")}
-          </p>
-          <p className="mt-6 text-lg text-warm-gray-600 leading-relaxed">
             {t("essence.body3")}
           </p>
         </AnimatedSection>

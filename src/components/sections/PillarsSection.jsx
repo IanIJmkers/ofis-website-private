@@ -27,14 +27,14 @@ export default function PillarsSection() {
 
   const pillars = [
     {
-      icon: pillarIcons.governance,
-      titleKey: "privateOffice.pillar1Title",
-      itemsKey: "privateOffice.pillar1Items",
-    },
-    {
       icon: pillarIcons.wealthManagement,
       titleKey: "privateOffice.pillar2Title",
       itemsKey: "privateOffice.pillar2Items",
+    },
+    {
+      icon: pillarIcons.governance,
+      titleKey: "privateOffice.pillar1Title",
+      itemsKey: "privateOffice.pillar1Items",
     },
     {
       icon: pillarIcons.orchestration,
@@ -45,7 +45,7 @@ export default function PillarsSection() {
 
   return (
     <SectionWrapper bg="white" size="lg">
-      <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
+      <AnimatedSection className="text-center max-w-3xl mx-auto mb-12">
         <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
           {t("privateOffice.eyebrow")}
         </span>
@@ -55,6 +55,15 @@ export default function PillarsSection() {
         <div className="mt-4 h-0.75 w-10 mx-auto bg-gold-700" />
         <p className="mt-6 text-lg text-warm-gray-500 leading-relaxed">
           {t("privateOffice.intro")}
+        </p>
+      </AnimatedSection>
+
+      <AnimatedSection className="max-w-2xl mx-auto mb-16 text-left" delay={0.1}>
+        <h3 className="text-xl lg:text-2xl font-heading text-navy-900 mb-4">
+          {t("privateOffice.sequenceTitle")}
+        </h3>
+        <p className="text-warm-gray-600 leading-relaxed">
+          {t("privateOffice.sequenceBody")}
         </p>
       </AnimatedSection>
 

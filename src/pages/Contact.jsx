@@ -99,6 +99,9 @@ export default function Contact() {
                     <option value="appointment">
                       {t("contact.typeAppointment")}
                     </option>
+                    <option value="secondOpinion">
+                      {t("contact.typeSecondOpinion")}
+                    </option>
                     <option value="newsletter">
                       {t("contact.typeNewsletter")}
                     </option>
