@@ -139,6 +139,7 @@ export default function Contact() {
     organization: "",
     email: "",
     phone: "",
+    requestType: "regular",
     message: "",
   });
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
@@ -158,6 +159,7 @@ export default function Contact() {
         organization: "",
         email: "",
         phone: "",
+        requestType: "regular",
         message: "",
       });
     } catch {
@@ -327,6 +329,41 @@ export default function Contact() {
                         />
                       </div>
                     </div>
+
+                    {/* Request type */}
+                    <fieldset>
+                      <legend className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-3">
+                        {t("contact", "labelRequestType")}
+                      </legend>
+                      <div className="space-y-3">
+                        <label className="flex items-start gap-3 cursor-pointer group">
+                          <input
+                            type="radio"
+                            name="requestType"
+                            value="regular"
+                            checked={form.requestType === "regular"}
+                            onChange={handleChange}
+                            className="mt-0.5 h-4 w-4 accent-gold-700"
+                          />
+                          <span className="text-sm text-navy-900 leading-snug group-hover:text-navy-950">
+                            {t("contact", "typeRegular")}
+                          </span>
+                        </label>
+                        <label className="flex items-start gap-3 cursor-pointer group">
+                          <input
+                            type="radio"
+                            name="requestType"
+                            value="second_opinion"
+                            checked={form.requestType === "second_opinion"}
+                            onChange={handleChange}
+                            className="mt-0.5 h-4 w-4 accent-gold-700"
+                          />
+                          <span className="text-sm text-navy-900 leading-snug group-hover:text-navy-950">
+                            {t("contact", "typeSecondOpinion")}
+                          </span>
+                        </label>
+                      </div>
+                    </fieldset>
 
                     {/* Message */}
                     <div>

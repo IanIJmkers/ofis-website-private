@@ -1,11 +1,9 @@
 import { motion } from "motion/react";
 import Button from "../ui/Button";
 import { useLanguage } from "../../context/LanguageContext";
-import { getSiteMetadata } from "../../data/siteMetadata";
 
 export default function HeroSection() {
-  const { language, t } = useLanguage();
-  const meta = getSiteMetadata(language);
+  const { t } = useLanguage();
 
   return (
     <section className="relative min-h-[90vh] flex items-center bg-navy-900 overflow-hidden">
@@ -48,7 +46,7 @@ export default function HeroSection() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="text-lg lg:text-xl text-navy-200 leading-relaxed max-w-2xl mb-10"
           >
-            {meta.description}
+            {t("home", "heroSubtitle")}
           </motion.p>
 
           {/* CTAs */}

@@ -31,6 +31,7 @@ export default {
     nieuwsOpinie: "Nieuws & Opinie",
     artikel: "Artikel",
     contact: "Contact",
+    vasteVergoeding: "Vaste Vergoeding",
   },
 
   nav: {
@@ -45,11 +46,13 @@ export default {
   },
 
   home: {
-    heroEyebrow: "Private Office voor Integraal Vermogensbeheer",
-    heroTitle: "Beheerste controle over uw gehele vermogen.",
+    heroEyebrow: "Beheerst Vermogen",
+    heroTitle: "Vermogen verdient regie. Geen versnippering.",
     heroTitleAccent: "Beheerst.",
-    heroCta1: "Ontdek De Essentie",
-    heroCta2: "Neem Contact Op",
+    heroSubtitle:
+      "Een Nederlands kantoor dat uw vermogen organiseert als één samenhangend systeem — investeringen én beleggingen met institutionele discipline, omringd door governance en de fiscale & administratieve werkelijkheid die het verdient.",
+    heroCta1: "Hoe wij denken",
+    heroCta2: "Verkennend gesprek",
 
     statsFoundedLabel: "Opgericht",
     statsSpecialistsLabel: "Specialisten",
@@ -88,22 +91,63 @@ export default {
       "Maak een afspraak met een van onze Private Office specialisten.",
     ctaButton1: "Neem Contact Op",
     ctaButton2: "Volg Ons op LinkedIn",
+
+    categoryEyebrow: "Een oprecht andere dienstverlening",
+    categoryTitle: "Wij staan niet op dezelfde 'meubelboulevard'.",
+    categoryBody1:
+      "De Nederlandse vermogensbeheermarkt heeft de afgelopen decennia één centrale vraag perfect leren beantwoorden: hoe beheren wij (slechts) uw beleggingen tegen een percentage van dat vermogen? Daar is een hele industrie omheen ontstaan — banken, vermogensbeheerders, media, fiscalisten, juristen. Allemaal vakkundig. Allemaal met een eigen winkel. Allemaal met dezelfde economische logica.",
+    categoryBody2:
+      "Orchestra is bewust niet naast hen op die boulevard gaan staan. Omdat een groot vermogen méér is dan een beleggingsportefeuille. Het is een samenhangend ecosysteem van bezit, structuur, fiscaliteit, administratie, governance en mensen. Dat ecosysteem vraagt niet om nóg een winkel naast al die andere; het vraagt om volledige regie ernaast.",
+
+    philosophyEyebrow: "Onze beleggingsovertuigingen",
+    philosophyTitle:
+      "Wij beheren beleggingen zoals een institutionele belegger dat doet.",
+    philosophyIntro:
+      "Het grootste deel van het lange termijnrendement van een vermogen wordt niet bepaald door beleggingsproducten, maar door drie dingen: hoe risico is geijkt op het doel, hoe consistent kosten worden beheerst, en hoe gedrag wordt gedisciplineerd. Daar begint ons werk.",
+    philosophyPrinciple1Title: "Risico op doel, niet op markt",
+    philosophyPrinciple1Body:
+      "Wij ontwerpen portefeuilles op basis van de verplichtingen en doelstellingen van uw vermogen — niet op basis van een externe benchmark. Dat is hoe pensioenfondsen en stichtingen al decennia werken. Voor families is dit vooralsnog zeldzamer dan dat het zou moeten zijn.",
+    philosophyPrinciple2Title: "Kostenerosie is geen detail",
+    philosophyPrinciple2Body:
+      "Een procent kosten lijkt klein. Over vijfentwintig jaar betekent het op een vermogen van tien miljoen een verschil van miljoenen. Wij behandelen kosten zoals wij belastingen behandelen: als een structurele, stuurbare variabele, niet als een operationeel afrondingsbedrag.",
+    philosophyPrinciple3Title: "Gedrag is een asset class",
+    philosophyPrinciple3Body:
+      "De grootste rendementsvernietigers zijn niet markten — het zijn beslissingen op het verkeerde moment, vaak ingegeven door angst of euforie. Wij organiseren governance (vier-ogen, beleidskaders, vergaderdiscipline) zodat beleggingsbeslissingen genomen worden in de juiste structuur, niet in de juiste stemming.",
+
+    feeLogicEyebrow: "De economische conclusie",
+    feeLogicTitle:
+      "Wij factureren op genomen verantwoordelijkheid. Niet op vermogen.",
+    feeLogicIntro:
+      "Als u institutioneel denkt over uw vermogen, dan denkt u ook institutioneel over kosten. Een tarief dat mee schaalt met de omvang van uw vermogen wordt op een gegeven moment groter dan het werk rechtvaardigt — en groeit door, ook als niets méér voor wordt gedaan. Dat vinden wij economisch niet uit te leggen en daarom doen wij het anders.",
+    feeLogicSubhead:
+      "Een vaste jaarlijkse vergoeding. Geen percentage. Geen uurtarieven.",
+    feeLogicAnalogy1: "Uw advocaat factureert u niet op een percentage van uw winst.",
+    feeLogicAnalogy2: "Uw architect factureert u niet op de waarde van uw huis.",
+    feeLogicAnalogy3: "Uw accountant factureert u niet op de omvang van uw balans.",
+    feeLogicSynthesis:
+      "Vermogensbeheer is — als het serieus gedaan wordt — een professionele dienstverlening. Wij behandelen het ook zo.",
+    feeLogicReadMore: "Lees de volledige onderbouwing",
+
+    frictionEyebrow: "Eerlijke voetnoot",
+    frictionTitle: "Voor sommigen voelt dit eerst vreemd.",
+    frictionBody:
+      "In een industrie waarin tarieven al decennia mee schalen met vermogen, voelt een vaste vergoeding soms welhaast verdacht. Waar zit de catch? Wij krijgen die vraag bijna altijd in het eerste gesprek. Het antwoord is eenvoudig: er is geen catch. Er is alleen een andere economische logica. En het kost meestal slechts dat eerste gesprek om het te laten zien.",
   },
 
   deEssentie: {
     heroEyebrow: "De Essentie",
-    heroTitle: "Beheerste controle over uw gehele vermogen",
+    heroTitle: "Versnippering vervangen door regie.",
     heroDescription:
-      "Vermogensbeheer omvat veel meer dan beleggen alleen. Orchestra Private biedt u een persoonlijk kantoor voor elk aspect van uw vermogen, uw familie en uw ambities.",
+      "Veel vermogens worden in stukjes beheerd. De vermogensbeheerder(s) kijk(t)(en) naar de portefeuille. De fiscalist naar de aangifte. De notaris naar de structuur. De accountant naar de holding. Allemaal goed, allemaal apart. Wat ontbreekt is een kantoor dat het geheel als één systeem ziet — en daar verantwoordelijkheid voor neemt.",
 
     visionEyebrow: "Onze Visie",
     visionTitle: "Beheerst, niet alleen beheerd",
     visionP1:
-      "Er is een wezenlijk verschil tussen beheerd vermogen en beheerst vermogen. Bij Orchestra Private gaat het om dat laatste: volledige controle over uw vermogen, uw familie, uw ambities maar ook uw gemoedsrust.",
+      "Wij richten dat kantoor in. Een vast team dat uw vermogen administreert, documenteert, monitort, en de mensen om uw vermogen heen — banken, fiscalisten, notarissen, controlerend accountants — regisseert. U houdt de regie over uw leven, wij houden de regie over de structuur.",
     visionP2:
       "Wij zijn geen traditionele vermogensbeheerder die stopt bij het beheren van uw beleggingsportefeuille. Orchestra Private orchestreert actief alle onderdelen van uw vermogen — vandaag en in de toekomst.",
     visionP3:
-      "Zie het als een waakvlam onder uw vermogen: altijd aanwezig, altijd waakzaam, zodat al uw belangen beschermd en beheerd worden.",
+      "Dit soort relatie vraagt om een proces van wederzijdse verkenning. Wij nemen daar graag alle tijd voor die u nodig heeft. Ik nodig u van harte uit om met ons te verkennen óf en hoe deze manier van werken bij u zou passen.",
 
     pricingTitle: "Vast jaarlijks tarief",
     pricingP1:
@@ -113,7 +157,7 @@ export default {
     pricingButton: "Vraag een Gesprek Aan",
 
     quoteText:
-      "Wij nodigen u uit om te verkennen of onze dienstverlening past bij uw situatie. Dat geldt ook voor wie een second opinion zoekt over bestaand vermogensbeheer.",
+      "PS: Mijn uitnodiging geldt uiteraard ook voor diegenen die slechts een second opinion willen over hun huidige vermogensbeheer en/of bestaand family office.",
     quoteAuthor: "Roderik Bolle",
     quoteRole: "Managing Director",
 
@@ -137,9 +181,9 @@ export default {
 
   uwPrivateOffice: {
     heroEyebrow: "Uw Private Office",
-    heroTitle: "Uw Private Office volgens ons",
+    heroTitle: "Eén kantoor voor uw gehele vermogen.",
     heroDescription:
-      "Orchestra richt voor u een private office in die rust op drie onderling verbonden pijlers: governance, vermogensbeheer en orkestratie.",
+      "Orchestra organiseert al het werk dat ontstaat rondom een serieus vermogen — beleggingen, governance, fiscaliteit, administratie — in één samenhangend, online kantoor. Het uitgangspunt is niet welke diensten u inkoopt, maar welke beslissingen er rond uw vermogen genomen moeten worden, en wie daar verantwoordelijk voor is.",
 
     pillarsEyebrow: "Drie Pijlers",
     pillarsTitle: "Gebouwd op drie verbonden pijlers",
@@ -221,7 +265,7 @@ export default {
     heroEyebrow: "Neem Contact Op",
     heroTitle: "Neem Contact Op",
     heroDescription:
-      "Wij bespreken graag hoe Orchestra uw vermogen beheerst kan maken. Neem contact op voor een vrijblijvend gesprek met een van onze specialisten.",
+      "Voor de meeste cliënten begint het met één gesprek waarin wij verkennen of de manier waarop wij denken bij uw situatie past. Geen pitch deck, geen presentatie. Een gesprek.",
 
     formTitle: "Stuur Ons een Bericht",
     formDescription:
@@ -230,6 +274,9 @@ export default {
     labelOrganization: "Organisatie",
     labelEmail: "E-mail",
     labelPhone: "Telefoon",
+    labelRequestType: "Aard van uw verzoek",
+    typeRegular: "Algemene aanvraag",
+    typeSecondOpinion: "Ik wil graag eens een geheel vrijblijvende second opinion",
     labelMessage: "Bericht",
     placeholderName: "Uw volledige naam",
     placeholderOrg: "Uw organisatie (optioneel)",
@@ -419,5 +466,54 @@ export default {
     legalLink4: "Privacy- & Cookiebeleid",
     legalLink5: "Duurzaamheidsverklaring",
     legalLink6: "Beloningsbeleid",
+  },
+
+  fixedFee: {
+    eyebrow: "Vaste vergoeding",
+    heroTitle: "Wij factureren op verantwoordelijkheid. Niet op vermogen.",
+    heroSubtitle:
+      "Een uitgewerkte onderbouwing van waarom een vast tarief geen marketingkeuze is, maar de economische conclusie van institutioneel denken.",
+
+    arithmeticTitle:
+      "Wat 1% jaarlijkse kosten over vijfentwintig jaar werkelijk doet.",
+    arithmeticIntro:
+      "Een procentpunt aan jaarlijkse kosten lijkt klein. Maar kosten zijn een structurele variabele: ze werken cumulatief, jaar in jaar uit. Op een vermogen van tien miljoen euro, bij een verondersteld bruto rendement van zes procent, ontstaat het volgende beeld:",
+    arithmeticCol1: "Tarief per jaar",
+    arithmeticCol2: "Vermogen na 25 jaar",
+    arithmeticCol3: "Verschil",
+    arithmeticRow1Tier: "Vast tarief (indicatief)",
+    arithmeticRow1Value: "ca. € 40 mln",
+    arithmeticRow1Delta: "—",
+    arithmeticRow2Tier: "0,75% AUM",
+    arithmeticRow2Value: "ca. € 36 mln",
+    arithmeticRow2Delta: "− € 4 mln",
+    arithmeticRow3Tier: "1,00% AUM",
+    arithmeticRow3Value: "ca. € 33 mln",
+    arithmeticRow3Delta: "− € 7 mln",
+    arithmeticRow4Tier: "1,25% AUM",
+    arithmeticRow4Value: "ca. € 31 mln",
+    arithmeticRow4Delta: "− € 9 mln",
+    arithmeticFootnote:
+      "Indicatieve berekening; werkelijke uitkomsten variëren met rendement, in- en uitstromen en belastingdruk. Het mechanisme — kosten als cumulatieve variabele — is wat blijft.",
+
+    faqTitle: "Veelgestelde vragen",
+    faq1Question: "Waar zit de catch?",
+    faq1Answer:
+      "Geen catch. Wij ontvangen een vaste jaarlijkse vergoeding voor de regie over uw vermogen. Geen retrocessies, geen provisies, geen kickbacks. De vergoeding wordt vooraf afgesproken en slechts voor inflatie gecorrigeerd; niet voor de groei van uw vermogen.",
+    faq2Question: "Hoe kan dit dan goedkoper zijn?",
+    faq2Answer:
+      "Dat is niet het juiste woord. Het is logischer. Als uw vermogen verdubbelt, verdubbelt ons werk doorgaans niet. Een tarief dat met uw vermogen meegroeit, groeit op een gegeven moment buiten verhouding tot het werk. Een vast tarief blijft altijd in verhouding tot de oorspronkelijk gemaakte afspraken.",
+    faq3Question: "Werken jullie ook samen met mijn huidige bank of vermogensbeheerder?",
+    faq3Answer:
+      "Ja. In veel gevallen blijven cliënten ook posities aanhouden bij meerdere banken en (fonds)beheerders. Wij zorgen dat het geheel zichtbaar, gemeten en samenhangend gemanaged blijft.",
+    faq4Question: "Voor welke vermogensomvang is onze dienstverlening zinvol?",
+    faq4Answer:
+      "Onze dienstverlening is structureel gebouwd voor die vermogens, waarvan de complexiteit van governance, fiscaliteit en structuur reëel begint te wegen. Voor louter beleggingsdienstverlening zijn wij door onze vaste tarifering economisch interessant voor de grotere vermogens. Immers, hoe groter uw vermogen, des te meer rendementsverbetering ons model u brengt.",
+    faq5Question: "Wat zit er in het vaste tarief?",
+    faq5Answer:
+      "Dat is volledig afhankelijk van wat er voor nodig is om uw vermogen te orkestreren. Maar dat kan dus omvatten: het beleggingsbeheer, alle overige investeringen, het opstellen en bewaken van het beleggingsstatuut, de governance en autorisatielagen rondom uw vermogen, de coördinatie met bestaande adviseurs, en de gehele administratieve regie. Alle additionele externe kosten (transactiekosten, fondskosten, kosten van derden) worden separaat en transparant gerapporteerd en continu getoetst aan potentieel efficiëntere alternatieven.",
+    faq6Question: "Kan ik eerst een second opinion krijgen?",
+    faq6Answer:
+      "Ja natuurlijk. Veel cliënten beginnen daarmee. Wij geven graag een onafhankelijke beoordeling van hoe uw vermogen op dit moment is georganiseerd — beleggingsstrategie, kosten, structuur, governance — zonder enige verplichting tot samenwerking.",
   },
 };

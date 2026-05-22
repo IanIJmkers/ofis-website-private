@@ -35,25 +35,35 @@ const data = {
       id: "vermogensbeheer",
       title: "Vermogensbeheer",
       shortDescription:
-        "Structurering en beheer van uw beleggingsportefeuille met geïntegreerde vermogensoverzichten en kostenbeheersing.",
+        "Beheer van uw beleggingsportefeuille met institutionele discipline: portefeuilles geijkt op uw doelstellingen, kosten als stuurbare variabele, vier-ogen-principe op iedere transactie.",
       fullDescription:
-        "Wij structureren en beheren uw beleggingsportefeuille als onafhankelijke partij. U ontvangt geïntegreerde vermogensoverzichten die uw volledige financiële positie inzichtelijk maken, met actieve monitoring en beheersing van kosten.",
+        "Wij beheren beleggingen zoals een institutionele belegger dat doet. Portefeuilles worden ontworpen op basis van de verplichtingen en doelstellingen van uw vermogen — niet op basis van een externe benchmark — met risicokaders, kostenbeheersing en vier-ogen-principe op iedere transactie. Kosten behandelen wij als een structurele, stuurbare variabele.",
       icon: "wealth-management",
       features: [
         {
-          title: "Portefeuillebeheer",
+          title: "Strategische Asset-Allocatie",
           description:
-            "Professionele structurering en actief beheer van uw beleggingsportefeuille.",
+            "Ontwerp op basis van de verplichtingen en doelstellingen van uw vermogen — niet op basis van een marktbenchmark.",
         },
         {
-          title: "Geïntegreerde Vermogensoverzichten",
+          title: "Institutionele Discipline",
           description:
-            "Volledig overzicht van al uw vermogensonderdelen in één geconsolideerd overzicht.",
+            "Beheer van de portefeuille(s) met risicokaders, kostenbeheersing en vier-ogen-principe op iedere transactie.",
         },
         {
           title: "Kostenbeheersing",
           description:
-            "Actieve monitoring en beheersing van alle kosten gerelateerd aan uw vermogen.",
+            "Kosten behandeld als een structurele variabele, niet als een operationeel detail.",
+        },
+        {
+          title: "Geïntegreerde Vermogensoverzichten",
+          description:
+            "Inzicht over alle bezittingen — beleggingen, vastgoed, deelnemingen, leningen.",
+        },
+        {
+          title: "Periodieke Toetsing",
+          description:
+            "Beoordeling of de portefeuille nog past bij uw werkelijkheid, niet alleen bij de markt.",
         },
       ],
     },
@@ -130,25 +140,35 @@ const data = {
       id: "vermogensbeheer",
       title: "Wealth Management",
       shortDescription:
-        "Structuring and management of your investment portfolio with integrated wealth overviews and cost control.",
+        "Investments managed the way an institutional investor does: portfolios calibrated to your objectives, costs as a manageable variable, four-eyes principle on every transaction.",
       fullDescription:
-        "We structure and manage your investment portfolio as an independent party. You receive integrated wealth overviews that provide insight into your complete financial position, with active monitoring and cost control.",
+        "We manage investments the way an institutional investor does. Portfolios are designed against the liabilities and objectives of your estate — not against an external benchmark — with risk frameworks, cost control and a four-eyes principle on every transaction. We treat costs as a structural, manageable variable.",
       icon: "wealth-management",
       features: [
         {
-          title: "Portfolio Management",
+          title: "Strategic Asset Allocation",
           description:
-            "Professional structuring and active management of your investment portfolio.",
+            "Designed against the liabilities and objectives of your estate — not against a market benchmark.",
         },
         {
-          title: "Integrated Wealth Overviews",
+          title: "Institutional Discipline",
           description:
-            "Complete overview of all your wealth components in one consolidated overview.",
+            "Portfolio management with risk frameworks, cost control and a four-eyes principle on every transaction.",
         },
         {
           title: "Cost Control",
           description:
-            "Active monitoring and control of all costs related to your wealth.",
+            "Costs treated as a structural variable, not as an operational detail.",
+        },
+        {
+          title: "Integrated Wealth Overviews",
+          description:
+            "Insight across all holdings — investments, real estate, participations, loans.",
+        },
+        {
+          title: "Periodic Review",
+          description:
+            "Whether the portfolio still fits your reality, not only the market.",
         },
       ],
     },
