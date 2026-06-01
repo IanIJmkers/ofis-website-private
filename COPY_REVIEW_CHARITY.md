@@ -10,9 +10,19 @@ The structure mirrors the private-office COPY_REVIEW but is adapted for charity 
 
 ## Strategic foundation
 
+### The three framings underneath every block below
+
+Three principles unify everything that follows. They sharpen — they do not replace — the existing "Charity Office" positioning.
+
+1. **Stichtingen hebben twee gezichten.** Aan de ene kant is er de warme, dienende organisatie die geld inzamelt of besteedt aan goede doelen — de missie. Aan de andere kant is er de noodzakelijke operationele organisatie die compliance, governance, administratie en jaarverslaggeving regelt — alleen om de eerste organisatie te mogen zijn. Die twee gezichten zijn conceptueel verschillend. De sector behandelt ze vaak alsof het hetzelfde is. Dat is een denkfout.
+2. **Het operationele gezicht is niet waar altruïsme woont.** Het is waar je zo min mogelijk uitgeeft, zodat het maximale budget naar de missie kan. Er is geen deugd in een dure operatie; er is alleen opportuniteitskost ten opzichte van het goede doel.
+3. **Wij leveren dienstverlening én collectief geheugen.** Mijn Orchestra is geen dashboard. Het is het institutionele brein van uw stichting: bestuursnotulen, besluitregisters, subsidie-administratie, documentkluis, audit trail — plus state-of-the-art tools voor het beheren van fondsen, bestuursvergaderingen, en alles wat operationele uitmuntendheid vereist. Wat wij ophalen aan kennis over uw stichting, leveren wij terug aan uw bestuur — niet aan ons archief.
+
+Het fixed-fee argument was er al; framing 2 maakt het moreel verankerd in plaats van louter economisch. De Charity Office-claim was er al; framings 1 en 3 geven die vorm en specificiteit.
+
 ### Positioning statement
 
-> Orchestra Charity Office is een Nederlands kantoor voor integraal financieel beheer van stichtingen en goede doelen. Wij voeren het vermogensbeheer met institutionele discipline en organiseren daaromheen de administratie, governance en compliance van uw stichting als één samenhangend systeem. Wij vervangen versnipperde dienstverlening door regie. En omdat ons werk niet schaalt met de omvang van uw vermogen, factureren wij niet op vermogen, maar op verantwoordelijkheid — een vaste vergoeding per jaar. Iedere basispunt aan AUM-percentage die uw stichting bespaart, is een basispunt dat naar uw missie kan.
+> Orchestra Charity Office is een Nederlands kantoor voor het operationele gezicht van uw stichting. De warme kant — uw missie, uw fondsenwerving, uw uitkeringsbeleid, uw begunstigden — blijft waar zij hoort: bij uw bestuur. Het operationele gezicht — vermogensbeheer, administratie, governance, compliance, het collectieve geheugen — voeren wij. Met institutionele discipline, tegen een vaste jaarlijkse vergoeding, en met de mentaliteit dat elke basispunt die op kosten bespaard wordt, een basispunt is dat naar uw missie kan.
 
 ### The L0 → L4 rule (mirrors private-office)
 
@@ -42,37 +52,39 @@ The structure mirrors the private-office COPY_REVIEW but is adapted for charity 
 
 **NL**
 Eyebrow: Het Charity Office van Nederland
-Title: Vermogensbeheer, administratie en governance —
+Title: Het operationele gezicht van uw stichting,
 Highlight: in één samenhangend kantoor.
-Subtitle: Het enige kantoor in Nederland dat zich uitsluitend richt op stichtingen en goede doelen. Wij voeren het vermogensbeheer met institutionele discipline en organiseren daaromheen de administratie, governance en compliance — als één systeem, tegen een vaste jaarlijkse vergoeding.
+Subtitle: Een stichting heeft twee gezichten. De warme kant — uw missie — blijft waar zij hoort: bij uw bestuur. Het operationele gezicht — vermogensbeheer, administratie, governance, compliance — voeren wij. Met institutionele discipline, tegen een vaste jaarlijkse vergoeding, op één geïntegreerd platform dat fungeert als het collectieve geheugen van uw stichting.
 
 **EN**
 Eyebrow: The Charity Office of the Netherlands
-Title: Wealth management, administration and governance —
+Title: The operational face of your foundation,
 Highlight: in one coherent office.
-Subtitle: The only firm in the Netherlands dedicated exclusively to foundations and charities. We manage your investments with institutional discipline and organise the administration, governance and compliance around them — as a single system, for a fixed annual fee.
+Subtitle: A foundation has two faces. The warm side — your mission — stays where it belongs: with your board. The operational face — wealth management, administration, governance, compliance — we run. With institutional discipline, for a fixed annual fee, on one integrated platform that acts as the collective memory of your foundation.
 
 Edits / notes:
 _____
 
 ---
 
-### Category section (NEW)
+### Category section — "The two faces of a foundation" (NEW)
 *Location: `src/locales/{nl,en}.js` → propose new keys under `home.category.*`*
 
-Same intent as the private-office Category section. Resolves the "is Orchestra just another financial-services provider with a charity sideline?" question in 90 seconds of scroll. Plain language, no metaphor (the meubelboulevard belongs in a future News piece).
+The unifying framing of the whole rewrite. Names the dichotomy: warm-mission side vs operational-compliance side. Explains why a serious foundation needs two different organisations behind it — and which one Orchestra is.
 
 **NL**
-Eyebrow: Een aparte categorie
-Title: Wij staan niet op de boulevard van financiële dienstverleners die stichtingen 'erbij' bedienen.
-Body 1: De Nederlandse financiële sector heeft de stichtingen-niche al decennia bediend — meestal als bijproduct. Banken, accountantskantoren, algemene vermogensbeheerders, juristen. Allemaal vakkundig. Allemaal met stichtingen als één van vele klantgroepen. Allemaal met dezelfde economische logica: percentage van vermogen, uurtarieven, of fee-arrangementen die niet stoppen bij waar het werk stopt.
-Body 2: Orchestra is anders georganiseerd. Wij bedienen uitsluitend stichtingen en goede doelen — geen private banking erbij, geen corporate cliënten erbij. Eén kantoor, één doelgroep, één economische logica die past bij die doelgroep: vaste vergoeding, institutionele discipline, regie over het geheel. Dat is geen positionering. Dat is hoe het bedrijf gebouwd is.
+Eyebrow: De twee gezichten van een stichting
+Title: De warme kant. De operationele kant. Twee verschillende organisaties.
+Body 1: Iedere stichting heeft twee gezichten. Het eerste is warm: het is de organisatie die geld inzamelt of besteedt aan haar goede doel, die programma's bouwt, die begunstigden bereikt, die het verschil maakt. Dat is wat een stichting een stichting maakt. Dat is waar het bestuur is voor opgestaan.
+Body 2: Het tweede gezicht is operationeel: jaarrekeningen, ANBI- en CBF-verplichtingen, betalingsverkeer, beleggingsstatuut, governance-discipline, bestuursnotulen, audit trail. Het bestaat niet omdat het inhoudelijk waardevol is, maar omdat zonder die operationele kant de stichting geen stichting mag heten. Hier woont geen altruïsme — hier woont noodzaak.
+Body 3: Beide gezichten verdienen serieuze aandacht. Maar zij verdienen geen overeenkomstige uitgaven. De warme kant maximaliseer je. De operationele kant minimaliseer je — in kosten, in versnippering, in bestuurstijd — zodat het maximum naar de missie kan. Orchestra is gebouwd voor dat tweede gezicht: het operationele kantoor van uw stichting, geleverd met institutionele discipline, tegen één vaste jaarlijkse vergoeding, met het collectieve geheugen van uw organisatie inbegrepen.
 
 **EN**
-Eyebrow: A different category
-Title: We are not on the boulevard of financial firms that serve foundations 'on the side'.
-Body 1: The Dutch financial sector has served the foundations niche for decades — usually as a by-product. Banks, accountancy firms, generalist asset managers, lawyers. All competent. All with foundations as one of many client groups. All operating on the same economic logic: a percentage of assets, hourly rates, or fee arrangements that do not stop where the work stops.
-Body 2: Orchestra is organised differently. We serve only foundations and charities — no private banking on the side, no corporate clients on the side. One firm, one audience, one economic logic built for that audience: fixed fee, institutional discipline, stewardship of the whole. That is not positioning. It is how the firm is built.
+Eyebrow: The two faces of a foundation
+Title: The warm face. The operational face. Two different organisations.
+Body 1: Every foundation has two faces. The first is warm: the organisation that raises or spends money on its charitable cause, that builds programmes, reaches beneficiaries, makes the difference. That is what makes a foundation a foundation. That is what the board signed up for.
+Body 2: The second face is operational: annual accounts, ANBI and CBF obligations, payment processing, investment policy statement, governance discipline, board minutes, audit trail. It does not exist because it is intrinsically valuable; it exists because without it, a foundation cannot call itself a foundation. There is no altruism here — only necessity.
+Body 3: Both faces deserve serious attention. But they do not deserve matching spend. The warm face you maximise. The operational face you minimise — in cost, in fragmentation, in board time — so the maximum can reach the mission. Orchestra is built for that second face: the operational office of your foundation, delivered with institutional discipline, for one fixed annual fee, with the collective memory of your organisation included.
 
 Edits / notes:
 _____
@@ -80,19 +92,19 @@ _____
 ---
 
 ### Mission / Impact bridge
-*Location: existing `home.servicesEyebrow`, `home.servicesTitle`, `home.servicesSubtitle` block + propose new `home.impactBridge.*`*
+*Location: existing `home.servicesEyebrow`, `home.servicesTitle`, `home.servicesSubtitle` block*
 
-Current copy is generic ("Integrale financiële dienstverlening"). Strengthen the link between the financial service and the mission outcome.
+Current copy is generic ("Integrale financiële dienstverlening"). Replace with text that names the second face explicitly and reframes the three services as the minimisation discipline that frees the warm-face budget.
 
 **NL**
 Eyebrow: Onze diensten
-Title: Drie diensten. Eén verantwoordelijkheid: dat uw missie de aandacht krijgt die ze verdient.
-Subtitle: Vermogensbeheer, administratie en governance — geïntegreerd uitgevoerd, zodat het bestuur kan besturen, het beleid kan groeien, en elke euro die niet aan operationele frictie wordt besteed naar de missie kan.
+Title: Drie diensten voor het operationele gezicht. Eén budget terug voor de missie.
+Subtitle: Vermogensbeheer, administratie en governance zijn geen doel op zich. Ze zijn de discipline die ervoor zorgt dat het operationele gezicht van uw stichting met institutionele kwaliteit én tegen minimale kosten draait — zodat het maximum aan middelen, bestuurstijd en aandacht beschikbaar blijft voor de warme kant.
 
 **EN**
 Eyebrow: Our services
-Title: Three services. One responsibility: that your mission gets the attention it deserves.
-Subtitle: Wealth management, administration and governance — delivered as an integrated whole, so the board can govern, the policy can grow, and every euro not spent on operational friction can go to the mission.
+Title: Three services for the operational face. One budget freed up for the mission.
+Subtitle: Wealth management, administration and governance are not ends in themselves. They are the discipline that ensures the operational face of your foundation runs at institutional quality and at minimum cost — so the maximum of resources, board time and attention remains available for the warm side.
 
 Edits / notes:
 _____
@@ -104,10 +116,10 @@ _____
 
 **NL**
 Eyebrow: Een woord van onze oprichter
-Title: Stichtingen verdienen institutionele discipline. Niet institutionele tarifering.
-Intro: Veel stichtingen worden financieel in stukjes beheerd. De vermogensbeheerder kijkt naar de portefeuille. De accountant naar de jaarrekening. Het bestuur naar de governance. De fondsbeheerder naar de subsidies. Allemaal goed, allemaal apart. Wat ontbreekt is een kantoor dat het geheel als één systeem ziet — en daar verantwoordelijkheid voor neemt.
-Body 1: Wij richten dat kantoor in. Een vast team dat uw vermogen beheert, uw administratie voert, uw bestuur ondersteunt en de mensen om uw stichting heen — bank, accountant, notaris, toezichthouder — regisseert. Het bestuur stuurt op de missie. Wij sturen op de structuur eromheen.
-Body 2: En wij doen dat tegen een vaste jaarlijkse vergoeding. Geen percentage van uw vermogen. Geen percentage van uw donaties. Geen verborgen marges in producten. Omdat ons werk niet meeschaalt met de groei van uw vermogen, zou ons tarief dat ook niet moeten doen. Iedere basispunt aan AUM-percentage die uw stichting bespaart, is een basispunt dat naar uw beneficianten kan.
+Title: Het operationele gezicht is niet waar altruïsme woont. Het is waar u minimaliseert.
+Intro: Stichtingen hebben twee gezichten. Het warme gezicht, waar de missie woont — daar moet zoveel mogelijk budget, bestuurstijd en aandacht naartoe. En het operationele gezicht, waar jaarrekeningen, beleggingen, governance, compliance en administratie wonen — dat is geen plek voor uitgaventoegevingen. Het is een plek waar wij maximaal minimaliseren, juist omdat wij geven om wat aan de andere kant kan worden uitgegeven.
+Body 1: Veel stichtingen krijgen die discipline aan het operationele gezicht niet vanzelf. Het werk wordt versnipperd ingekocht — vermogensbeheerder, accountant, notaris, fondsbeheerder, governance-adviseur — en elke leverancier denkt vanuit zijn eigen tariefsysteem. Het resultaat: drie tot vijf rekeningen die jaar in jaar uit groter worden, zonder dat één partij verantwoordelijk is voor het geheel. Wij richten dat anders in. Eén vast team dat het hele operationele gezicht voert — vermogensbeheer, administratie, governance — én het collectieve geheugen van uw stichting houdt op één plek.
+Body 2: En wij doen dat tegen een vaste jaarlijkse vergoeding. Geen percentage van uw vermogen. Geen percentage van uw donaties. Geen verborgen marges in producten. Omdat ons werk niet meeschaalt met de groei van uw vermogen, zou ons tarief dat ook niet moeten doen. Iedere basispunt aan AUM-percentage die uw stichting bespaart, is een basispunt dat naar het warme gezicht kan — naar uw beneficianten, niet naar onze rekening.
 Body 3: Dit soort relatie vraagt om een proces van wederzijdse verkenning. Wij nemen daar graag alle tijd voor die u nodig heeft. Ik nodig uw bestuur van harte uit om met ons te verkennen óf en hoe deze manier van werken bij uw stichting zou passen.
 Signature: Met vriendelijke groet,
 Signature name: Roderik Bolle
@@ -116,10 +128,10 @@ PS: PS: Onze uitnodiging geldt uiteraard ook voor besturen die slechts een secon
 
 **EN**
 Eyebrow: A word from our founder
-Title: Foundations deserve institutional discipline. Not institutional pricing.
-Intro: Many foundations are managed financially in fragments. The asset manager looks at the portfolio. The accountant at the annual statements. The board at governance. The grants officer at subsidies. All competent, all separate. What is missing is one office that sees the whole as a single system — and takes responsibility for it.
-Body 1: We are that office. A permanent team that manages your assets, runs your administration, supports your board and orchestrates the people around your foundation — bank, accountant, notary, regulator. The board steers the mission. We steer the structure around it.
-Body 2: And we do it for a fixed annual fee. No percentage of your assets. No percentage of your donations. No hidden margins in products. Because our work does not scale with the growth of your wealth, our fee should not scale with it either. Every basis point your foundation saves on AUM-based fees is a basis point that can reach your beneficiaries.
+Title: The operational face is not where altruism lives. It is where you minimise.
+Intro: Foundations have two faces. The warm face, where the mission lives — that is where as much budget, board time and attention as possible should go. And the operational face, where annual accounts, investments, governance, compliance and administration live — that is no place for indulgent spending. It is a place to minimise to the maximum, precisely because we care about what can be spent on the other side.
+Body 1: Many foundations do not get that discipline at the operational face for free. The work is procured in fragments — asset manager, accountant, notary, grants administrator, governance adviser — and each supplier reasons from its own fee model. The result: three to five bills that grow year after year, with no single party responsible for the whole. We are organised differently. One permanent team that runs the whole operational face — wealth management, administration, governance — and keeps the collective memory of your foundation in one place.
+Body 2: And we do it for a fixed annual fee. No percentage of your assets. No percentage of your donations. No hidden margins in products. Because our work does not scale with the growth of your wealth, our fee should not scale with it either. Every basis point your foundation saves on AUM-based fees is a basis point that can reach the warm face — your beneficiaries, not our invoice.
 Body 3: This kind of relationship asks for a process of mutual exploration. We are happy to take whatever time you need. I warmly invite your board to explore with us whether, and how, this way of working might suit your foundation.
 Signature: Kind regards,
 Signature name: Roderik Bolle
@@ -136,24 +148,24 @@ _____
 
 **NL**
 Eyebrow: De economische conclusie
-Title: Wij factureren op genomen verantwoordelijkheid. Niet op vermogen.
-Intro: Als u institutioneel denkt over het vermogen van uw stichting, dan denkt u ook institutioneel over kosten. Een tarief dat meeschaalt met de omvang van uw vermogen wordt op een gegeven moment groter dan het werk rechtvaardigt — en groeit door, ook als niets méér voor wordt gedaan. Voor een commerciële cliënt is dat ongelukkig. Voor een stichting is het inhoudelijk verkeerd: elke euro die meegroeit met uw vermogen, is een euro die niet meer naar uw missie kan.
+Title: Wij factureren op genomen verantwoordelijkheid. Niet op uw missiebudget.
+Intro: Het operationele gezicht van uw stichting is geen plek voor altruïsme. Het is een plek waar u kosten minimaliseert, zodat het warme gezicht zoveel mogelijk overhoudt. Een tarief dat meeschaalt met de omvang van uw vermogen werkt in de tegenovergestelde richting: hoe groter uw vermogen, hoe meer middelen u kwijt bent aan het operationele gezicht — terwijl het werk niet evenredig groeit. Voor een commerciële cliënt is dat ongelukkig. Voor een stichting is het inhoudelijk verkeerd: elke euro die meegroeit met uw vermogen, is een euro die niet meer naar uw begunstigden kan.
 Subhead: Een vaste jaarlijkse vergoeding. Geen percentage. Geen uurtarieven. Geen retrocessies.
 Analogy 1: Uw advocaat factureert u niet op een percentage van uw bezittingen.
 Analogy 2: Uw accountant factureert u niet op de omvang van uw balans.
 Analogy 3: Uw notaris factureert u niet op de waarde van uw testament.
-Synthesis: Vermogensbeheer, administratie en governance voor stichtingen zijn — als zij serieus gedaan worden — professionele dienstverlening. Wij behandelen het ook zo.
+Synthesis: Vermogensbeheer, administratie en governance voor stichtingen zijn — als zij serieus gedaan worden — professionele dienstverlening. Wij behandelen het ook zo. Met institutionele discipline én met respect voor het feit dat elke euro op het operationele gezicht een euro is die niet aan het warme gezicht besteed kan worden.
 Read more link: Bekijk de volledige onderbouwing
 
 **EN**
 Eyebrow: The economic conclusion
-Title: We charge for assumed responsibility. Not for assets.
-Intro: If you think institutionally about your foundation's wealth, you also think institutionally about costs. A fee that scales with the size of your assets eventually grows larger than the work justifies — and keeps growing, even if nothing more is done. For a commercial client, that is unfortunate. For a foundation, it is substantively wrong: every euro that scales with your wealth is a euro that no longer reaches your mission.
+Title: We charge for assumed responsibility. Not against your mission budget.
+Intro: The operational face of your foundation is not a place for altruism. It is a place to minimise costs, so that the warm face retains as much as possible. A fee that scales with the size of your assets works in the opposite direction: the larger your wealth, the more resources you lose to the operational face — while the work does not grow proportionally. For a commercial client, that is unfortunate. For a foundation, it is substantively wrong: every euro that scales with your wealth is a euro that no longer reaches your beneficiaries.
 Subhead: A fixed annual fee. No percentage. No hourly rates. No retrocessions.
 Analogy 1: Your lawyer does not bill you a percentage of your holdings.
 Analogy 2: Your accountant does not bill you a percentage of your balance sheet.
 Analogy 3: Your notary does not bill you a percentage of the value of your will.
-Synthesis: Wealth management, administration and governance for foundations — when done seriously — are professional services. We treat them as such.
+Synthesis: Wealth management, administration and governance for foundations — when done seriously — are professional services. We treat them as such. With institutional discipline, and with respect for the fact that every euro on the operational face is a euro that cannot be spent on the warm face.
 Read more link: Read the full argument
 
 Edits / notes:
@@ -173,6 +185,48 @@ Body: In een sector waarin tarieven al decennia meeschalen met vermogen, voelt e
 Eyebrow: An honest footnote
 Title: For some board members, this feels unusual at first.
 Body: In a sector that has scaled fees with assets for decades, a fixed fee can feel suspicious. "Where is the catch?" — almost every first conversation with a board starts there. The answer is simple: there is no catch. There is only a different economic logic, built for foundations rather than around them. And it usually takes just that first conversation to show why.
+
+Edits / notes:
+_____
+
+---
+
+### Collective Memory section (NEW — angle 3)
+*Location: propose new `home.memory.*` keys. Renders as a new home-page section between Friction and Value Props (or wherever the Mijn Orchestra context fits best in scroll order). Bridges the service-narrative into the platform value with the "collective memory" frame.*
+
+**NL**
+Eyebrow: Mijn Orchestra
+Title: Niet een dashboard. Het collectieve geheugen van uw stichting.
+Body: Waar veel financiële dienstverleners eindigen bij een kwartaalrapport, beginnen wij bij het bewaren van wat uw stichting weet. Bestuursnotulen, besluitregisters, subsidie-administratie, beleggingsstatuut, documentkluis, audit trail — al die kennis is geen bijproduct van ons werk. Het is het werk. Wij brengen het samen op één platform en geven het terug aan uw bestuur, uw penningmeester, uw accountant. Een nieuw bestuurslid in 2031 moet kunnen zien wat het bestuur in 2024 heeft besloten — en waarom.
+
+Card 1 title: Fondsenbeheer
+Card 1 body: Aanvragen, beoordelingen, toewijzingen, uitkeringen, impactrapportage — het hele subsidieproces, georkestreerd op één plek met audit-trail per beslissing.
+
+Card 2 title: Bestuursvergaderingen
+Card 2 body: Agendabeheer, notulen, besluiten, actielijsten en autorisaties — bestuurlijk werk dat zichtbaar, terugvindbaar en governance-conform is.
+
+Card 3 title: Documentkluis
+Card 3 body: Statuten, beleggingsstatuut, governance-beleid, jaarrekeningen, correspondentie met toezichthouders — op één plek, met rolgebaseerde toegang en versiebeheer.
+
+Card 4 title: Besluitregister
+Card 4 body: Wie heeft wat besloten, wanneer, op welke gronden? Niet achteraf gereconstrueerd uit e-mails, maar ingebed in het werkproces zelf.
+
+**EN**
+Eyebrow: My Orchestra
+Title: Not a dashboard. The collective memory of your foundation.
+Body: Where many financial service providers end with a quarterly report, we begin with preserving what your foundation knows. Board minutes, decision registers, grant administration, investment policy statement, document vault, audit trail — that knowledge is not a by-product of our work. It is the work. We consolidate it on one platform and hand it back to your board, your treasurer, your accountant. A new board member in 2031 should be able to see what the board decided in 2024 — and why.
+
+Card 1 title: Grant management
+Card 1 body: Applications, assessments, allocations, disbursements, impact reporting — the entire grant process, orchestrated in one place with an audit trail per decision.
+
+Card 2 title: Board meetings
+Card 2 body: Agenda management, minutes, decisions, action lists and authorisations — board work that is visible, traceable, and governance-compliant.
+
+Card 3 title: Document vault
+Card 3 body: Statutes, investment policy statement, governance policy, annual accounts, regulatory correspondence — in one place, with role-based access and version control.
+
+Card 4 title: Decision register
+Card 4 body: Who decided what, when, on what grounds? Not reconstructed afterwards from emails, but embedded in the workflow itself.
 
 Edits / notes:
 _____
@@ -402,17 +456,17 @@ The current "Nooit meer wakker liggen van uw administratie" is good — keep the
 Eyebrow: Administratie
 Title: Nooit meer wakker liggen van uw
 Highlight: administratie.
-Overview title: Nauwgezette financiële administratie, geleverd met institutionele precisie.
-Overview text 1: Van dagelijkse boekhouding en betalingsverwerking tot subsidie-administratie, jaarrekeningen en belastingaangiftes — wij voeren elk aspect van uw financiële administratie met dezelfde precisie waarmee wij beleggingen beheren. Niet als operationeel bijproduct, maar als zelfstandige discipline.
-Overview text 2: Of u nu subsidieprogramma's, een endowment of operationele middelen beheert, ons administratieteam zorgt ervoor dat elke transactie is vastgelegd, elke rapportage tijdig is opgeleverd en aan elke wettelijke vereiste wordt voldaan. Het resultaat is concreet: minder uren van bestuur en penningmeester aan operationele frictie, meer uren aan de missie.
+Overview title: Nauwgezette administratie én het collectieve geheugen van uw stichting.
+Overview text 1: Administratie voor een stichting is geen boekhoudkundige bijzaak. Het is het collectieve geheugen van de organisatie — alles wat het bestuur over vijf, tien of dertig jaar zal moeten kunnen terugvinden: betalingen, donaties, subsidies, beleggingsbeslissingen, bestuursnotulen, autorisaties, jaarrekeningen, fiscale dossiers. Wij voeren dat geheugen met dezelfde institutionele precisie waarmee wij beleggingen beheren. Niet als operationeel bijproduct, maar als zelfstandige discipline.
+Overview text 2: Of u nu subsidieprogramma's, een endowment of operationele middelen beheert, ons administratieteam zorgt ervoor dat elke transactie is vastgelegd, elke rapportage tijdig is opgeleverd, elke wettelijke vereiste is afgedekt — én dat het geheel zichtbaar en terugvindbaar blijft voor wie het later moet kunnen overzien. Het resultaat is concreet: minder uren van bestuur en penningmeester aan operationele frictie, meer uren aan de warme kant van uw stichting.
 
 **EN**
 Eyebrow: Administration
 Title: Never lose sleep over your
 Highlight: administration again.
-Overview title: Meticulous financial administration, delivered with institutional precision.
-Overview text 1: From daily bookkeeping and payment processing to grant administration, annual accounts and tax filings — we run every aspect of your financial administration with the same precision we bring to investments. Not as an operational by-product, but as a discipline in its own right.
-Overview text 2: Whether you manage grant programmes, an endowment or operational funds, our administration team ensures that every transaction is recorded, every report is delivered on time, and every legal requirement is met. The outcome is concrete: fewer board and treasurer hours spent on operational friction, more hours spent on the mission.
+Overview title: Meticulous administration and the collective memory of your foundation.
+Overview text 1: Administration for a foundation is not a bookkeeping afterthought. It is the collective memory of the organisation — everything the board will need to be able to find back five, ten or thirty years from now: payments, donations, grants, investment decisions, board minutes, authorisations, annual accounts, fiscal files. We run that memory with the same institutional precision we bring to investments. Not as an operational by-product, but as a discipline in its own right.
+Overview text 2: Whether you manage grant programmes, an endowment or operational funds, our administration team ensures every transaction is recorded, every report is delivered on time, every legal requirement is covered — and that the whole remains visible and traceable for whoever has to oversee it later. The outcome is concrete: fewer board and treasurer hours spent on operational friction, more hours spent on the warm side of your foundation.
 
 Edits / notes:
 _____
@@ -426,15 +480,15 @@ Current copy is functional. Tighten and lead with the board-experience benefit.
 
 **NL**
 Eyebrow: Digitaal platform
-Title: Mijn Orchestra — één dashboard voor het hele bestuur.
-Text 1: Op Mijn Orchestra ziet uw bestuur op elk moment waar de stichting financieel staat. Geen wachten op kwartaalrapportages, geen e-mails over en weer met de penningmeester. Real-time, geautoriseerd, op één plek.
-Text 2: Bestuursleden zien wat zij moeten zien om te kunnen besturen. De penningmeester ziet wat zij of hij moet zien om zijn rol uit te oefenen. De accountant heeft toegang tot wat de jaarrekening voedt. Rolgebaseerde autorisatie zorgt dat ieders informatiebehoefte is gedekt zonder dat governance-grenzen vervagen.
+Title: Mijn Orchestra — het collectieve geheugen van uw stichting, op één plek.
+Text 1: Mijn Orchestra is geen dashboard. Het is het institutionele brein van uw stichting: alle financiële gegevens, alle bestuursnotulen, alle besluiten, alle subsidie-aanvragen, alle documenten, alle audit trails — op één platform met rolgebaseerde toegang. Wat het bestuur in 2024 besluit, kan een nieuw bestuurslid in 2031 nog terugvinden, mét de gronden waarop het besluit werd genomen.
+Text 2: Bestuursleden zien wat zij moeten zien om te kunnen besturen. De penningmeester ziet wat zij of hij moet zien om zijn rol uit te oefenen. De accountant heeft toegang tot wat de jaarrekening voedt. State-of-the-art tools voor fondsenbeheer, bestuursvergaderingen, documentbeheer en besluitvorming — gebouwd voor het werk dat een stichting werkelijk doet, niet gegeneraliseerd uit corporate software.
 
 **EN**
 Eyebrow: Digital platform
-Title: My Orchestra — one dashboard for the whole board.
-Text 1: On My Orchestra, your board sees at every moment where the foundation stands financially. No waiting for quarterly reports, no emails back and forth with the treasurer. Real-time, authorised, in one place.
-Text 2: Board members see what they need to govern. The treasurer sees what they need to do their role. The accountant has access to what feeds the annual accounts. Role-based authorisation ensures everyone's information need is met without governance boundaries blurring.
+Title: My Orchestra — the collective memory of your foundation, in one place.
+Text 1: My Orchestra is not a dashboard. It is the institutional brain of your foundation: all financial data, all board minutes, all decisions, all grant applications, all documents, all audit trails — on one platform with role-based access. What the board decides in 2024, a new board member in 2031 can still find back, with the grounds on which the decision was made.
+Text 2: Board members see what they need to govern. The treasurer sees what they need to do their role. The accountant has access to what feeds the annual accounts. State-of-the-art tools for grant management, board meetings, document management and decision-making — built for the work a foundation actually does, not generalised from corporate software.
 
 Edits / notes:
 _____
@@ -644,15 +698,15 @@ _____
 
 **NL**
 Eyebrow: Onze missie
-Title: Besturen ontlasten van financiële versnippering, zodat zij kunnen besturen.
-Text 1: Orchestra bestaat om stichtingen en goede doelen te ontlasten van de complexiteit en versnippering van financieel beheer — niet door dat werk te verbergen, maar door het te integreren onder één dak, in één team, onder één verantwoordelijkheid.
-Text 2: Door vermogensbeheer, administratie en governance geïntegreerd aan te bieden tegen een vaste jaarlijkse vergoeding, zorgen wij ervoor dat elke stichting de financiële infrastructuur heeft om met vertrouwen, compliance en — vooral — met de aandacht voor haar eigenlijke missie te opereren.
+Title: Het operationele gezicht voeren, zodat het warme gezicht kan stralen.
+Text 1: Orchestra bestaat omdat een serieuze stichting twee gezichten heeft — een warme, missie-gerichte kant en een operationele, compliance-gerichte kant — en omdat die twee verschillende organisaties verdienen. Wij zijn gebouwd voor het tweede gezicht: het operationele kantoor van uw stichting, geleverd met institutionele discipline en het collectieve geheugen erin gebakken. Het warme gezicht — dat blijft waar het hoort: bij uw bestuur.
+Text 2: Door vermogensbeheer, administratie en governance geïntegreerd aan te bieden tegen een vaste jaarlijkse vergoeding, zorgen wij dat het operationele gezicht van uw stichting tegen minimale kosten draait — zodat het maximum aan middelen, bestuurstijd en aandacht beschikbaar blijft voor de missie die uw stichting heeft opgericht.
 
 **EN**
 Eyebrow: Our mission
-Title: Free boards from financial fragmentation, so they can govern.
-Text 1: Orchestra exists to free foundations and charities from the complexity and fragmentation of financial management — not by hiding that work, but by integrating it under one roof, in one team, under one responsibility.
-Text 2: By delivering wealth management, administration and governance as an integrated whole for a fixed annual fee, we ensure every foundation has the financial infrastructure to operate with confidence, compliance, and — above all — with attention free for its actual mission.
+Title: Run the operational face, so the warm face can shine.
+Text 1: Orchestra exists because a serious foundation has two faces — a warm, mission-facing side and an operational, compliance-facing side — and because those two deserve to be different organisations. We are built for the second face: the operational office of your foundation, delivered with institutional discipline and the collective memory baked in. The warm face — that stays where it belongs: with your board.
+Text 2: By delivering wealth management, administration and governance as an integrated whole for a fixed annual fee, we ensure the operational face of your foundation runs at minimum cost — so the maximum of resources, board time and attention remains available for the mission your foundation was founded to pursue.
 
 Edits / notes:
 _____
@@ -858,7 +912,7 @@ _____
 
 **NL**
 Title: Wat 1% jaarlijkse kosten over vijfentwintig jaar betekent voor uw missie.
-Intro: Een procentpunt aan jaarlijkse kosten lijkt klein. Voor een commerciële belegger is het ongelukkig. Voor een stichting is het inhoudelijk verkeerd: elke euro die jaar in jaar uit aan een AUM-percentage wordt betaald, is een euro die niet aan de missie kan worden besteed. Op een stichtingsvermogen van vijf miljoen euro, bij een verondersteld bruto rendement van zes procent over vijfentwintig jaar, ontstaat het volgende beeld:
+Intro: Het operationele gezicht van uw stichting is geen plek voor altruïsme. Het is een plek waar u kosten minimaliseert, zodat het warme gezicht — uw begunstigden, uw programma's, uw missie — zoveel mogelijk overhoudt. Een procentpunt aan jaarlijkse kosten lijkt klein. Maar kosten zijn een structurele variabele: ze werken cumulatief, jaar in jaar uit, op het hele stichtingsvermogen. Op een stichtingsvermogen van vijf miljoen euro, bij een verondersteld bruto rendement van zes procent over vijfentwintig jaar, ontstaat het volgende beeld — en de laatste kolom toont wat niet meer beschikbaar is voor de warme kant:
 Column 1 header: Tariefmodel
 Column 2 header: Vermogen na 25 jaar
 Column 3 header: Niet beschikbaar voor missie
@@ -870,7 +924,7 @@ Footnote: Indicatieve berekening; werkelijke uitkomsten variëren met markt, in-
 
 **EN**
 Title: What 1% of annual costs over twenty-five years means for your mission.
-Intro: One percentage point in annual costs seems small. For a commercial investor it is unfortunate. For a foundation it is substantively wrong: every euro paid year on year to an AUM percentage is a euro not spent on the mission. On a foundation endowment of five million euros, assuming a gross return of six percent over twenty-five years, the picture looks like this:
+Intro: The operational face of your foundation is not a place for altruism. It is a place to minimise costs, so the warm face — your beneficiaries, your programmes, your mission — retains as much as possible. One percentage point in annual costs seems small. But costs are a structural variable: they compound, year on year, on the entire foundation endowment. On a foundation endowment of five million euros, assuming a gross return of six percent over twenty-five years, the picture looks like this — and the last column shows what is no longer available for the warm side:
 Column 1 header: Fee model
 Column 2 header: Wealth after 25 years
 Column 3 header: Not available for the mission
@@ -983,6 +1037,14 @@ These are structural/code changes the rewrite implies. Listed for awareness so t
 - **About Overview / Team / Methodology / FAQs:** no structural changes; copy + new FAQ entries
 - **NEW page:** `/vaste-vergoeding-stichtingen` (NL) and `/en/fixed-fee-foundations` (EN). Page structure mirrors the private-office FixedFee page: Hero on navy → reused Fee Logic block → Arithmetic block → 6 FAQs → CTA. New route in router, new path mapping in LanguageContext, new footer Legal-column link
 - **Footer Legal column:** add "Vaste vergoeding voor stichtingen" / "Fixed fee for foundations" link as first entry (mirrors private-office footer change)
+
+## Appendix — Three durable positioning principles (do not lose these)
+
+These three framings unify the rewrite and should stay intact through any future copy iteration. Any new copy block on the charity site should pass through all three.
+
+1. **Stichtingen hebben twee gezichten.** Warm (missie) en operationeel (compliance). Beide verdienen aandacht; alleen het eerste verdient maximale uitgaven. Orchestra bedient het tweede.
+2. **Het operationele gezicht is niet waar altruïsme woont.** Het is waar je minimaliseert, zodat het warme gezicht maximaliseert. Iedere euro op operatie is een opportuniteitskost ten opzichte van de missie. Dit is de morele kern van het fixed-fee argument.
+3. **Wij leveren dienstverlening én collectief geheugen.** Mijn Orchestra is niet een dashboard — het is het institutionele brein van uw stichting. Bestuursnotulen, besluitregisters, subsidie-administratie, documentkluis, audit trail, plus state-of-the-art tools voor fondsenbeheer en bestuursvergaderingen. Wat wij ophalen aan kennis over uw stichting, leveren wij terug aan uw bestuur.
 
 ## Appendix — Founder-verify items
 

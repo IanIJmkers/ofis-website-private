@@ -387,7 +387,7 @@ export default function NieuwsArtikel() {
           )}
 
           {/* Mobile/Tablet TOC */}
-          {headings.length >= 3 && (
+          {headings.length >= 1 && (
             <div className="xl:hidden sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-warm-gray-100">
               <div className="max-w-4xl mx-auto px-6">
                 <button
@@ -457,79 +457,103 @@ export default function NieuwsArtikel() {
           <section ref={articleRef} className="bg-white py-16 lg:py-20">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="flex gap-16">
-                {/* Sticky TOC Sidebar — desktop only */}
-                {headings.length >= 3 && (
-                  <aside className="hidden xl:block w-56 shrink-0">
-                    <nav className="sticky top-24">
-                      <p className="text-[10px] font-body font-semibold tracking-wider uppercase text-warm-gray-400 mb-4">
-                        {t("news", "tableOfContents")}
-                      </p>
-                      <ul className="space-y-2 border-l border-warm-gray-200">
-                        {headings.map((h) => (
-                          <li key={h.id}>
-                            <a
-                              href={`#${h.id}`}
-                              className={`block text-sm leading-snug transition-colors duration-200 ${
-                                h.level === 3 ? "pl-6" : "pl-4"
-                              } ${
-                                activeHeading === h.id
-                                  ? "text-gold-700 font-semibold border-l-2 border-gold-700 -ml-px"
-                                  : "text-warm-gray-400 hover:text-navy-700"
-                              }`}
-                            >
-                              {h.text}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-
-                      {/* Share buttons in sidebar */}
-                      <div className="mt-8 pt-6 border-t border-warm-gray-200">
-                        <p className="text-[10px] font-body font-semibold tracking-wider uppercase text-warm-gray-400 mb-3">
-                          {t("news", "shareArticle")}
+                {/* Sticky sidebar — desktop only.
+                    TOC list renders when at least one h2/h3 heading exists.
+                    Share buttons + back-to-news link always render so headless
+                    articles still get a polished sidebar. */}
+                <aside className="hidden xl:block w-56 shrink-0">
+                  <nav className="sticky top-24">
+                    {headings.length >= 1 && (
+                      <>
+                        <p className="text-[10px] font-body font-semibold tracking-wider uppercase text-warm-gray-400 mb-4">
+                          {t("news", "tableOfContents")}
                         </p>
-                        <div className="flex items-center gap-2">
-                          <a
-                            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-8 h-8 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
-                            aria-label={t("news", "shareLinkedIn")}
-                          >
-                            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                            </svg>
-                          </a>
-                          <a
-                            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.title)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-8 h-8 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
-                            aria-label={t("news", "shareX")}
-                          >
-                            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                            </svg>
-                          </a>
-                          <button
-                            onClick={handleCopyLink}
-                            className="relative w-8 h-8 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
-                            aria-label={t("news", "copyLink")}
-                          >
-                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                            </svg>
-                            {copied && (
-                              <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-navy-900 text-white px-2 py-1 rounded whitespace-nowrap">
-                                {t("news", "copied")}
-                              </span>
-                            )}
-                          </button>
-                        </div>
+                        <ul className="space-y-2 border-l border-warm-gray-200">
+                          {headings.map((h) => (
+                            <li key={h.id}>
+                              <a
+                                href={`#${h.id}`}
+                                className={`block text-sm leading-snug transition-colors duration-200 ${
+                                  h.level === 3 ? "pl-6" : "pl-4"
+                                } ${
+                                  activeHeading === h.id
+                                    ? "text-gold-700 font-semibold border-l-2 border-gold-700 -ml-px"
+                                    : "text-warm-gray-400 hover:text-navy-700"
+                                }`}
+                              >
+                                {h.text}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
+
+                    {/* Share buttons in sidebar — always render */}
+                    <div
+                      className={
+                        headings.length >= 1
+                          ? "mt-8 pt-6 border-t border-warm-gray-200"
+                          : ""
+                      }
+                    >
+                      <p className="text-[10px] font-body font-semibold tracking-wider uppercase text-warm-gray-400 mb-3">
+                        {t("news", "shareArticle")}
+                      </p>
+                      <div className="flex items-center gap-2">
+                        <a
+                          href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-8 h-8 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
+                          aria-label={t("news", "shareLinkedIn")}
+                        >
+                          <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                          </svg>
+                        </a>
+                        <a
+                          href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.title)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-8 h-8 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
+                          aria-label={t("news", "shareX")}
+                        >
+                          <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                          </svg>
+                        </a>
+                        <button
+                          onClick={handleCopyLink}
+                          className="relative w-8 h-8 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
+                          aria-label={t("news", "copyLink")}
+                        >
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                          </svg>
+                          {copied && (
+                            <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-navy-900 text-white px-2 py-1 rounded whitespace-nowrap">
+                              {t("news", "copied")}
+                            </span>
+                          )}
+                        </button>
                       </div>
-                    </nav>
-                  </aside>
-                )}
+                    </div>
+
+                    {/* Back-to-news link in sidebar — always render */}
+                    <div className="mt-8 pt-6 border-t border-warm-gray-200">
+                      <Link
+                        to="/nieuws-opinie"
+                        className="inline-flex items-center gap-2 text-xs font-body font-semibold tracking-wider uppercase text-warm-gray-500 hover:text-gold-700 transition-colors"
+                      >
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                        {t("news", "backToNews")}
+                      </Link>
+                    </div>
+                  </nav>
+                </aside>
 
                 {/* Article Content — Section Cards */}
                 <div className="min-w-0 grow max-w-3xl mx-auto">
