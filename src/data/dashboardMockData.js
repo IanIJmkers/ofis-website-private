@@ -262,7 +262,7 @@ export const documentenData = [
   { id: 623, naam: "Beleidsplan_2025.pdf", grootte: "984074", gewijzigd: "2025-09-05 08:28", aangemaakt: "2025-09-05 08:28", labels: ["2024", "beleidsplan"] },
   { id: 622, naam: "Uittreksel_KvK.pdf", grootte: "208990", gewijzigd: "2025-09-02 13:38", aangemaakt: "2025-09-02 13:38", labels: [] },
   { id: 577, naam: "Overzicht_Donaties.pdf", grootte: "111131", gewijzigd: "2025-01-02 15:22", aangemaakt: "2025-01-02 15:22", labels: ["Facturen"] },
-  { id: 572, naam: "Mijn_Orchestra_Handleiding.pdf", grootte: "326979", gewijzigd: "2024-11-18 14:09", aangemaakt: "2024-11-18 14:09", labels: [] },
+  { id: 572, naam: "MyOrchestra_Handleiding.pdf", grootte: "326979", gewijzigd: "2024-11-18 14:09", aangemaakt: "2024-11-18 14:09", labels: [] },
 ];
 
 /* ─── Organizer: Meeting view ─── */
