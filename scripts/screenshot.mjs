@@ -12,7 +12,7 @@ const pages = [
   { slug: "05-nieuws-opinie", path: "/nieuws-opinie" },
   { slug: "06-contact", path: "/contact" },
   { slug: "07-vaste-vergoeding", path: "/vaste-vergoeding" },
-  { slug: "08-mijn-orchestra", path: "/mijn-orchestra" },
+  { slug: "08-myorchestra", path: "/myorchestra" },
 ];
 
 const langs = process.env.LANGS ? process.env.LANGS.split(",") : ["nl", "en"];

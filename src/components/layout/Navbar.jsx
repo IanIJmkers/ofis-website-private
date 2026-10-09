@@ -116,7 +116,7 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-4">
               <LanguageToggle transparent={useTransparent} />
               <Link
-                to="/mijn-orchestra"
+                to="/myorchestra"
                 className="px-5 py-2.5 bg-gold-700 rounded-md hover:bg-gold-600 transition-colors duration-200 flex items-center"
               >
                 <img

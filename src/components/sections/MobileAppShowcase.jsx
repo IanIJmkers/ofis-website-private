@@ -118,7 +118,7 @@ export default function MobileAppShowcase() {
           <div className="flex justify-center lg:justify-end">
             <img
               src={appMock}
-              alt="My Orchestra app"
+              alt="MyOrchestra app"
               className="w-full"
             />
           </div>

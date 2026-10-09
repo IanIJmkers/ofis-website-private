@@ -8,7 +8,7 @@ const data = {
     },
     {
       quote:
-        "De transitie naar Orchestra verliep uiterst soepel. Ons gehele vermogen wordt nu beheerst vanuit één punt, met volledig inzicht via Mijn Orchestra.",
+        "De transitie naar Orchestra verliep uiterst soepel. Ons gehele vermogen wordt nu beheerst vanuit één punt, met volledig inzicht via MyOrchestra.",
       name: "Particulier",
       organization: "Vermogensbeheer cliënt",
     },
@@ -34,7 +34,7 @@ const data = {
     },
     {
       quote:
-        "The transition to Orchestra went extremely smoothly. Our entire wealth is now controlled from one point, with full insight via My Orchestra.",
+        "The transition to Orchestra went extremely smoothly. Our entire wealth is now controlled from one point, with full insight via MyOrchestra.",
       name: "Individual",
       organization: "Wealth management client",
     },

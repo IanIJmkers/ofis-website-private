@@ -1,5 +1,6 @@
 {
   "redirects": [
+    { "source": "/mijn-orchestra", "destination": "/myorchestra", "permanent": true },
     { "source": "/en/:path*", "destination": "/:path*", "permanent": true },
     { "source": "/nl/:path*", "destination": "/:path*", "permanent": true }
   ],

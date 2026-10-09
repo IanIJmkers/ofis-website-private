@@ -28,7 +28,7 @@ const data = {
       number: 5,
       title: "Het Inzicht",
       description:
-        "Via Mijn Orchestra heeft u 24/7 toegang tot uw volledige vermogensoverzicht. Geïntegreerd inzicht, controle en transparantie.",
+        "Via MyOrchestra heeft u 24/7 toegang tot uw volledige vermogensoverzicht. Geïntegreerd inzicht, controle en transparantie.",
     },
   ],
   en: [
@@ -60,7 +60,7 @@ const data = {
       number: 5,
       title: "The Insight",
       description:
-        "Via My Orchestra you have 24/7 access to your complete wealth overview. Integrated insight, control and transparency.",
+        "Via MyOrchestra you have 24/7 access to your complete wealth overview. Integrated insight, control and transparency.",
     },
   ],
 };

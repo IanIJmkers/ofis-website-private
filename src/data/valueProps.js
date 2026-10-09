@@ -19,9 +19,9 @@ const data = {
       icon: "onestop",
     },
     {
-      title: "Mijn Orchestra",
+      title: "MyOrchestra",
       description:
-        "24/7 wereldwijd online toegang tot uw volledige vermogensoverzicht via het Mijn Orchestra platform. Geïntegreerd overzicht, controle en transparantie.",
+        "24/7 wereldwijd online toegang tot uw volledige vermogensoverzicht via het MyOrchestra platform. Geïntegreerd overzicht, controle en transparantie.",
       icon: "oversight",
     },
     {
@@ -51,9 +51,9 @@ const data = {
       icon: "onestop",
     },
     {
-      title: "My Orchestra",
+      title: "MyOrchestra",
       description:
-        "24/7 worldwide online access to your complete wealth overview via the My Orchestra platform. Integrated oversight, control and transparency.",
+        "24/7 worldwide online access to your complete wealth overview via the MyOrchestra platform. Integrated oversight, control and transparency.",
       icon: "oversight",
     },
     {

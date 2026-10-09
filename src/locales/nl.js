@@ -1,12 +1,12 @@
 export default {
-  mijnOrchestra: {
-    heroEyebrow: "Mijn Orchestra",
+  myOrchestra: {
+    heroEyebrow: "MyOrchestra",
     heroTitle: "Uw kantoor online",
-    heroDescription: "Mijn Orchestra is het centrale platform waar iedereen die betrokken is bij uw organisatie kan inloggen en de status van de organisatie kan volgen. Dagelijks bijgewerkt, met duidelijke taaktoewijzingen en volledige transparantie.",
-    heroLoginCta: "Inloggen op Mijn Orchestra",
+    heroDescription: "MyOrchestra is het centrale platform waar iedereen die betrokken is bij uw organisatie kan inloggen en de status van de organisatie kan volgen. Dagelijks bijgewerkt, met duidelijke taaktoewijzingen en volledige transparantie.",
+    heroLoginCta: "Inloggen op MyOrchestra",
     overviewEyebrow: "Het Platform",
     overviewTitle: "Alles op \u00e9\u00e9n plek",
-    overviewSubtitle: "Geen aparte bestandsopslag, CRM-systemen of projectmanagementtools meer nodig. Mijn Orchestra consolideert al uw diensten in \u00e9\u00e9n overzichtelijk platform.",
+    overviewSubtitle: "Geen aparte bestandsopslag, CRM-systemen of projectmanagementtools meer nodig. MyOrchestra consolideert al uw diensten in \u00e9\u00e9n overzichtelijk platform.",
     feature1Title: "Real-time Dashboard",
     feature1Desc: "Bekijk uw volledige financi\u00eble positie in \u00e9\u00e9n oogopslag, real-time bijgewerkt met de laatste transacties en ontwikkelingen.",
     feature2Title: "Documentkluis",
@@ -18,13 +18,13 @@ export default {
     dashboardHint: "Klik op de modules om te interacteren",
     dashboardEyebrow: "Interactief Platform",
     dashboardTitle: "E\u00e9n overzicht, volledige controle",
-    dashboardSubtitle: "Het Mijn Orchestra platform biedt u een intu\u00eftief dashboard met modules voor boekhouding, bankzaken, facturatie, portefeuille en meer.",
+    dashboardSubtitle: "Het MyOrchestra platform biedt u een intu\u00eftief dashboard met modules voor boekhouding, bankzaken, facturatie, portefeuille en meer.",
     ctaTitle: "Klaar om in te loggen?",
-    ctaSubtitle: "Log in op Mijn Orchestra voor direct toegang tot uw financi\u00eble overzicht, documenten en rapportages.",
+    ctaSubtitle: "Log in op MyOrchestra voor direct toegang tot uw financi\u00eble overzicht, documenten en rapportages.",
   },
   titles: {
     home: "Home",
-    mijnOrchestra: "Mijn Orchestra",
+    myOrchestra: "MyOrchestra",
     deEssentie: "De Essentie",
     uwPrivateOffice: "Uw Private Office",
     overOns: "Over Ons",
@@ -41,7 +41,7 @@ export default {
     overOns: "Over Ons",
     nieuwsOpinie: "Nieuws & Opinie",
     contact: "Contact",
-    mijnOrchestra: "Mijn Orchestra",
+    myOrchestra: "MyOrchestra",
     overview: "Overzicht",
   },
 
@@ -56,7 +56,7 @@ export default {
 
     statsFoundedLabel: "Opgericht",
     statsSpecialistsLabel: "Specialisten",
-    statsMijnOrchestraLabel: "Mijn Orchestra",
+    statsMyOrchestraLabel: "MyOrchestra",
     statsRegulatorsLabel: "Toezichthouders",
 
     valuePropEyebrow: "Waarom Orchestra",
@@ -77,7 +77,7 @@ export default {
     trustBadgesLabel: "Gereguleerd en onder toezicht van",
 
     appEyebrow: "Altijd en overal toegang",
-    appTitle: "My Orchestra App",
+    appTitle: "MyOrchestra App",
     appDescription:
       "Bekijk uw portefeuille, ontvang persoonlijke rapportages en blijf op de hoogte van de laatste ontwikkelingen — direct vanaf uw telefoon.",
     appFeature1: "Portefeuille inzicht",
@@ -211,7 +211,7 @@ export default {
     storyP1:
       "Vermogensbeheer omvat veel meer dan de beurs alleen. Het verschil tussen beheerd vermogen en beheerst vermogen is wezenlijk. Orchestra Private biedt persoonlijke begeleiding bij onverwachte levensgebeurtenissen, maar ook lange termijn planning.",
     storyP2:
-      "Wij helpen bij het oprichten van familiefondsen, de overdracht van familievermogen en bieden via ons platform Mijn Orchestra geïntegreerd overzicht, controle en transparantie over uw bezit.",
+      "Wij helpen bij het oprichten van familiefondsen, de overdracht van familievermogen en bieden via ons platform MyOrchestra geïntegreerd overzicht, controle en transparantie over uw bezit.",
     storyP3:
       "Vandaag de dag werken meer dan 25 specialisten bij Orchestra, waaronder portfoliomanagers, registeraccountants, administratieve controllers en toegewijde vertrouwde adviseurs.",
 

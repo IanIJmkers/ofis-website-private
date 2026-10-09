@@ -1149,7 +1149,7 @@ function DashboardMockup() {
         <svg className="w-5 h-5 text-warm-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
         </svg>
-        <span className="text-sm text-warm-gray-400 tracking-wide">{t("mijnOrchestra", "dashboardHint")}</span>
+        <span className="text-sm text-warm-gray-400 tracking-wide">{t("myOrchestra", "dashboardHint")}</span>
         <motion.svg
           className="w-4 h-4 text-warm-gray-400"
           fill="none"
@@ -1177,7 +1177,7 @@ function DashboardMockup() {
             {/* Active tab */}
             <div className="flex items-center gap-2 bg-white rounded-t-lg px-4 py-1.5 max-w-48 min-w-0">
               <svg className="w-3.5 h-3.5 shrink-0 text-gold-600" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="7" /></svg>
-              <span className="text-[11px] text-warm-gray-600 truncate">Mijn Orchestra</span>
+              <span className="text-[11px] text-warm-gray-600 truncate">MyOrchestra</span>
               <svg className="w-3 h-3 shrink-0 text-warm-gray-400" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 3l6 6M9 3l-6 6" /></svg>
             </div>
             {/* New tab button */}
@@ -1268,14 +1268,14 @@ function DashboardMockup() {
 }
 
 /* ─── Page Component ─── */
-export default function MijnOrchestra() {
+export default function MyOrchestra() {
   const { t } = useLanguage();
 
   const features = [
-    { icon: featureIcons[0], title: t("mijnOrchestra", "feature1Title"), description: t("mijnOrchestra", "feature1Desc") },
-    { icon: featureIcons[1], title: t("mijnOrchestra", "feature2Title"), description: t("mijnOrchestra", "feature2Desc") },
-    { icon: featureIcons[2], title: t("mijnOrchestra", "feature3Title"), description: t("mijnOrchestra", "feature3Desc") },
-    { icon: featureIcons[3], title: t("mijnOrchestra", "feature4Title"), description: t("mijnOrchestra", "feature4Desc") },
+    { icon: featureIcons[0], title: t("myOrchestra", "feature1Title"), description: t("myOrchestra", "feature1Desc") },
+    { icon: featureIcons[1], title: t("myOrchestra", "feature2Title"), description: t("myOrchestra", "feature2Desc") },
+    { icon: featureIcons[2], title: t("myOrchestra", "feature3Title"), description: t("myOrchestra", "feature3Desc") },
+    { icon: featureIcons[3], title: t("myOrchestra", "feature4Title"), description: t("myOrchestra", "feature4Desc") },
   ];
 
   return (
@@ -1296,7 +1296,7 @@ export default function MijnOrchestra() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="inline-block text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-6"
             >
-              {t("mijnOrchestra", "heroEyebrow")}
+              {t("myOrchestra", "heroEyebrow")}
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -1304,7 +1304,7 @@ export default function MijnOrchestra() {
               transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
               className="text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-6"
             >
-              {t("mijnOrchestra", "heroTitle")}
+              {t("myOrchestra", "heroTitle")}
             </motion.h1>
             <motion.div
               initial={{ opacity: 0, scaleX: 0 }}
@@ -1318,7 +1318,7 @@ export default function MijnOrchestra() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="text-lg lg:text-xl text-navy-200 leading-relaxed max-w-2xl mb-10"
             >
-              {t("mijnOrchestra", "heroDescription")}
+              {t("myOrchestra", "heroDescription")}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1326,7 +1326,7 @@ export default function MijnOrchestra() {
               transition={{ duration: 0.5, delay: 0.6 }}
             >
               <Button href={OFIS_URL} external variant="primary" size="lg">
-                {t("mijnOrchestra", "heroLoginCta")}
+                {t("myOrchestra", "heroLoginCta")}
               </Button>
             </motion.div>
           </div>
@@ -1336,9 +1336,9 @@ export default function MijnOrchestra() {
       {/* Platform overview */}
       <SectionWrapper bg="cream" size="lg">
         <SectionHeading
-          eyebrow={t("mijnOrchestra", "overviewEyebrow")}
-          title={t("mijnOrchestra", "overviewTitle")}
-          subtitle={t("mijnOrchestra", "overviewSubtitle")}
+          eyebrow={t("myOrchestra", "overviewEyebrow")}
+          title={t("myOrchestra", "overviewTitle")}
+          subtitle={t("myOrchestra", "overviewSubtitle")}
         />
 
         <StaggerChildren className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -1357,9 +1357,9 @@ export default function MijnOrchestra() {
       {/* Interactive dashboard */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow={t("mijnOrchestra", "dashboardEyebrow")}
-          title={t("mijnOrchestra", "dashboardTitle")}
-          subtitle={t("mijnOrchestra", "dashboardSubtitle")}
+          eyebrow={t("myOrchestra", "dashboardEyebrow")}
+          title={t("myOrchestra", "dashboardTitle")}
+          subtitle={t("myOrchestra", "dashboardSubtitle")}
         />
 
         <AnimatedSection className="mt-16" delay={0.2}>
@@ -1371,14 +1371,14 @@ export default function MijnOrchestra() {
       <SectionWrapper bg="navy">
         <AnimatedSection className="text-center max-w-2xl mx-auto">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading text-white mb-6">
-            {t("mijnOrchestra", "ctaTitle")}
+            {t("myOrchestra", "ctaTitle")}
           </h2>
           <p className="text-lg text-navy-200 mb-10">
-            {t("mijnOrchestra", "ctaSubtitle")}
+            {t("myOrchestra", "ctaSubtitle")}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Button href={OFIS_URL} external variant="primary" size="lg">
-              {t("mijnOrchestra", "heroLoginCta")}
+              {t("myOrchestra", "heroLoginCta")}
             </Button>
             <Button href="/contact" variant="outline-light" size="lg">
               {t("common", "contactUs")}

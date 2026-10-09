@@ -1,12 +1,12 @@
 export default {
-  mijnOrchestra: {
-    heroEyebrow: "My Orchestra",
+  myOrchestra: {
+    heroEyebrow: "MyOrchestra",
     heroTitle: "Your office online",
-    heroDescription: "My Orchestra is the central platform where everyone involved in your organisation can log in and monitor the organisation's status. Updated daily, with clear task assignments and full transparency.",
-    heroLoginCta: "Log in to My Orchestra",
+    heroDescription: "MyOrchestra is the central platform where everyone involved in your organisation can log in and monitor the organisation's status. Updated daily, with clear task assignments and full transparency.",
+    heroLoginCta: "Log in to MyOrchestra",
     overviewEyebrow: "The Platform",
     overviewTitle: "Everything in one place",
-    overviewSubtitle: "No more need for separate file storage, CRM systems or project management tools. My Orchestra consolidates all your services in one clear platform.",
+    overviewSubtitle: "No more need for separate file storage, CRM systems or project management tools. MyOrchestra consolidates all your services in one clear platform.",
     feature1Title: "Real-time Dashboard",
     feature1Desc: "View your complete financial position at a glance, updated in real time with the latest transactions and developments.",
     feature2Title: "Document Vault",
@@ -18,13 +18,13 @@ export default {
     dashboardHint: "Click on the modules to interact",
     dashboardEyebrow: "Interactive Platform",
     dashboardTitle: "One overview, full control",
-    dashboardSubtitle: "The My Orchestra platform provides you with an intuitive dashboard with modules for accounting, banking, invoicing, portfolio and more.",
+    dashboardSubtitle: "The MyOrchestra platform provides you with an intuitive dashboard with modules for accounting, banking, invoicing, portfolio and more.",
     ctaTitle: "Ready to log in?",
-    ctaSubtitle: "Log in to My Orchestra for immediate access to your financial overview, documents and reports.",
+    ctaSubtitle: "Log in to MyOrchestra for immediate access to your financial overview, documents and reports.",
   },
   titles: {
     home: "Home",
-    mijnOrchestra: "My Orchestra",
+    myOrchestra: "MyOrchestra",
     deEssentie: "The Essence",
     uwPrivateOffice: "Your Private Office",
     overOns: "About Us",
@@ -41,7 +41,7 @@ export default {
     overOns: "About Us",
     nieuwsOpinie: "News & Opinion",
     contact: "Contact",
-    mijnOrchestra: "My Orchestra",
+    myOrchestra: "MyOrchestra",
     overview: "Overview",
   },
 
@@ -56,7 +56,7 @@ export default {
 
     statsFoundedLabel: "Founded",
     statsSpecialistsLabel: "Specialists",
-    statsMijnOrchestraLabel: "My Orchestra",
+    statsMyOrchestraLabel: "MyOrchestra",
     statsRegulatorsLabel: "Regulators",
 
     valuePropEyebrow: "Why Orchestra",
@@ -77,7 +77,7 @@ export default {
     trustBadgesLabel: "Regulated and supervised by",
 
     appEyebrow: "Access anytime, anywhere",
-    appTitle: "My Orchestra App",
+    appTitle: "MyOrchestra App",
     appDescription:
       "View your portfolio, receive personal reports and stay informed of the latest developments — directly from your phone.",
     appFeature1: "Portfolio insight",
@@ -212,7 +212,7 @@ export default {
     storyP1:
       "Wealth management encompasses much more than the stock market alone. The difference between managed wealth and controlled wealth is fundamental. Orchestra Private offers personal guidance during unexpected life events, as well as long-term planning.",
     storyP2:
-      "We help with establishing family funds, the transfer of family wealth and offer integrated oversight, control and transparency over your assets through our My Orchestra platform.",
+      "We help with establishing family funds, the transfer of family wealth and offer integrated oversight, control and transparency over your assets through our MyOrchestra platform.",
     storyP3:
       "Today, more than 25 specialists work at Orchestra, including portfolio managers, chartered accountants, administrative controllers and dedicated trusted advisors.",
 

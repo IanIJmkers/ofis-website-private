@@ -8,7 +8,7 @@ export default function StatsBar() {
   const stats = [
     { value: 2012, suffix: "", label: t("home", "statsFoundedLabel"), isYear: true },
     { value: 25, suffix: "+", label: t("home", "statsSpecialistsLabel") },
-    { label: "24/7", sublabel: t("home", "statsMijnOrchestraLabel"), isText: true },
+    { label: "24/7", sublabel: t("home", "statsMyOrchestraLabel"), isText: true },
     { value: 5, suffix: "", label: t("home", "statsRegulatorsLabel") },
   ];
 

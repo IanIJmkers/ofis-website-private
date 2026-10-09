@@ -143,10 +143,10 @@ export default function MobileMenu({ open, onClose }) {
                 </div>
               ))}
 
-              {/* My Orchestra CTA */}
+              {/* MyOrchestra CTA */}
               <div className="mt-8">
                 <Link
-                  to="/mijn-orchestra"
+                  to="/myorchestra"
                   onClick={onClose}
                   className="flex items-center justify-center px-6 py-3 bg-gold-700 rounded-md hover:bg-gold-600 transition-colors"
                 >

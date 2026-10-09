@@ -16,7 +16,7 @@ Three principles unify everything that follows. They sharpen — they do not rep
 
 1. **Stichtingen hebben twee gezichten.** Aan de ene kant is er de warme, dienende organisatie die geld inzamelt of besteedt aan goede doelen — de missie. Aan de andere kant is er de noodzakelijke operationele organisatie die compliance, governance, administratie en jaarverslaggeving regelt — alleen om de eerste organisatie te mogen zijn. Die twee gezichten zijn conceptueel verschillend. De sector behandelt ze vaak alsof het hetzelfde is. Dat is een denkfout.
 2. **Het operationele gezicht is niet waar altruïsme woont.** Het is waar je zo min mogelijk uitgeeft, zodat het maximale budget naar de missie kan. Er is geen deugd in een dure operatie; er is alleen opportuniteitskost ten opzichte van het goede doel.
-3. **Wij leveren dienstverlening én collectief geheugen.** Mijn Orchestra is geen dashboard. Het is het institutionele brein van uw stichting: bestuursnotulen, besluitregisters, subsidie-administratie, documentkluis, audit trail — plus state-of-the-art tools voor het beheren van fondsen, bestuursvergaderingen, en alles wat operationele uitmuntendheid vereist. Wat wij ophalen aan kennis over uw stichting, leveren wij terug aan uw bestuur — niet aan ons archief.
+3. **Wij leveren dienstverlening én collectief geheugen.** MyOrchestra is geen dashboard. Het is het institutionele brein van uw stichting: bestuursnotulen, besluitregisters, subsidie-administratie, documentkluis, audit trail — plus state-of-the-art tools voor het beheren van fondsen, bestuursvergaderingen, en alles wat operationele uitmuntendheid vereist. Wat wij ophalen aan kennis over uw stichting, leveren wij terug aan uw bestuur — niet aan ons archief.
 
 Het fixed-fee argument was er al; framing 2 maakt het moreel verankerd in plaats van louter economisch. De Charity Office-claim was er al; framings 1 en 3 geven die vorm en specificiteit.
 
@@ -192,10 +192,10 @@ _____
 ---
 
 ### Collective Memory section (NEW — angle 3)
-*Location: propose new `home.memory.*` keys. Renders as a new home-page section between Friction and Value Props (or wherever the Mijn Orchestra context fits best in scroll order). Bridges the service-narrative into the platform value with the "collective memory" frame.*
+*Location: propose new `home.memory.*` keys. Renders as a new home-page section between Friction and Value Props (or wherever the MyOrchestra context fits best in scroll order). Bridges the service-narrative into the platform value with the "collective memory" frame.*
 
 **NL**
-Eyebrow: Mijn Orchestra
+Eyebrow: MyOrchestra
 Title: Niet een dashboard. Het collectieve geheugen van uw stichting.
 Body: Waar veel financiële dienstverleners eindigen bij een kwartaalrapport, beginnen wij bij het bewaren van wat uw stichting weet. Bestuursnotulen, besluitregisters, subsidie-administratie, beleggingsstatuut, documentkluis, audit trail — al die kennis is geen bijproduct van ons werk. Het is het werk. Wij brengen het samen op één platform en geven het terug aan uw bestuur, uw penningmeester, uw accountant. Een nieuw bestuurslid in 2031 moet kunnen zien wat het bestuur in 2024 heeft besloten — en waarom.
 
@@ -212,7 +212,7 @@ Card 4 title: Besluitregister
 Card 4 body: Wie heeft wat besloten, wanneer, op welke gronden? Niet achteraf gereconstrueerd uit e-mails, maar ingebed in het werkproces zelf.
 
 **EN**
-Eyebrow: My Orchestra
+Eyebrow: MyOrchestra
 Title: Not a dashboard. The collective memory of your foundation.
 Body: Where many financial service providers end with a quarterly report, we begin with preserving what your foundation knows. Board minutes, decision registers, grant administration, investment policy statement, document vault, audit trail — that knowledge is not a by-product of our work. It is the work. We consolidate it on one platform and hand it back to your board, your treasurer, your accountant. A new board member in 2031 should be able to see what the board decided in 2024 — and why.
 
@@ -243,14 +243,14 @@ Current order: De Specialist · Transparante Tarieven · Altijd Compliant · One
 2. **Tarief op Verantwoordelijkheid** — Eén vaste jaarlijkse vergoeding. Geen percentages, geen retrocessies, geen verrassingen. Elke basispunt die u bespaart, gaat naar uw missie.
 3. **Institutioneel Toezicht** — Vermogensbeheer met institutionele discipline, governance volgens het meer-ogen-principe, administratie met audit-trail. De rigor van een groot kantoor, geleverd aan de schaal van uw stichting.
 4. **One-Stop Office** — Vermogensbeheer, administratie en governance onder één dak. Geen versnipperde dienstverleners om te coördineren — wij voeren de regie.
-5. **Mijn Orchestra** — Real-time online toegang tot uw volledige financiële positie, voor bestuur, penningmeester en geautoriseerde belanghebbenden. Altijd actueel, altijd inzichtelijk.
+5. **MyOrchestra** — Real-time online toegang tot uw volledige financiële positie, voor bestuur, penningmeester en geautoriseerde belanghebbenden. Altijd actueel, altijd inzichtelijk.
 
 **EN (proposed in new order)**
 1. **The Specialist** — We work exclusively with foundations and charities. No private banking on the side, no corporate clients on the side. One audience, one economic logic, one way of working.
 2. **Fee on Responsibility** — One fixed annual fee. No percentages, no retrocessions, no surprises. Every basis point you save reaches your mission.
 3. **Institutional Oversight** — Wealth management with institutional discipline, governance under the four-eyes principle, administration with full audit trail. The rigour of a large firm, delivered at the scale of your foundation.
 4. **One-Stop Office** — Wealth management, administration and governance under one roof. No fragmented providers to coordinate — we hold the stewardship.
-5. **My Orchestra** — Real-time online access to your full financial position, for board, treasurer and authorised stakeholders. Always current, always visible.
+5. **MyOrchestra** — Real-time online access to your full financial position, for board, treasurer and authorised stakeholders. Always current, always visible.
 
 Edits / notes:
 _____
@@ -357,13 +357,13 @@ Currently four items: Werkelijk Onafhankelijk · Vast Jaarlijks Tarief · Digita
 **NL**
 Item 1: **Werkelijk onafhankelijk** — Geen banden met banken, brokers, vermogensbeheerders of accountantskantoren. Geen retrocessies. Geen productverkoop. Het belang van uw stichting is het enige belang dat ons werk stuurt.
 Item 2: **Tarief op verantwoordelijkheid** — Eén vaste jaarlijkse vergoeding, vooraf afgesproken, alleen voor inflatie aangepast. Geen vermogensafhankelijke kosten. Elke basispunt die uw stichting bespaart is een basispunt dat naar uw missie kan.
-Item 3: **Mijn Orchestra** — Eén platform voor het hele bestuur. Real-time inzicht in portefeuille, donatiestromen, jaarrekening en governance-documenten. Geautoriseerde toegang voor bestuursleden, penningmeester en accountant.
+Item 3: **MyOrchestra** — Eén platform voor het hele bestuur. Real-time inzicht in portefeuille, donatiestromen, jaarrekening en governance-documenten. Geautoriseerde toegang voor bestuursleden, penningmeester en accountant.
 Item 4: **Volledige compliance** — Gereguleerd door DNB en AFM. ANBI- en CBF-frameworks volledig ingebed in onze processen. Wat de toezichthouder vereist, doen wij standaard — niet als project.
 
 **EN**
 Item 1: **Truly independent** — No ties to banks, brokers, asset managers or accountancy firms. No retrocessions. No product sales. The interest of your foundation is the only interest that shapes our work.
 Item 2: **Fee on responsibility** — One fixed annual fee, agreed in advance, adjusted only for inflation. No asset-based charges. Every basis point your foundation saves is a basis point that reaches your mission.
-Item 3: **My Orchestra** — One platform for the whole board. Real-time insight into portfolio, donation flows, annual accounts and governance documents. Authorised access for board members, treasurer and accountant.
+Item 3: **MyOrchestra** — One platform for the whole board. Real-time insight into portfolio, donation flows, annual accounts and governance documents. Authorised access for board members, treasurer and accountant.
 Item 4: **Full compliance** — Regulated by DNB and AFM. ANBI and CBF frameworks fully embedded in our processes. What the regulator requires, we deliver by default — not as a project.
 
 Edits / notes:
@@ -433,12 +433,12 @@ Light rewrites — the three-step framing (Strategische Beoordeling · Portefeui
 **NL**
 Step 1 — Strategische beoordeling: Wij beginnen bij de werkelijkheid van uw stichting: missie, verplichtingen, uitkeringsbeleid, risicotolerantie, tijdshorizon. Daaruit ontstaat een schriftelijk beleggingsstatuut — niet een beleggingsvoorstel. Het statuut bepaalt het werk; het werk levert het statuut uit.
 Step 2 — Portefeuilleconstructie: Op basis van het statuut bouwen wij een portefeuille uit institutionele bouwstenen — passieve en actieve mandaten, treasury, liquiditeit. Kosten als structurele variabele. Geen retrocessies; transparante kostenrapportage op iedere positie.
-Step 3 — Doorlopend toezicht: Maandelijkse integrale rapportage aan het bestuur. Periodieke herbalancering binnen het statuut. Jaarlijkse heroverweging tegen veranderde verplichtingen of doelstellingen. Vier-ogen-principe op iedere transactie. Alle rapportage real-time inzichtelijk op Mijn Orchestra.
+Step 3 — Doorlopend toezicht: Maandelijkse integrale rapportage aan het bestuur. Periodieke herbalancering binnen het statuut. Jaarlijkse heroverweging tegen veranderde verplichtingen of doelstellingen. Vier-ogen-principe op iedere transactie. Alle rapportage real-time inzichtelijk op MyOrchestra.
 
 **EN**
 Step 1 — Strategic assessment: We begin with the reality of your foundation: mission, liabilities, distribution policy, risk tolerance, time horizon. From this emerges a written investment policy statement — not an investment proposal. The statement governs the work; the work delivers against the statement.
 Step 2 — Portfolio construction: Based on the statement we build a portfolio from institutional building blocks — passive and active mandates, treasury, liquidity. Costs as a structural variable. No retrocessions; transparent cost reporting on every position.
-Step 3 — Ongoing oversight: Monthly integral reporting to the board. Periodic rebalancing within the statement. Annual review against changed liabilities or objectives. Four-eyes principle on every transaction. All reporting available in real time on My Orchestra.
+Step 3 — Ongoing oversight: Monthly integral reporting to the board. Periodic rebalancing within the statement. Annual review against changed liabilities or objectives. Four-eyes principle on every transaction. All reporting available in real time on MyOrchestra.
 
 Edits / notes:
 _____
@@ -473,21 +473,21 @@ _____
 
 ---
 
-### Platform section (Mijn Orchestra on Admin page)
+### Platform section (MyOrchestra on Admin page)
 *Location: `src/locales/{nl,en}.js` → `serviceAdmin.platform*`*
 
 Current copy is functional. Tighten and lead with the board-experience benefit.
 
 **NL**
 Eyebrow: Digitaal platform
-Title: Mijn Orchestra — het collectieve geheugen van uw stichting, op één plek.
-Text 1: Mijn Orchestra is geen dashboard. Het is het institutionele brein van uw stichting: alle financiële gegevens, alle bestuursnotulen, alle besluiten, alle subsidie-aanvragen, alle documenten, alle audit trails — op één platform met rolgebaseerde toegang. Wat het bestuur in 2024 besluit, kan een nieuw bestuurslid in 2031 nog terugvinden, mét de gronden waarop het besluit werd genomen.
+Title: MyOrchestra — het collectieve geheugen van uw stichting, op één plek.
+Text 1: MyOrchestra is geen dashboard. Het is het institutionele brein van uw stichting: alle financiële gegevens, alle bestuursnotulen, alle besluiten, alle subsidie-aanvragen, alle documenten, alle audit trails — op één platform met rolgebaseerde toegang. Wat het bestuur in 2024 besluit, kan een nieuw bestuurslid in 2031 nog terugvinden, mét de gronden waarop het besluit werd genomen.
 Text 2: Bestuursleden zien wat zij moeten zien om te kunnen besturen. De penningmeester ziet wat zij of hij moet zien om zijn rol uit te oefenen. De accountant heeft toegang tot wat de jaarrekening voedt. State-of-the-art tools voor fondsenbeheer, bestuursvergaderingen, documentbeheer en besluitvorming — gebouwd voor het werk dat een stichting werkelijk doet, niet gegeneraliseerd uit corporate software.
 
 **EN**
 Eyebrow: Digital platform
-Title: My Orchestra — the collective memory of your foundation, in one place.
-Text 1: My Orchestra is not a dashboard. It is the institutional brain of your foundation: all financial data, all board minutes, all decisions, all grant applications, all documents, all audit trails — on one platform with role-based access. What the board decides in 2024, a new board member in 2031 can still find back, with the grounds on which the decision was made.
+Title: MyOrchestra — the collective memory of your foundation, in one place.
+Text 1: MyOrchestra is not a dashboard. It is the institutional brain of your foundation: all financial data, all board minutes, all decisions, all grant applications, all documents, all audit trails — on one platform with role-based access. What the board decides in 2024, a new board member in 2031 can still find back, with the grounds on which the decision was made.
 Text 2: Board members see what they need to govern. The treasurer sees what they need to do their role. The accountant has access to what feeds the annual accounts. State-of-the-art tools for grant management, board meetings, document management and decision-making — built for the work a foundation actually does, not generalised from corporate software.
 
 Edits / notes:
@@ -552,7 +552,7 @@ Item 2 — Beleid & Compliance: Opstellen en bijhouden van governance-beleid, co
 Item 3 — Risicotoezicht: Systematische identificatie, beoordeling en mitigatie van organisatorische, financiële en reputationele risico's. Periodieke risicorapportage aan het bestuur, niet alleen wanneer er iets gebeurt.
 Item 4 — Jaarrekeningen: Professionele voorbereiding van jaarverslag, financiële overzichten en management letter aan uw externe accountant. Volledig conform de specifieke rapportagestandaarden voor stichtingen.
 Item 5 — Stakeholderrapportage: Heldere, transparante communicatie naar donoren, toezichthouders, beneficianten en andere belanghebbenden. Geen jargon, geen verborgen aannames — wat uw stichting doet en met welk resultaat.
-Item 6 — Digitale governance: Beveiligde, georganiseerde toegang tot alle governance-documenten, bestuursnotulen en besluitregisters via Mijn Orchestra. Eén plek waar de hele geschiedenis van het bestuurlijk werk zichtbaar is.
+Item 6 — Digitale governance: Beveiligde, georganiseerde toegang tot alle governance-documenten, bestuursnotulen en besluitregisters via MyOrchestra. Eén plek waar de hele geschiedenis van het bestuurlijk werk zichtbaar is.
 
 **EN**
 Item 1 — Board advisory: Strategic advice on board composition, governance structures, policy frameworks and organisational decision-making. Independent, sector-specific, focused on the board's fiduciary duty.
@@ -560,7 +560,7 @@ Item 2 — Policy & Compliance: Drafting and maintenance of governance policy, c
 Item 3 — Risk oversight: Systematic identification, assessment and mitigation of organisational, financial and reputational risks. Periodic risk reporting to the board — not only when something happens.
 Item 4 — Annual accounts: Professional preparation of the annual report, financial statements and management letter for your external auditor. Fully compliant with the specific reporting standards for foundations.
 Item 5 — Stakeholder reporting: Clear, transparent communication to donors, regulators, beneficiaries and other stakeholders. No jargon, no hidden assumptions — what your foundation does and with what result.
-Item 6 — Digital governance: Secure, organised access to all governance documents, board minutes and decision registers via My Orchestra. One place where the full history of the board's work is visible.
+Item 6 — Digital governance: Secure, organised access to all governance documents, board minutes and decision registers via MyOrchestra. One place where the full history of the board's work is visible.
 
 Edits / notes:
 _____
@@ -785,7 +785,7 @@ Journey title: Van eerste kennismaking tot volledige rust.
 Journey text: Elk partnerschap met Orchestra begint met begrijpen waar uw stichting nu staat. Onze gestructureerde aanpak zorgt dat wij grondig beoordelen, een transparant voorstel uitbrengen, en u door elke fase van de onboarding begeleiden. Geen verrassingen onderweg.
 
 Result title: Volledige gemoedsrust.
-Result text: Aan het einde van het vijf-stappen proces beschikt uw stichting over een volledig geïntegreerde financiële infrastructuur — institutioneel beheerd, volledig compliant, real-time inzichtelijk via Mijn Orchestra. En het bestuur heeft de tijd en aandacht terug die voorheen aan financiële versnippering werd besteed.
+Result text: Aan het einde van het vijf-stappen proces beschikt uw stichting over een volledig geïntegreerde financiële infrastructuur — institutioneel beheerd, volledig compliant, real-time inzichtelijk via MyOrchestra. En het bestuur heeft de tijd en aandacht terug die voorheen aan financiële versnippering werd besteed.
 
 **EN — Hero**
 Eyebrow: Our methodology
@@ -796,23 +796,23 @@ Journey title: From first conversation to full peace of mind.
 Journey text: Every partnership with Orchestra begins with understanding where your foundation stands now. Our structured approach ensures we assess thoroughly, deliver a transparent proposal, and guide you through every phase of onboarding. No surprises along the way.
 
 Result title: Full peace of mind.
-Result text: At the end of the five-step process your foundation has a fully integrated financial infrastructure — institutionally managed, fully compliant, available in real time on My Orchestra. And the board has back the time and attention previously spent on financial fragmentation.
+Result text: At the end of the five-step process your foundation has a fully integrated financial infrastructure — institutionally managed, fully compliant, available in real time on MyOrchestra. And the board has back the time and attention previously spent on financial fragmentation.
 
 **Five process steps (`src/data/processSteps.js`):**
 
 NL:
 1. **De nulmeting** — Wij beoordelen grondig uw huidige financiële organisatie: beleggingen, administratie, governance, kostenpositie, compliance. Resultaat is een schriftelijke nulmeting — niet een verkoopgesprek.
 2. **De offerte** — Op basis van de nulmeting ontvangt u een schriftelijke offerte met een vast jaarlijks tarief. Wat erin zit, wat niet, en waarom. Geen meerwerkclausules, geen open einden.
-3. **De onboarding** — Wij voeren de transitie vanuit uw huidige dienstverleners. Beleggingen worden overgeboekt, administratie wordt overgedragen, governance-documenten worden gemigreerd naar Mijn Orchestra. Bestuur ervaart minimale verstoring.
+3. **De onboarding** — Wij voeren de transitie vanuit uw huidige dienstverleners. Beleggingen worden overgeboekt, administratie wordt overgedragen, governance-documenten worden gemigreerd naar MyOrchestra. Bestuur ervaart minimale verstoring.
 4. **De zekerheid** — Na onboarding ontvangt u een formele bevestiging dat alle financiële, fiscale, juridische en compliance-aspecten op orde zijn. Vanaf dat moment werken wij doorlopend onder vier-ogen-principe.
-5. **Het inzicht** — Mijn Orchestra geeft het hele bestuur 24/7 real-time toegang tot portefeuille, administratie, governance-documenten en rapportages. Geautoriseerde toegang voor bestuursleden, penningmeester, accountant.
+5. **Het inzicht** — MyOrchestra geeft het hele bestuur 24/7 real-time toegang tot portefeuille, administratie, governance-documenten en rapportages. Geautoriseerde toegang voor bestuursleden, penningmeester, accountant.
 
 EN:
 1. **The baseline assessment** — We thoroughly assess your current financial organisation: investments, administration, governance, cost position, compliance. The output is a written baseline assessment — not a sales pitch.
 2. **The proposal** — Based on the baseline you receive a written proposal with a fixed annual fee. What is included, what is not, and why. No additional-work clauses, no open ends.
-3. **The onboarding** — We execute the transition from your current providers. Investments are transferred, administration is handed over, governance documents are migrated to My Orchestra. The board experiences minimal disruption.
+3. **The onboarding** — We execute the transition from your current providers. Investments are transferred, administration is handed over, governance documents are migrated to MyOrchestra. The board experiences minimal disruption.
 4. **The assurance** — After onboarding you receive formal confirmation that all financial, fiscal, legal and compliance aspects are in order. From that point on we operate continuously under the four-eyes principle.
-5. **The insight** — My Orchestra gives the whole board 24/7 real-time access to portfolio, administration, governance documents and reports. Authorised access for board members, treasurer, and accountant.
+5. **The insight** — MyOrchestra gives the whole board 24/7 real-time access to portfolio, administration, governance documents and reports. Authorised access for board members, treasurer, and accountant.
 
 Edits / notes:
 _____
@@ -854,9 +854,9 @@ NL: Onze processen zijn standaard ontworpen voor ANBI-compliance. Inkomstenregis
 EN: Our processes are designed for ANBI compliance by default. Income registration, expense ratios, publication requirements, transaction transparency — everything the Belastingdienst and the CBF require, we deliver as part of our regular service. Not as a project. Not as additional work. Losing ANBI status through administrative oversight is exactly the kind of risk our service eliminates.
 
 **FAQ B — Wat als wij grote subsidiestromen ontvangen (VWS, gemeente, EU)?**
-NL: Subsidiestromen zijn een aparte specialisatie binnen onze administratiedienstverlening. Aanvraag-administratie, project-administratie per subsidie, voortgangsrapportage, eindverantwoording — wij houden de relatie tussen subsidievoorwaarden en bestede middelen automatisch zichtbaar in Mijn Orchestra. Voor bestuursleden, voor de subsidieverstrekker en voor uw accountant.
+NL: Subsidiestromen zijn een aparte specialisatie binnen onze administratiedienstverlening. Aanvraag-administratie, project-administratie per subsidie, voortgangsrapportage, eindverantwoording — wij houden de relatie tussen subsidievoorwaarden en bestede middelen automatisch zichtbaar in MyOrchestra. Voor bestuursleden, voor de subsidieverstrekker en voor uw accountant.
 
-EN: Government grant flows are a distinct specialisation within our administration service. Application administration, project accounting per grant, progress reporting, final accountability — we automatically keep the relationship between grant conditions and money spent visible on My Orchestra. For board members, for the granting authority, and for your accountant.
+EN: Government grant flows are a distinct specialisation within our administration service. Application administration, project accounting per grant, progress reporting, final accountability — we automatically keep the relationship between grant conditions and money spent visible on MyOrchestra. For board members, for the granting authority, and for your accountant.
 
 **FAQ C — Wat verandert er voor onze huidige accountant?**
 NL: In principe niets verplichts. Veel cliënten houden hun huidige externe accountant aan voor de wettelijke controle van de jaarrekening — die rol is gescheiden van ons werk en blijft onafhankelijk. Wij leveren de management letter en alle onderliggende stukken. In de praktijk verbetert de samenwerking met accountants doordat onze administratie audit-ready aangeleverd wordt; controle-uren bij de accountant nemen vaak af.
@@ -953,9 +953,9 @@ NL: "Goedkoper" is niet het juiste woord. "Logischer" is het. Als uw stichtingsv
 EN: "Cheaper" is not the right word. "Logical" is. If your foundation's wealth doubles, our work generally does not. A fee that scales with your wealth eventually grows out of proportion to the work — and for a foundation, that means structurally fewer resources for the mission. A fixed fee stays in proportion to the originally agreed scope.
 
 **Q3 — Werken jullie samen met onze huidige bank of fondsbeheerder?**
-NL: Ja. In veel gevallen blijven cliënten posities aanhouden bij meerdere banken en (fonds)beheerders — zeker tijdens een transitie. Wij zorgen dat het geheel zichtbaar, gemeten en samenhangend beheerd blijft via Mijn Orchestra. Welke partijen het werk uitvoeren is voor ons secundair; dat het geheel onder één regie staat, is primair.
+NL: Ja. In veel gevallen blijven cliënten posities aanhouden bij meerdere banken en (fonds)beheerders — zeker tijdens een transitie. Wij zorgen dat het geheel zichtbaar, gemeten en samenhangend beheerd blijft via MyOrchestra. Welke partijen het werk uitvoeren is voor ons secundair; dat het geheel onder één regie staat, is primair.
 
-EN: Yes. In many cases clients keep positions with multiple banks and (fund) managers — especially during a transition. We ensure the whole remains visible, measured, and managed coherently via My Orchestra. Which parties execute the work is secondary; that the whole is held under one stewardship is primary.
+EN: Yes. In many cases clients keep positions with multiple banks and (fund) managers — especially during a transition. We ensure the whole remains visible, measured, and managed coherently via MyOrchestra. Which parties execute the work is secondary; that the whole is held under one stewardship is primary.
 
 **Q4 — Voor welke stichtingsomvang is dit zinvol?**
 NL: Onze dienstverlening is structureel gebouwd voor die stichtingen waar de complexiteit van vermogensbeheer, governance en administratie reëel begint te wegen — doorgaans vanaf stichtingsvermogens van indicatief enkele miljoenen euro of fondsenwervende organisaties met substantiële operationele begrotingen. Voor zuiver beleggingsdienstverlening zijn wij door onze vaste tarifering vooral economisch interessant voor grotere stichtingsvermogens; voor het integrale Charity Office (beheer + administratie + governance) ligt het omslagpunt lager — daar wint elke stichting waar het bestuur meer aan financiële versnippering kwijt is dan aan de missie.
@@ -963,9 +963,9 @@ NL: Onze dienstverlening is structureel gebouwd voor die stichtingen waar de com
 EN: Our service is structurally built for foundations where the complexity of wealth management, governance and administration begins to weigh meaningfully — typically from foundation assets of indicatively several million euros, or fundraising organisations with substantial operational budgets. For pure investment management our fixed-fee approach is most economically relevant for larger foundation portfolios; for the full Charity Office (management + administration + governance) the threshold is lower — every foundation where the board spends more time on financial fragmentation than on the mission stands to gain.
 
 **Q5 — Wat zit er in het vaste tarief?**
-NL: Dat is volledig afhankelijk van wat er voor uw stichting nodig is om financieel georkestreerd te worden. Wat het integrale Charity Office kan omvatten: vermogensbeheer, het opstellen en bewaken van het beleggingsstatuut, alle financiële administratie en boekhouding, subsidie- en donatieadministratie, jaarrekeningen, ANBI- en CBF-rapportages, governance-advies, bestuursondersteuning, coördinatie met externe accountant, en de volledige Mijn Orchestra omgeving voor het hele bestuur. Externe kosten (transactiekosten op beleggingen, fondskosten, kosten van derden zoals notaris of advocaat) worden separaat en transparant gerapporteerd, en continu getoetst aan potentieel efficiëntere alternatieven.
+NL: Dat is volledig afhankelijk van wat er voor uw stichting nodig is om financieel georkestreerd te worden. Wat het integrale Charity Office kan omvatten: vermogensbeheer, het opstellen en bewaken van het beleggingsstatuut, alle financiële administratie en boekhouding, subsidie- en donatieadministratie, jaarrekeningen, ANBI- en CBF-rapportages, governance-advies, bestuursondersteuning, coördinatie met externe accountant, en de volledige MyOrchestra omgeving voor het hele bestuur. Externe kosten (transactiekosten op beleggingen, fondskosten, kosten van derden zoals notaris of advocaat) worden separaat en transparant gerapporteerd, en continu getoetst aan potentieel efficiëntere alternatieven.
 
-EN: That is fully dependent on what your foundation requires to be financially orchestrated. What the full Charity Office can include: wealth management, drafting and monitoring of the investment policy statement, all financial administration and bookkeeping, grant and donation administration, annual accounts, ANBI and CBF reporting, governance advisory, board support, coordination with external auditor, and the full My Orchestra environment for the entire board. External costs (transaction costs on investments, fund costs, third-party costs such as notary or lawyer) are reported separately and transparently, and continuously assessed against potentially more efficient alternatives.
+EN: That is fully dependent on what your foundation requires to be financially orchestrated. What the full Charity Office can include: wealth management, drafting and monitoring of the investment policy statement, all financial administration and bookkeeping, grant and donation administration, annual accounts, ANBI and CBF reporting, governance advisory, board support, coordination with external auditor, and the full MyOrchestra environment for the entire board. External costs (transaction costs on investments, fund costs, third-party costs such as notary or lawyer) are reported separately and transparently, and continuously assessed against potentially more efficient alternatives.
 
 **Q6 — Kan ons bestuur eerst een second opinion krijgen?**
 NL: Ja natuurlijk. Veel besturen beginnen daarmee. Wij geven graag een onafhankelijke beoordeling van hoe uw stichting op dit moment financieel is georganiseerd — beleggingsstrategie, kostenposities, administratieve inrichting, governance-discipline, compliance — zonder enige verplichting tot samenwerking. Voor veel besturen is dat het eerste moment waarop het volledige financiële plaatje van de eigen stichting op één pagina staat.
@@ -1044,7 +1044,7 @@ These three framings unify the rewrite and should stay intact through any future
 
 1. **Stichtingen hebben twee gezichten.** Warm (missie) en operationeel (compliance). Beide verdienen aandacht; alleen het eerste verdient maximale uitgaven. Orchestra bedient het tweede.
 2. **Het operationele gezicht is niet waar altruïsme woont.** Het is waar je minimaliseert, zodat het warme gezicht maximaliseert. Iedere euro op operatie is een opportuniteitskost ten opzichte van de missie. Dit is de morele kern van het fixed-fee argument.
-3. **Wij leveren dienstverlening én collectief geheugen.** Mijn Orchestra is niet een dashboard — het is het institutionele brein van uw stichting. Bestuursnotulen, besluitregisters, subsidie-administratie, documentkluis, audit trail, plus state-of-the-art tools voor fondsenbeheer en bestuursvergaderingen. Wat wij ophalen aan kennis over uw stichting, leveren wij terug aan uw bestuur.
+3. **Wij leveren dienstverlening én collectief geheugen.** MyOrchestra is niet een dashboard — het is het institutionele brein van uw stichting. Bestuursnotulen, besluitregisters, subsidie-administratie, documentkluis, audit trail, plus state-of-the-art tools voor fondsenbeheer en bestuursvergaderingen. Wat wij ophalen aan kennis over uw stichting, leveren wij terug aan uw bestuur.
 
 ## Appendix — Founder-verify items
 
