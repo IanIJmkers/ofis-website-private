@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "screenshot": "node scripts/screenshot.mjs"
+    "screenshot": "node scripts/screenshot.mjs",
+    "postinstall": "node -e \"require('fs').rmSync('node_modules/flatted/php',{recursive:true,force:true})\""
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.95.3",
