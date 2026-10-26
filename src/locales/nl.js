@@ -213,7 +213,7 @@ export default {
     storyP2:
       "Wij helpen bij het oprichten van familiefondsen, de overdracht van familievermogen en bieden via ons platform MyOrchestra geïntegreerd overzicht, controle en transparantie over uw bezit.",
     storyP3:
-      "Vandaag de dag werken meer dan 25 specialisten bij Orchestra, waaronder portfoliomanagers, registeraccountants, administratieve controllers en toegewijde vertrouwde adviseurs.",
+      "Vandaag de dag werken meer dan 25 specialisten bij Orchestra.",
 
     philosophyTitle: "Onze Filosofie",
     philosophy1: "Servicegericht, maar niet serviel",

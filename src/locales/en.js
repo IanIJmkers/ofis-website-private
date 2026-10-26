@@ -214,7 +214,7 @@ export default {
     storyP2:
       "We help with establishing family funds, the transfer of family wealth and offer integrated oversight, control and transparency over your assets through our MyOrchestra platform.",
     storyP3:
-      "Today, more than 25 specialists work at Orchestra, including portfolio managers, chartered accountants, administrative controllers and dedicated trusted advisors.",
+      "Today, more than 25 specialists work at Orchestra.",
 
     philosophyTitle: "Our Philosophy",
     philosophy1: "Service-oriented, but not servile",

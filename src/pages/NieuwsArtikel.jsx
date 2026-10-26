@@ -325,18 +325,6 @@ export default function NieuwsArtikel() {
                 transition={{ duration: 0.5, delay: 0.5 }}
                 className="h-0.75 w-10 bg-gold-700 origin-left mb-6"
               />
-
-              {/* Excerpt as intro highlight */}
-              {post.excerpt && (
-                <motion.p
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  className="text-lg text-warm-gray-500 leading-relaxed font-body"
-                >
-                  {post.excerpt}
-                </motion.p>
-              )}
             </>
           )}
         </div>

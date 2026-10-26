@@ -37,7 +37,7 @@ const data = {
       shortDescription:
         "Beheer van uw beleggingsportefeuille met institutionele discipline: portefeuilles geijkt op uw doelstellingen, kosten als stuurbare variabele, vier-ogen-principe op iedere transactie.",
       fullDescription:
-        "Wij beheren beleggingen zoals een institutionele belegger dat doet. Portefeuilles worden ontworpen op basis van de verplichtingen en doelstellingen van uw vermogen — niet op basis van een externe benchmark — met risicokaders, kostenbeheersing en vier-ogen-principe op iedere transactie. Kosten behandelen wij als een structurele, stuurbare variabele.",
+        "Wij beheren beleggingen zoals een institutionele belegger dat doet.",
       icon: "wealth-management",
       features: [
         {
@@ -142,7 +142,7 @@ const data = {
       shortDescription:
         "Investments managed the way an institutional investor does: portfolios calibrated to your objectives, costs as a manageable variable, four-eyes principle on every transaction.",
       fullDescription:
-        "We manage investments the way an institutional investor does. Portfolios are designed against the liabilities and objectives of your estate — not against an external benchmark — with risk frameworks, cost control and a four-eyes principle on every transaction. We treat costs as a structural, manageable variable.",
+        "We manage investments the way an institutional investor does.",
       icon: "wealth-management",
       features: [
         {
